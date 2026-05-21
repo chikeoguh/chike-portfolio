@@ -36,7 +36,7 @@ module.exports = async function handler(req, res) {
       from:    'Chike Oguh <noreply@chike.ng>',
       to:      [email],
       replyTo: 'hello@chike.ng',
-      subject: `[chike.ng] // Transmission received`,
+      subject: `Transmission received — chike.ng`,
       html:    confirmationEmail({ name, email, type: label, subject, message, ts }),
     });
 
@@ -106,7 +106,7 @@ function shell({ title, body }) {
 
 function confirmationEmail({ name, email, type, subject, message, ts }) {
   return shell({
-    title: 'transmission_receipt.sh — chike.ng',
+    title: 'transmission_receipt.sh — chike.oguh',
     body: `
       <p style="margin:0 0 6px;font-size:12px;color:#4a5568">$ whoami --sender</p>
       <p style="margin:0 0 28px;font-size:15px;color:#edf2f7;padding-left:14px;font-weight:600">Hello, ${x(name)}</p>
