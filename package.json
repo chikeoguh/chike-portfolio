@@ -1,0 +1,15 @@
+{
+  "name": "chike-portfolio",
+  "version": "1.0.0",
+  "description": "Chike Oguh — Portfolio & CV",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "resend": "^3.2.0"
+  },
+  "devDependencies": {
+    "vercel": "^34.0.0"
+  }
+}

@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chike Oguh — Support Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* =====================================================
+   ROOT & RESET
+===================================================== */
+:root{
+  --bg0:#020408;--bg1:#080c12;--bg2:#0d1117;--bg3:#111820;
+  --card:#0a0e14;--border:rgba(255,255,255,.055);--border2:rgba(0,255,136,.22);
+  --ng:#00ff88;--nc:#00d4ff;--np:#7c3aed;--na:#f59e0b;
+  --t1:#edf2f7;--t2:#8892a4;--t3:#4a5568;
+  --mono:'JetBrains Mono',monospace;--sans:'Inter',sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);
+  --gng:0 0 24px rgba(0,255,136,.35),0 0 48px rgba(0,255,136,.08);
+  --gnc:0 0 24px rgba(0,212,255,.35),0 0 48px rgba(0,212,255,.08);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--sans);background:var(--bg0);color:var(--t1);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{display:block;max-width:100%}
+
+/* =====================================================
+   CURSOR
+===================================================== */
+#cur{position:fixed;width:10px;height:10px;background:var(--ng);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .2s var(--ease),height .2s var(--ease),background .2s}
+#cur-ring{position:fixed;width:38px;height:38px;border:1px solid rgba(0,255,136,.35);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .15s var(--ease),height .15s var(--ease),border-color .2s;will-change:left,top}
+body:has(a:hover) #cur,body:has(button:hover) #cur{width:16px;height:16px;background:var(--nc)}
+body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:52px;height:52px;border-color:rgba(0,212,255,.5)}
+
+/* =====================================================
+   LOADER
+===================================================== */
+#loader{position:fixed;inset:0;background:#000;z-index:99997;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;transition:opacity .9s var(--ease),visibility .9s var(--ease)}
+#loader.out{opacity:0;visibility:hidden}
+.ld-logo{font-family:var(--mono);font-size:clamp(22px,4vw,36px);color:var(--ng);letter-spacing:.12em;font-weight:700}
+.ld-logo span{color:rgba(255,255,255,.2)}
+.ld-terminal{width:min(480px,88vw);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:10px;overflow:hidden}
+.ld-th{padding:10px 14px;background:rgba(255,255,255,.025);border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;gap:8px}
+.ld-dots{display:flex;gap:6px}
+.ld-dot{width:10px;height:10px;border-radius:50%}
+.ld-dot.r{background:#ff5f57}.ld-dot.y{background:#febc2e}.ld-dot.g{background:#28c840}
+.ld-title{font-family:var(--mono);font-size:11px;color:var(--t3);margin-left:8px}
+.ld-body{padding:16px;font-family:var(--mono);font-size:12px;line-height:1.9;min-height:120px}
+.ld-line{display:flex;gap:8px;opacity:0;transition:opacity .3s}
+.ld-line.show{opacity:1}
+.ld-p{color:var(--ng)}.ld-s{color:var(--nc)}.ld-w{color:var(--na)}.ld-m{color:var(--t2)}
+.ld-bar-wrap{width:min(480px,88vw);height:2px;background:rgba(255,255,255,.05);border-radius:99px;overflow:hidden}
+.ld-bar{height:100%;width:0;background:linear-gradient(90deg,var(--ng),var(--nc));box-shadow:0 0 12px var(--ng);transition:width .08s linear}
+
+/* =====================================================
+   SCROLL PROGRESS
+===================================================== */
+#sp{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--ng),var(--nc));z-index:9999;box-shadow:0 0 8px var(--ng);transition:width .1s linear;width:0}
+
+/* =====================================================
+   NAV
+===================================================== */
+#nav{position:fixed;inset:0 0 auto;z-index:9000;height:64px;padding:0 clamp(16px,4vw,56px);display:flex;align-items:center;justify-content:space-between;transition:background .3s,border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
+#nav.scrolled{background:rgba(2,4,8,.88);backdrop-filter:blur(24px);border-bottom-color:var(--border)}
+.nav-logo{font-family:var(--mono);font-size:14px;color:var(--ng);letter-spacing:.1em;font-weight:600}
+.nav-logo em{color:rgba(255,255,255,.18);font-style:normal}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--ng)}
+.nav-btn{font-family:var(--mono);font-size:11px;padding:7px 18px;border:1px solid var(--ng);color:var(--ng);border-radius:4px;letter-spacing:.08em;text-transform:uppercase;transition:all .25s var(--ease)}
+.nav-btn:hover{background:var(--ng);color:#000;box-shadow:var(--gng)}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-burger span{width:22px;height:1px;background:var(--t2);transition:all .3s var(--ease);display:block}
+.nav-burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0;transform:translateX(-8px)}
+.nav-burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+#mmenu{position:fixed;inset:0;z-index:8999;background:rgba(2,4,8,.97);backdrop-filter:blur(40px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;transform:translateX(100%);transition:transform .4s var(--ease)}
+#mmenu.open{transform:translateX(0)}
+#mmenu a{font-family:var(--mono);font-size:20px;color:var(--t2);letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+#mmenu a:hover{color:var(--ng)}
+
+/* =====================================================
+   SECTION BASE
+===================================================== */
+.wrap{max-width:1360px;margin:0 auto;padding:clamp(80px,10vw,140px) clamp(16px,5vw,72px)}
+.s-label{font-family:var(--mono);font-size:11px;color:var(--ng);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.s-label::before{content:'';width:28px;height:1px;background:var(--ng)}
+.s-title{font-size:clamp(30px,5vw,54px);font-weight:800;line-height:1.1;letter-spacing:-.025em;margin-bottom:14px}
+.s-sub{color:var(--t2);font-size:clamp(14px,1.8vw,17px);max-width:520px;line-height:1.7}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 clamp(16px,5vw,72px)}
+
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.on{opacity:1;transform:none}
+.rv-l{opacity:0;transform:translateX(-28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv-l.on{opacity:1;transform:none}
+.rv-r{opacity:0;transform:translateX(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv-r.on{opacity:1;transform:none}
+
+/* =====================================================
+   HERO
+===================================================== */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding-top:64px}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,255,136,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.025) 1px,transparent 1px);background-size:64px 64px;animation:gridScroll 25s linear infinite}
+@keyframes gridScroll{to{background-position:0 64px}}
+.hero-radial{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 50%,rgba(0,255,136,.05) 0%,transparent 70%)}
+.hero-inner{position:relative;z-index:10;text-align:center;padding:clamp(40px,8vw,80px) clamp(16px,6vw,80px);max-width:860px}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border:1px solid rgba(0,255,136,.2);border-radius:99px;font-family:var(--mono);font-size:11px;color:var(--ng);letter-spacing:.15em;text-transform:uppercase;margin-bottom:36px;background:rgba(0,255,136,.035);animation:fdU .8s var(--ease) .4s both}
+.hero-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--ng);animation:pls 2s ease infinite}
+@keyframes pls{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,255,136,.6)}50%{opacity:.5;box-shadow:0 0 0 6px rgba(0,255,136,0)}}
+.hero-name{font-size:clamp(72px,14vw,128px);font-weight:900;line-height:.95;letter-spacing:-.05em;background:linear-gradient(135deg,#fff 0%,#8892a4 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;animation:fdU .8s var(--ease) .55s both;position:relative}
+.hero-sub{font-family:var(--mono);font-size:clamp(11px,1.5vw,14px);color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;animation:fdU .8s var(--ease) .65s both}
+.hero-typed-row{height:44px;display:flex;align-items:center;justify-content:center;margin-bottom:52px;animation:fdU .8s var(--ease) .75s both}
+.hero-typed{font-size:clamp(20px,3.5vw,32px);font-weight:700;color:var(--ng);font-family:var(--mono)}
+.tcursor{display:inline-block;width:2px;height:1.15em;background:var(--ng);margin-left:3px;vertical-align:middle;animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fdU .8s var(--ease) .9s both}
+.btn-p{padding:13px 30px;background:var(--ng);color:#000;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;border:1px solid var(--ng);transition:all .25s var(--ease);box-shadow:0 0 28px rgba(0,255,136,.25)}
+.btn-p:hover{background:transparent;color:var(--ng);box-shadow:var(--gng);transform:translateY(-2px)}
+.btn-s{padding:13px 30px;background:transparent;color:var(--t1);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;border:1px solid var(--border);transition:all .25s var(--ease)}
+.btn-s:hover{border-color:var(--nc);color:var(--nc);box-shadow:var(--gnc);transform:translateY(-2px)}
+.hero-float-left{position:absolute;bottom:72px;left:clamp(20px,4vw,60px);animation:fdL 1s var(--ease) 1.3s both}
+.hero-float-right{position:absolute;bottom:72px;right:clamp(20px,4vw,60px);display:flex;flex-direction:column;gap:10px;animation:fdR 1s var(--ease) 1.3s both}
+.h-stat{display:flex;align-items:center;gap:14px;padding:12px 18px;background:rgba(8,12,18,.9);border:1px solid var(--border);border-radius:9px;backdrop-filter:blur(20px)}
+.h-stat-val{font-family:var(--mono);font-size:22px;font-weight:800;line-height:1}
+.h-stat-lbl{font-family:var(--mono);font-size:10px;color:var(--t3);line-height:1.5}
+.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fdU .8s var(--ease) 1.6s both}
+.hero-scroll span{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.2em;text-transform:uppercase}
+.hero-scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,transparent,var(--ng));animation:sLine 2.2s ease infinite}
+@keyframes sLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes fdU{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fdL{from{opacity:0;transform:translateX(-22px)}to{opacity:1;transform:none}}
+@keyframes fdR{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:none}}
+
+/* =====================================================
+   TERMINAL
+===================================================== */
+.term{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.term-head{padding:10px 14px;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.t-dots{display:flex;gap:6px}
+.t-dot{width:10px;height:10px;border-radius:50%}
+.t-dot.r{background:#ff5f57}.t-dot.y{background:#febc2e}.t-dot.g{background:#28c840}
+.t-title{font-family:var(--mono);font-size:11px;color:var(--t3);margin-left:8px}
+.term-body{padding:16px;font-family:var(--mono);font-size:12px;line-height:1.95}
+.t-row{display:flex;gap:8px;flex-wrap:nowrap}
+.t-pr{color:var(--ng);flex-shrink:0}.t-cm{color:var(--t1)}.t-out{color:var(--t2)}.t-ok{color:var(--nc)}.t-wa{color:var(--na)}.t-er{color:#f87171}
+
+/* =====================================================
+   ABOUT
+===================================================== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:60px;align-items:start}
+.about-quote{font-size:clamp(16px,2vw,19px);font-weight:600;line-height:1.65;border-left:2px solid var(--ng);padding-left:20px;color:var(--t1);margin-bottom:24px}
+.about-text{color:var(--t2);font-size:15px;line-height:1.85;margin-bottom:16px}
+.about-text strong{color:var(--t1);font-weight:600}
+.tech-cloud{display:flex;flex-wrap:wrap;gap:7px;margin-top:28px}
+.tech-tag{font-family:var(--mono);font-size:10px;padding:4px 11px;background:rgba(0,255,136,.04);border:1px solid rgba(0,255,136,.14);border-radius:4px;color:var(--ng);letter-spacing:.05em;transition:all .2s var(--ease)}
+.tech-tag:hover{background:rgba(0,255,136,.1);border-color:rgba(0,255,136,.35);transform:translateY(-2px)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:22px;transition:all .3s var(--ease);position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--ng),transparent);opacity:0;transition:opacity .3s}
+.stat-card:hover{border-color:rgba(0,255,136,.18);transform:translateY(-4px)}
+.stat-card:hover::before{opacity:1}
+.stat-n{font-family:var(--mono);font-size:clamp(28px,4vw,40px);font-weight:800;line-height:1;margin-bottom:7px}
+.stat-d{font-size:12px;color:var(--t2);line-height:1.5}
+
+/* =====================================================
+   EXPERIENCE
+===================================================== */
+.exp-timeline{margin-top:60px;position:relative}
+.tl-line{position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--ng),transparent 90%)}
+.exp-item{padding-left:40px;padding-bottom:52px;position:relative}
+.exp-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-5px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--ng);box-shadow:0 0 10px var(--ng)}
+.tl-dot.live{background:var(--nc);box-shadow:0 0 10px var(--nc);animation:liveDot 2.5s ease infinite}
+@keyframes liveDot{0%,100%{box-shadow:0 0 8px var(--nc)}50%{box-shadow:0 0 22px var(--nc),0 0 44px rgba(0,212,255,.2)}}
+.exp-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 32px;transition:all .35s var(--ease);position:relative;overflow:hidden}
+.exp-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 40% at 50% 0%,rgba(0,255,136,.03),transparent);opacity:0;transition:opacity .4s}
+.exp-card:hover{border-color:rgba(0,255,136,.16);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.35)}
+.exp-card:hover::after{opacity:1}
+.exp-hd{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.exp-title{font-size:18px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.exp-co{font-family:var(--mono);font-size:12px;color:var(--nc)}
+.badge{font-family:var(--mono);font-size:10px;padding:4px 12px;border-radius:99px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.badge-live{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.28);color:var(--nc)}
+.badge-recent{background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.2);color:var(--ng)}
+.badge-prev{background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--t3)}
+.exp-buls{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.exp-buls li{font-size:13.5px;color:var(--t2);padding-left:18px;position:relative;line-height:1.65}
+.exp-buls li::before{content:'›';position:absolute;left:0;color:var(--ng);font-size:15px;line-height:1.4}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px}
+.et{font-family:var(--mono);font-size:10px;padding:3px 10px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:4px;color:var(--t3);letter-spacing:.05em}
+
+/* =====================================================
+   SKILLS
+===================================================== */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;margin-top:60px}
+.sk-cat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:26px;transition:all .35s var(--ease)}
+.sk-cat:hover{border-color:rgba(0,255,136,.15);transform:translateY(-4px)}
+.sk-hd{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.sk-ico{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.sk-ico.g{background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.16)}
+.sk-ico.c{background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.16)}
+.sk-ico.p{background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.16)}
+.sk-ico.a{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.16)}
+.sk-cat-name{font-size:14px;font-weight:600;color:var(--t1)}
+.sk-item{margin-bottom:14px}
+.sk-row{display:flex;justify-content:space-between;margin-bottom:5px}
+.sk-name{font-family:var(--mono);font-size:12px;color:var(--t2)}
+.sk-lvl{font-family:var(--mono);font-size:11px;color:var(--t3)}
+.sk-bar{height:2px;background:rgba(255,255,255,.05);border-radius:99px;overflow:hidden}
+.sk-fill{height:100%;width:0;border-radius:99px;transition:width 1.4s var(--ease)}
+.sk-fill.g{background:linear-gradient(90deg,var(--ng),rgba(0,255,136,.45));box-shadow:0 0 8px var(--ng)}
+.sk-fill.c{background:linear-gradient(90deg,var(--nc),rgba(0,212,255,.45));box-shadow:0 0 8px var(--nc)}
+.badge-cloud{display:flex;flex-wrap:wrap;gap:6px}
+.bc{font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:6px;transition:transform .2s var(--ease)}
+.bc:hover{transform:scale(1.05)}
+.bc.g{background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.18);color:var(--ng)}
+.bc.c{background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.18);color:var(--nc)}
+.bc.gr{background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--t2)}
+
+/* =====================================================
+   PROJECTS
+===================================================== */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:22px;margin-top:60px}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .35s var(--ease)}
+.proj-card:hover{border-color:rgba(0,255,136,.2);transform:translateY(-6px);box-shadow:0 24px 64px rgba(0,0,0,.45),0 0 48px rgba(0,255,136,.04)}
+.proj-term-bg{background:#070a0e;border-bottom:1px solid var(--border)}
+.proj-body{padding:22px}
+.proj-title{font-size:16px;font-weight:700;color:var(--t1);margin-bottom:8px}
+.proj-desc{font-size:13px;color:var(--t2);line-height:1.65;margin-bottom:14px}
+.proj-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.p-status{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:99px;letter-spacing:.08em;text-transform:uppercase}
+.p-status.live{background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.2);color:var(--ng)}
+.p-status.act{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);color:var(--nc)}
+.p-sdot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:pls 2s infinite}
+
+/* =====================================================
+   EDUCATION
+===================================================== */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:60px}
+.edu-section-title{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.16em;text-transform:uppercase;margin-bottom:22px}
+.edu-cards{display:flex;flex-direction:column;gap:16px}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:24px;transition:all .3s var(--ease);position:relative;overflow:hidden}
+.edu-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--ng),var(--nc));opacity:0;transition:opacity .3s}
+.edu-card:hover{border-color:rgba(0,255,136,.15);transform:translateX(4px)}
+.edu-card:hover::before{opacity:1}
+.edu-deg{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:6px}
+.edu-inst{font-family:var(--mono);font-size:12px;color:var(--nc);margin-bottom:4px}
+.edu-yr{font-family:var(--mono);font-size:11px;color:var(--t3)}
+.cert-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:18px;transition:all .3s var(--ease);position:relative;overflow:hidden}
+.cert-card:hover{border-color:rgba(0,255,136,.2);transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.3)}
+.cert-ico{font-size:26px;margin-bottom:10px;line-height:1}
+.cert-name{font-size:12px;font-weight:600;color:var(--t1);line-height:1.45;margin-bottom:5px}
+.cert-iss{font-family:var(--mono);font-size:10px;color:var(--t3)}
+.cert-bdg{position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:9px;padding:2px 8px;border-radius:99px;letter-spacing:.1em;text-transform:uppercase}
+.cert-bdg.v{background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.2);color:var(--ng)}
+.cert-bdg.p{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.28);color:var(--na)}
+
+/* =====================================================
+   CONTACT
+===================================================== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:60px;align-items:start}
+.contact-cards{display:flex;flex-direction:column;gap:16px}
+.c-card{display:flex;align-items:center;gap:18px;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:11px;transition:all .3s var(--ease)}
+.c-card:hover{border-color:rgba(0,255,136,.2);transform:translateX(5px)}
+.c-ico{width:42px;height:42px;border-radius:9px;background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-ico svg{width:18px;height:18px;stroke:var(--ng);fill:none;stroke-width:1.6}
+.c-lbl{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+.c-val{font-size:14px;color:var(--t1);font-weight:500}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;max-width:1360px;margin:0 auto}
+.ft-l{font-family:var(--mono);font-size:11px;color:var(--t3)}
+.ft-l span{color:var(--ng)}
+.ft-r{font-family:var(--mono);font-size:11px;color:var(--t3)}
+
+/* =====================================================
+   GLOW BLOBS
+===================================================== */
+.blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.09}
+.blob-g{background:var(--ng);width:500px;height:500px}
+.blob-c{background:var(--nc);width:360px;height:360px}
+
+/* =====================================================
+   NOISE
+===================================================== */
+.noise{position:fixed;inset:0;pointer-events:none;z-index:99990;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E")}
+
+/* =====================================================
+   GLITCH
+===================================================== */
+.glitch{position:relative}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;background:linear-gradient(135deg,#fff,#8892a4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.glitch::before{animation:g1 9s infinite;clip-path:polygon(0 18%,100% 18%,100% 36%,0 36%);transform:translateX(-2px)}
+.glitch::after{animation:g2 9s infinite;clip-path:polygon(0 62%,100% 62%,100% 78%,0 78%);transform:translateX(2px)}
+@keyframes g1{0%,88%,100%{opacity:0}90%{opacity:1;transform:translateX(-3px)}93%{transform:translateX(3px)}95%{opacity:0}}
+@keyframes g2{0%,86%,100%{opacity:0}88%{opacity:1;transform:translateX(3px)}91%{transform:translateX(-3px)}93%{opacity:0}}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+@media(max-width:1100px){
+  .about-grid{grid-template-columns:1fr}
+  .edu-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:768px){
+  .nav-links,.nav-btn{display:none}
+  .nav-burger{display:flex}
+  .hero-float-left,.hero-float-right{display:none}
+  .proj-grid{grid-template-columns:1fr}
+  .cert-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .stat-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NOISE -->
+<div class="noise"></div>
+
+<!-- SCROLL PROGRESS -->
+<div id="sp"></div>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- =========================================
+     LOADER
+========================================= -->
+<div id="loader">
+  <div class="ld-logo">chike<span>.oguh</span></div>
+  <div class="ld-terminal">
+    <div class="ld-th"><div class="ld-dots"><div class="ld-dot r"></div><div class="ld-dot y"></div><div class="ld-dot g"></div></div><span class="ld-title">boot.sh — portfolio init</span></div>
+    <div class="ld-body">
+      <div class="ld-line show"><span class="ld-p">›</span><span class="ld-m">Loading portfolio environment...</span></div>
+      <div class="ld-line" id="ll2"><span class="ld-p">✓</span><span class="ld-s">Modules compiled successfully</span></div>
+      <div class="ld-line" id="ll3"><span class="ld-p">✓</span><span class="ld-s">Assets optimised &amp; ready</span></div>
+      <div class="ld-line" id="ll4"><span class="ld-w">!</span><span class="ld-m">Establishing secure session...</span></div>
+      <div class="ld-line" id="ll5"><span class="ld-p">✓</span><span class="ld-s">chike.oguh — ONLINE</span></div>
+    </div>
+  </div>
+  <div class="ld-bar-wrap"><div class="ld-bar" id="ld-bar"></div></div>
+</div>
+
+<!-- =========================================
+     NAV
+========================================= -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">chike<em>.oguh</em></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:hello@chike.ng" class="nav-btn">Hire Me</a>
+  <div class="nav-burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mmenu">
+  <a href="#about" onclick="closeMM()">About</a>
+  <a href="#skills" onclick="closeMM()">Skills</a>
+  <a href="#projects" onclick="closeMM()">Projects</a>
+  <a href="#education" onclick="closeMM()">Education</a>
+  <a href="#contact" onclick="closeMM()">Contact</a>
+</div>
+
+<!-- =========================================
+     HERO
+========================================= -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-radial"></div>
+
+  <div class="hero-inner">
+    <div class="hero-pill"><div class="dot"></div>Open to new opportunities</div>
+    <h1 class="hero-name glitch" data-text="Chike">Chike</h1>
+    <p class="hero-sub">Chike Oguh &nbsp;·&nbsp; Portugal &nbsp;·&nbsp; hello@chike.ng</p>
+    <div class="hero-typed-row">
+      <span class="hero-typed" id="typed"></span><span class="tcursor"></span>
+    </div>
+    <div class="hero-btns">
+      <a href="mailto:hello@chike.ng" class="btn-p">Get in Touch</a>
+      <a href="#about" class="btn-s">Explore Portfolio</a>
+    </div>
+  </div>
+
+  <!-- Floating terminal (desktop) -->
+  <div class="hero-float-left">
+    <div class="term" style="width:300px">
+      <div class="term-head"><div class="t-dots"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div></div><span class="t-title">status.sh</span></div>
+      <div class="term-body" style="padding:12px 14px;font-size:11px">
+        <div class="t-row"><span class="t-pr">$</span><span class="t-cm">whoami</span></div>
+        <div class="t-row"><span class="t-ok" style="padding-left:14px">chike.oguh — Support Engineer</span></div>
+        <div class="t-row" style="margin-top:4px"><span class="t-pr">$</span><span class="t-cm">uptime --years</span></div>
+        <div class="t-row"><span class="t-out" style="padding-left:14px">6+ years experience</span></div>
+        <div class="t-row" style="margin-top:4px"><span class="t-pr">$</span><span class="t-cm">ping availability</span></div>
+        <div class="t-row"><span style="color:var(--ng);padding-left:14px">PONG — available ✓</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating stats (desktop) -->
+  <div class="hero-float-right">
+    <div class="h-stat"><div><div class="h-stat-val" style="color:var(--ng)">6+</div><div class="h-stat-lbl">Years<br>Experience</div></div></div>
+    <div class="h-stat"><div><div class="h-stat-val" style="color:var(--nc)">5</div><div class="h-stat-lbl">Roles<br>Worldwide</div></div></div>
+    <div class="h-stat"><div><div class="h-stat-val" style="color:#a78bfa;font-size:18px">MSc</div><div class="h-stat-lbl">Informatics<br>Engineering</div></div></div>
+  </div>
+
+  <div class="hero-scroll"><div class="hero-scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =========================================
+     ABOUT
+========================================= -->
+<section id="about" style="position:relative;overflow:hidden">
+  <div class="blob blob-g" style="top:-150px;right:-200px"></div>
+  <div class="wrap">
+    <div class="s-label rv">Profile</div>
+    <h2 class="s-title rv">Support Engineer.<br>Infrastructure Specialist.</h2>
+    <p class="s-sub rv">6+ years owning technical issues end-to-end — from first response to root cause resolution.</p>
+
+    <div class="about-grid">
+      <!-- Left: text -->
+      <div>
+        <p class="about-quote rv-l">
+          Hands-on technical support professional with deep expertise in enterprise environments, networking, cloud infrastructure, WordPress, and SaaS operations.
+        </p>
+        <p class="about-text rv-l">
+          I specialise in <strong>customer-facing, multi-channel support</strong> across Windows, Linux, and macOS environments. My background spans everything from DNS & DHCP troubleshooting and VPN configuration to Office 365 administration, Active Directory management, and WordPress debugging — all while maintaining strict SLA compliance and detailed documentation.
+        </p>
+        <p class="about-text rv-l">
+          Fluent in <strong>English and Portuguese</strong>. Currently based in <strong>Portugal</strong> — with hands-on experience across Australia, Canada, Nigeria, and Portugal. Equally comfortable remote-first or onsite in enterprise environments.
+        </p>
+        <p class="about-text rv-l">
+          MSc in Informatics Engineering from the <strong>University of Minho</strong>. CCNA certified. Deeply interested in <strong style="color:var(--ng)">AI-powered support workflows</strong> and intelligent automation across IT operations.
+        </p>
+        <div class="tech-cloud rv-l">
+          <span class="tech-tag">Windows</span><span class="tech-tag">Linux</span><span class="tech-tag">macOS</span>
+          <span class="tech-tag">Active Directory</span><span class="tech-tag">Intune</span><span class="tech-tag">Autopilot</span>
+          <span class="tech-tag">Office 365</span><span class="tech-tag">Azure</span><span class="tech-tag">WordPress</span>
+          <span class="tech-tag">WP-CLI</span><span class="tech-tag">TCP/IP</span><span class="tech-tag">DNS</span>
+          <span class="tech-tag">DHCP</span><span class="tech-tag">VPN</span><span class="tech-tag">SSH</span>
+          <span class="tech-tag">FTP/SFTP</span><span class="tech-tag">ServiceNow</span><span class="tech-tag">MDM</span>
+        </div>
+      </div>
+
+      <!-- Right: stats + terminal -->
+      <div>
+        <div class="stat-grid rv-r">
+          <div class="stat-card"><div class="stat-n" style="color:var(--ng)">6+</div><div class="stat-d">Years enterprise-grade technical support</div></div>
+          <div class="stat-card"><div class="stat-n" style="color:var(--nc)">5</div><div class="stat-d">Roles across 4 countries</div></div>
+          <div class="stat-card"><div class="stat-n" style="color:#a78bfa;font-size:28px">EN/PT</div><div class="stat-d">English &amp; Portuguese fluency</div></div>
+          <div class="stat-card"><div class="stat-n" style="color:var(--na);font-size:24px">CCNA</div><div class="stat-d">Cisco Certified Network Associate</div></div>
+        </div>
+
+        <div class="term rv-r">
+          <div class="term-head"><div class="t-dots"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div></div><span class="t-title">profile.sh — chike.oguh</span></div>
+          <div class="term-body">
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">cat professional_summary.txt</span></div>
+            <div class="t-row"><div class="t-out" style="padding-left:14px;line-height:1.7">"Support Engineer with 6+ years delivering<br>&nbsp;&nbsp;&nbsp;hands-on, customer-facing technical support."</div></div>
+            <div class="t-row" style="margin-top:8px"><span class="t-pr">$</span><span class="t-cm">grep -i expertise skills.json</span></div>
+            <div class="t-row"><span class="t-ok" style="padding-left:14px">"WordPress, DNS, SSH, Hosting, Office 365"</span></div>
+            <div class="t-row" style="margin-top:8px"><span class="t-pr">$</span><span class="t-cm">cat interests.conf</span></div>
+            <div class="t-row"><span class="t-ok" style="padding-left:14px">AI-powered support workflows</span></div>
+            <div class="t-row" style="margin-top:8px"><span class="t-pr">$</span><span class="t-cm">echo $AVAILABILITY</span></div>
+            <div class="t-row"><span style="color:var(--ng);padding-left:14px">OPEN — available for roles <span class="tcursor"></span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="display:none"></div>
+
+<!-- =========================================
+     EXPERIENCE
+========================================= -->
+<section id="experience" style="position:relative;overflow:hidden;display:none">
+  <div class="blob blob-c" style="bottom:-100px;left:-200px;opacity:.07"></div>
+  <div class="wrap">
+    <div class="s-label rv">Experience</div>
+    <h2 class="s-title rv">Ops Log</h2>
+    <p class="s-sub rv">Enterprise environments. Global teams. End-to-end ownership across cloud, networking, and support operations.</p>
+
+    <div class="exp-timeline">
+      <div class="tl-line"></div>
+
+      <!-- 1 -->
+      <div class="exp-item rv">
+        <div class="tl-dot live"></div>
+        <div class="exp-card">
+          <div class="exp-hd">
+            <div>
+              <div class="exp-title">IT &amp; Network Support Engineer</div>
+              <div class="exp-co">Tech Domain Pty Ltd · NSW, Australia (Remote/Onsite)</div>
+            </div>
+            <span class="badge badge-live">Current</span>
+          </div>
+          <ul class="exp-buls">
+            <li>Provide technical support for cloud software, networking devices, and enterprise hardware across multi-channel environments (phone, email, chat, remote tools)</li>
+            <li>Diagnose hosting, DNS, and cloud issues — own cases from first response to full resolution or escalation</li>
+            <li>Configure routers, VPNs, and wireless access points for secure enterprise connections</li>
+            <li>Document incidents and solutions in Service Desk systems to improve resolution workflows</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="et">Cloud Support</span><span class="et">Networking</span><span class="et">VPN</span><span class="et">DNS</span><span class="et">Remote Tools</span><span class="et">Service Desk</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="exp-item rv">
+        <div class="tl-dot live"></div>
+        <div class="exp-card">
+          <div class="exp-hd">
+            <div>
+              <div class="exp-title">Customer Support Advisor</div>
+              <div class="exp-co">Concentrix Portugal · Onsite</div>
+            </div>
+            <span class="badge badge-live">Current</span>
+          </div>
+          <ul class="exp-buls">
+            <li>Respond to customer inquiries via email, chat, and ticketing systems following strict SOPs</li>
+            <li>Draft, update, and maintain internal documentation, troubleshooting guides, and macros</li>
+            <li>Identify process gaps and recommend improvements using CSAT, FRT, and ticket metrics</li>
+            <li>Onboard new team members and deliver hardware/software support including OS imaging and account setup</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="et">CSAT</span><span class="et">SLA</span><span class="et">SOP</span><span class="et">OS Imaging</span><span class="et">Documentation</span><span class="et">Ticketing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="exp-item rv">
+        <div class="tl-dot"></div>
+        <div class="exp-card">
+          <div class="exp-hd">
+            <div>
+              <div class="exp-title">IT Support Technician &amp; Webmaster</div>
+              <div class="exp-co">My Afromania Inc · Ottawa, Canada (Remote)</div>
+            </div>
+            <span class="badge badge-recent">Recent</span>
+          </div>
+          <ul class="exp-buls">
+            <li>Supported Office 365 and Linux/Windows environments — managed escalated end-user incidents</li>
+            <li>Performed installations, updates, and configurations for desktops and cloud applications</li>
+            <li>Troubleshot network connectivity issues including DNS, DHCP, and VPN</li>
+            <li>Managed WordPress site: debugging, plugin management, migrations, and WP-CLI operations</li>
+            <li>Documented technical procedures and created end-user troubleshooting guides</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="et">Office 365</span><span class="et">WordPress</span><span class="et">WP-CLI</span><span class="et">DNS</span><span class="et">DHCP</span><span class="et">Linux</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="exp-item rv">
+        <div class="tl-dot"></div>
+        <div class="exp-card">
+          <div class="exp-hd">
+            <div>
+              <div class="exp-title">Head of IT Support</div>
+              <div class="exp-co">Raeda Express · Lagos, Nigeria</div>
+            </div>
+            <span class="badge badge-prev">Previous</span>
+          </div>
+          <ul class="exp-buls">
+            <li>Led IT support operations — managed escalations and SLA compliance for enterprise systems</li>
+            <li>Configured and monitored firewalls, VPNs, and LAN/WAN infrastructure</li>
+            <li>Coordinated team response to critical incidents and high-priority escalations</li>
+            <li>Delivered technical training sessions to upskill IT team members across the organisation</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="et">Team Lead</span><span class="et">Firewall</span><span class="et">LAN/WAN</span><span class="et">SLA Compliance</span><span class="et">ITIL</span><span class="et">Training</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="exp-item rv">
+        <div class="tl-dot"></div>
+        <div class="exp-card">
+          <div class="exp-hd">
+            <div>
+              <div class="exp-title">IT Field Support Technician</div>
+              <div class="exp-co">ZDX Energy · Lagos, Nigeria</div>
+            </div>
+            <span class="badge badge-prev">Earlier</span>
+          </div>
+          <ul class="exp-buls">
+            <li>Installed desktops, printers, and networking hardware in corporate environments</li>
+            <li>Resolved end-user issues with software, hardware, and connectivity</li>
+            <li>Supported remote workers through VPN and remote access troubleshooting</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="et">Hardware</span><span class="et">VPN</span><span class="et">Field Support</span><span class="et">Networking</span><span class="et">Remote Access</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =========================================
+     SKILLS
+========================================= -->
+<section id="skills" style="position:relative;overflow:hidden">
+  <div class="blob blob-g" style="top:50%;left:-250px;transform:translateY(-50%);opacity:.06"></div>
+  <div class="wrap">
+    <div class="s-label rv">Skills</div>
+    <h2 class="s-title rv">Technical Arsenal</h2>
+    <p class="s-sub rv">A full-stack support toolkit built across 6+ years of enterprise, cloud, and infrastructure environments.</p>
+
+    <div class="skills-grid">
+
+      <div class="sk-cat rv">
+        <div class="sk-hd"><div class="sk-ico g">◈</div><span class="sk-cat-name">Technical Support</span></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Incident Management</span><span class="sk-lvl">Expert</span></div><div class="sk-bar"><div class="sk-fill g" data-w="93"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Troubleshooting &amp; RCA</span><span class="sk-lvl">Expert</span></div><div class="sk-bar"><div class="sk-fill g" data-w="95"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">SLA / CSAT / FRT</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill g" data-w="88"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">ServiceNow (ITSM)</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill g" data-w="86"></div></div></div>
+      </div>
+
+      <div class="sk-cat rv">
+        <div class="sk-hd"><div class="sk-ico c">⬡</div><span class="sk-cat-name">Networking</span></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">TCP/IP &amp; UDP</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill c" data-w="88"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">DNS &amp; DHCP</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill c" data-w="91"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">VPN &amp; Firewalls</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill c" data-w="85"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">LAN/WAN &amp; Wi-Fi</span><span class="sk-lvl">Proficient</span></div><div class="sk-bar"><div class="sk-fill c" data-w="82"></div></div></div>
+      </div>
+
+      <div class="sk-cat rv">
+        <div class="sk-hd"><div class="sk-ico g">⬢</div><span class="sk-cat-name">WordPress &amp; Hosting</span></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">WordPress Debugging</span><span class="sk-lvl">Expert</span></div><div class="sk-bar"><div class="sk-fill g" data-w="93"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">SSH / FTP / SFTP</span><span class="sk-lvl">Expert</span></div><div class="sk-bar"><div class="sk-fill g" data-w="91"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">Shared / VPS Hosting</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill g" data-w="87"></div></div></div>
+        <div class="sk-item"><div class="sk-row"><span class="sk-name">WP-CLI &amp; Migrations</span><span class="sk-lvl">Advanced</span></div><div class="sk-bar"><div class="sk-fill g" data-w="84"></div></div></div>
+      </div>
+
+      <div class="sk-cat rv">
+        <div class="sk-hd"><div class="sk-ico p">▣</div><span class="sk-cat-name">System Administration</span></div>
+        <div class="badge-cloud">
+          <span class="bc g">Active Directory</span><span class="bc g">Group Policies</span>
+          <span class="bc c">Intune</span><span class="bc c">Autopilot</span>
+          <span class="bc g">MDM</span><span class="bc gr">OS Imaging</span>
+          <span class="bc gr">Endpoint Mgmt</span><span class="bc gr">Software Center</span>
+        </div>
+      </div>
+
+      <div class="sk-cat rv">
+        <div class="sk-hd"><div class="sk-ico c">☁</div><span class="sk-cat-name">Cloud &amp; SaaS</span></div>
+        <div class="badge-cloud">
+          <span class="bc c">Office 365</span><span class="bc c">Azure</span>
+          <span class="bc c">Windows 365</span><span class="bc c">Azure Virtual PC</span>
+          <span class="bc gr">Cloud App Support</span><span class="bc gr">SaaS Troubleshooting</span>
+          <span class="bc gr">Collaboration Tools</span>
+        </div>
+      </div>
+
+      <div class="sk-cat rv">
+        <div class="sk-hd"><div class="sk-ico a">◆</div><span class="sk-cat-name">OS &amp; Infrastructure</span></div>
+        <div class="badge-cloud">
+          <span class="bc g">Windows</span><span class="bc g">Linux</span><span class="bc g">macOS</span>
+          <span class="bc c">Virtualization</span><span class="bc gr">Remote Desktop</span>
+          <span class="bc gr">Asset Management</span><span class="bc gr">Hardware Lifecycle</span>
+          <span class="bc gr">Device Onboarding</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =========================================
+     PROJECTS
+========================================= -->
+<section id="projects" style="position:relative;overflow:hidden">
+  <div class="blob blob-g" style="top:0;right:-300px;opacity:.06"></div>
+  <div class="wrap">
+    <div class="s-label rv">Projects &amp; Labs</div>
+    <h2 class="s-title rv">Technical Initiatives</h2>
+    <p class="s-sub rv">Environments built, maintained, and operated — from enterprise ops to hands-on lab work.</p>
+
+    <div class="proj-grid">
+
+      <!-- 1 -->
+      <div class="proj-card rv">
+        <div class="proj-term-bg">
+          <div class="term-head"><div class="t-dots"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div></div><span class="t-title">enterprise-ops.sh</span></div>
+          <div class="term-body" style="padding:10px 14px;font-size:11px;line-height:1.8">
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">tail -f /var/log/incidents.log</span></div>
+            <div class="t-row"><span class="t-ok">INFO</span><span class="t-out">&nbsp;[SLA] P2 ticket resolved in 18m · CSAT: 5/5</span></div>
+            <div class="t-row"><span class="t-ok">INFO</span><span class="t-out">&nbsp;[OPS] 142 tickets closed this sprint</span></div>
+            <div class="t-row"><span class="t-wa">WARN</span><span class="t-out">&nbsp;[ESC] P1 raised — team notified ✓</span></div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Enterprise Support Operations</div>
+          <div class="proj-desc">Multi-channel support ops management — SLA enforcement, CSAT tracking, escalation workflows, knowledge base maintenance, and SOP documentation.</div>
+          <div class="proj-foot"><span class="p-status live"><span class="p-sdot"></span>Active</span><span class="et">ServiceNow</span><span class="et">ITIL</span><span class="et">SLA</span></div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="proj-card rv">
+        <div class="proj-term-bg">
+          <div class="term-head"><div class="t-dots"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div></div><span class="t-title">homelab.sh</span></div>
+          <div class="term-body" style="padding:10px 14px;font-size:11px;line-height:1.8">
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">ssh admin@192.168.1.100</span></div>
+            <div class="t-row"><span class="t-ok">Connected</span><span class="t-out">&nbsp;homelab-node-01 · Ubuntu 24.04</span></div>
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">docker ps --format "{{.Names}}"</span></div>
+            <div class="t-row"><span class="t-out" style="padding-left:14px">nginx&nbsp;&nbsp;pihole&nbsp;&nbsp;portainer&nbsp;&nbsp;uptime-kuma</span></div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Home Lab Environment</div>
+          <div class="proj-desc">Self-hosted infrastructure lab running VMs, containerised services, DNS filtering (Pi-hole), and network monitoring for continuous hands-on practice.</div>
+          <div class="proj-foot"><span class="p-status live"><span class="p-sdot"></span>Running</span><span class="et">Linux</span><span class="et">Docker</span><span class="et">Networking</span></div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="proj-card rv">
+        <div class="proj-term-bg">
+          <div class="term-head"><div class="t-dots"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div></div><span class="t-title">wordpress-debug.sh</span></div>
+          <div class="term-body" style="padding:10px 14px;font-size:11px;line-height:1.8">
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">wp plugin list --status=active</span></div>
+            <div class="t-row"><span class="t-ok">OK</span><span class="t-out">&nbsp;23 active · 2 with conflicts detected</span></div>
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">wp cache flush && wp cron run</span></div>
+            <div class="t-row"><span class="t-ok">SUCCESS</span><span class="t-out">&nbsp;Cache cleared. Cron executed.</span></div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">WordPress &amp; Hosting Ops</div>
+          <div class="proj-desc">Full WordPress lifecycle management — plugin debugging, performance optimisation, migrations, WP-CLI automation, and VPS hosting environment troubleshooting.</div>
+          <div class="proj-foot"><span class="p-status act"><span class="p-sdot"></span>Maintained</span><span class="et">WP-CLI</span><span class="et">SSH</span><span class="et">VPS</span></div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="proj-card rv">
+        <div class="proj-term-bg">
+          <div class="term-head"><div class="t-dots"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div></div><span class="t-title">network-diag.sh</span></div>
+          <div class="term-body" style="padding:10px 14px;font-size:11px;line-height:1.8">
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">nslookup chike.ng 8.8.8.8</span></div>
+            <div class="t-row"><span class="t-ok">Answer:</span><span class="t-out">&nbsp;A 185.199.108.153 · TTL 300</span></div>
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">traceroute 1.1.1.1 | head -3</span></div>
+            <div class="t-row"><span class="t-out" style="padding-left:14px">1 gateway (192.168.1.1) 1.2ms</span></div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Network Diagnostics Lab</div>
+          <div class="proj-desc">Hands-on network analysis — DNS resolution testing, traceroute analysis, DHCP config, VPN tunnelling, firewall rules, and connectivity diagnostics.</div>
+          <div class="proj-foot"><span class="p-status live"><span class="p-sdot"></span>Active</span><span class="et">DNS</span><span class="et">DHCP</span><span class="et">TCP/IP</span></div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="proj-card rv">
+        <div class="proj-term-bg">
+          <div class="term-head"><div class="t-dots"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div></div><span class="t-title">endpoint-deploy.sh</span></div>
+          <div class="term-body" style="padding:10px 14px;font-size:11px;line-height:1.8">
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">az intune device list --enrolled</span></div>
+            <div class="t-row"><span class="t-ok">INFO</span><span class="t-out">&nbsp;48 compliant · 2 pending policy push</span></div>
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">autopilot status --profile corp-win11</span></div>
+            <div class="t-row"><span class="t-ok">READY</span><span class="t-out">&nbsp;Profile applied · zero-touch provisioned</span></div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Endpoint Deployment Environment</div>
+          <div class="proj-desc">Intune &amp; Autopilot-driven device provisioning — zero-touch enrolment, compliance policy enforcement, MDM management, and asset lifecycle tracking.</div>
+          <div class="proj-foot"><span class="p-status act"><span class="p-sdot"></span>Deployed</span><span class="et">Intune</span><span class="et">Autopilot</span><span class="et">Azure AD</span></div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="proj-card rv">
+        <div class="proj-term-bg">
+          <div class="term-head"><div class="t-dots"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div></div><span class="t-title">kb-system.sh</span></div>
+          <div class="term-body" style="padding:10px 14px;font-size:11px;line-height:1.8">
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">kb search "VPN auth failure"</span></div>
+            <div class="t-row"><span class="t-ok">FOUND</span><span class="t-out">&nbsp;3 articles · last updated 2d ago</span></div>
+            <div class="t-row"><span class="t-pr">$</span><span class="t-cm">kb create --template sop --title "VPN"</span></div>
+            <div class="t-row"><span class="t-ok">CREATED</span><span class="t-out">&nbsp;KB-2024-0047 published ✓</span></div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">IT Documentation System</div>
+          <div class="proj-desc">Structured knowledge base and SOP library — troubleshooting runbooks, onboarding guides, internal wikis, and process documentation maintained in ServiceNow.</div>
+          <div class="proj-foot"><span class="p-status act"><span class="p-sdot"></span>Maintained</span><span class="et">ServiceNow</span><span class="et">SOPs</span><span class="et">KB Articles</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =========================================
+     EDUCATION & CERTS
+========================================= -->
+<section id="education" style="position:relative;overflow:hidden">
+  <div class="blob blob-c" style="top:0;right:-200px;opacity:.07"></div>
+  <div class="wrap">
+    <div class="s-label rv">Education &amp; Certifications</div>
+    <h2 class="s-title rv">Credentials</h2>
+    <p class="s-sub rv">Academic foundation combined with industry-recognised certifications.</p>
+
+    <div class="edu-grid">
+
+      <div class="rv-l">
+        <div class="edu-section-title">Academic</div>
+        <div class="edu-cards">
+          <div class="edu-card">
+            <div class="edu-deg">MSc — Informatics Engineering</div>
+            <div class="edu-inst">University of Minho · Braga, Portugal</div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-deg">BSc — Computer Science</div>
+            <div class="edu-inst">Imo State University · Owerri, Nigeria</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv-r">
+        <div class="edu-section-title">Certifications</div>
+        <div class="cert-grid">
+
+          <div class="cert-card">
+            <span class="cert-bdg v">Verified</span>
+            <div class="cert-ico">◈</div>
+            <div class="cert-name">Cisco Certified Network Associate (CCNA)</div>
+            <div class="cert-iss">Cisco Systems</div>
+          </div>
+
+          <div class="cert-card">
+            <span class="cert-bdg v">Verified</span>
+            <div class="cert-ico">◉</div>
+            <div class="cert-name">Google IT Support Professional Certificate</div>
+            <div class="cert-iss">Google / Coursera</div>
+          </div>
+
+          <div class="cert-card">
+            <span class="cert-bdg v">Verified</span>
+            <div class="cert-ico">⬡</div>
+            <div class="cert-name">Microsoft Certified Desktop Support Technician (MCDST)</div>
+            <div class="cert-iss">Microsoft</div>
+          </div>
+
+          <div class="cert-card">
+            <span class="cert-bdg p">In Progress</span>
+            <div class="cert-ico">◆</div>
+            <div class="cert-name">CompTIA A+</div>
+            <div class="cert-iss">CompTIA</div>
+          </div>
+
+          <div class="cert-card">
+            <span class="cert-bdg v">Verified</span>
+            <div class="cert-ico">▣</div>
+            <div class="cert-name">Network &amp; System Administration</div>
+            <div class="cert-iss">FlamyTech</div>
+          </div>
+
+          <div class="cert-card">
+            <span class="cert-bdg v">Verified</span>
+            <div class="cert-ico">⬢</div>
+            <div class="cert-name">Cybersecurity Training</div>
+            <div class="cert-iss">ALX Africa</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =========================================
+     CONTACT
+========================================= -->
+<style>
+/* ---- CONTACT FORM TERMINAL ---- */
+.cf-wrap{display:grid;grid-template-columns:1fr 1.45fr;gap:52px;margin-top:60px;align-items:start}
+.cf-meta{display:flex;flex-direction:column;gap:0}
+.cf-cmd-block{font-family:var(--mono);font-size:12px;color:var(--t2);line-height:2;margin-bottom:28px}
+.cf-cmd-block .cp{color:var(--ng)}.cf-cmd-block .cv{color:var(--nc)}.cf-cmd-block .cm{color:var(--t1)}
+.cf-links{display:flex;flex-direction:column;gap:10px}
+.cf-link{display:flex;align-items:center;gap:14px;padding:11px 18px;background:var(--card);border:1px solid var(--border);border-radius:9px;font-family:var(--mono);font-size:12px;color:var(--t2);transition:all .25s var(--ease);text-decoration:none}
+.cf-link:hover{border-color:rgba(0,255,136,.22);color:var(--ng);transform:translateX(4px)}
+.cf-link-ico{width:28px;height:28px;border-radius:6px;background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.14);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cf-link-ico svg{width:14px;height:14px;stroke:var(--ng);fill:none;stroke-width:1.7}
+.cf-link-tag{color:var(--t3);margin-right:4px}
+/* The terminal form */
+.cf-terminal{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;position:relative}
+.cf-terminal::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 30% at 50% 0%,rgba(0,255,136,.025),transparent);pointer-events:none}
+.cft-head{padding:11px 16px;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.cft-head-left{display:flex;align-items:center;gap:10px}
+.cft-status{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:var(--ng);letter-spacing:.1em}
+.cft-status-dot{width:6px;height:6px;border-radius:50%;background:var(--ng);animation:pls 2s infinite}
+.cft-body{padding:0}
+/* Form rows */
+.cf-field{border-bottom:1px solid var(--border);padding:0;transition:background .2s}
+.cf-field:last-of-type{border-bottom:none}
+.cf-field:focus-within{background:rgba(0,255,136,.02)}
+.cf-field-inner{display:flex;align-items:flex-start;gap:0}
+.cf-prompt{font-family:var(--mono);font-size:12px;color:var(--ng);padding:14px 6px 14px 18px;line-height:1.6;flex-shrink:0;user-select:none;white-space:nowrap}
+.cf-flag{font-family:var(--mono);font-size:12px;color:var(--nc);padding:14px 8px 14px 0;flex-shrink:0;white-space:nowrap}
+.cf-input{flex:1;background:transparent;border:none;outline:none;font-family:var(--mono);font-size:12px;color:var(--t1);padding:14px 18px 14px 4px;resize:none;line-height:1.6;width:100%;min-height:44px}
+.cf-input::placeholder{color:var(--t3)}
+.cf-input:focus::placeholder{color:rgba(74,85,104,.5)}
+textarea.cf-input{min-height:100px;resize:none}
+/* Select styled */
+.cf-select-wrap{flex:1;position:relative;display:flex;align-items:center}
+.cf-select{flex:1;background:transparent;border:none;outline:none;font-family:var(--mono);font-size:12px;color:var(--t1);padding:14px 32px 14px 4px;appearance:none;cursor:pointer;width:100%}
+.cf-select option{background:var(--bg2);color:var(--t1)}
+.cf-select-arrow{position:absolute;right:18px;color:var(--t3);font-size:10px;pointer-events:none}
+/* Submit row */
+.cf-submit-row{padding:16px 18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cf-submit-hint{font-family:var(--mono);font-size:11px;color:var(--t3)}
+.cf-submit-hint span{color:var(--t2)}
+.cf-btn{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:10px 26px;background:var(--ng);color:#000;border:1px solid var(--ng);border-radius:5px;cursor:pointer;transition:all .25s var(--ease);box-shadow:0 0 20px rgba(0,255,136,.2)}
+.cf-btn:hover{background:transparent;color:var(--ng);box-shadow:var(--gng);transform:translateY(-2px)}
+.cf-btn:active{transform:translateY(0)}
+/* Sent state */
+.cf-sent{display:none;padding:28px 20px;font-family:var(--mono);font-size:12px;line-height:2;text-align:center}
+.cf-sent.show{display:block}
+.cf-form-inner.hide{display:none}
+@media(max-width:960px){.cf-wrap{grid-template-columns:1fr}}
+@media(max-width:640px){.cf-meta{display:none}}
+</style>
+
+<section id="contact" style="position:relative;overflow:hidden">
+  <div class="blob blob-g" style="bottom:-150px;right:-200px;opacity:.08"></div>
+  <div class="wrap">
+    <div class="s-label rv">Contact</div>
+    <h2 class="s-title rv">Initiate Connection</h2>
+    <p class="s-sub rv">Open to technical support roles, infrastructure positions, and remote opportunities worldwide.</p>
+
+    <div class="cf-wrap">
+
+      <!-- LEFT: meta + links -->
+      <div class="cf-meta rv-l">
+        <div class="cf-cmd-block">
+          <div><span class="cp">$</span> cat availability.conf</div>
+          <div style="padding-left:14px">STATUS=<span class="cv">available</span></div>
+          <div style="padding-left:14px">REMOTE=<span class="cv">true</span></div>
+          <div style="padding-left:14px">ON_CALL=<span class="cv">true</span></div>
+          <div style="padding-left:14px">TIMEZONE=<span class="cv">Europe/Lisbon</span></div>
+          <div style="padding-left:14px">LANGUAGES=<span class="cv">[English, Portuguese]</span></div>
+          <div style="margin-top:10px"><span class="cp">$</span> ping response_time</div>
+          <div style="padding-left:14px"><span style="color:var(--ng)">PONG</span> — typically within 24h</div>
+        </div>
+
+        <div class="cf-links">
+          <a href="mailto:hello@chike.ng" class="cf-link">
+            <div class="cf-link-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <span><span class="cf-link-tag">--email&nbsp;</span>hello@chike.ng</span>
+          </a>
+          <a href="https://linkedin.com/in/chikeoguh" target="_blank" rel="noopener" class="cf-link">
+            <div class="cf-link-ico"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+            <span><span class="cf-link-tag">--linkedin&nbsp;</span>chikeoguh</span>
+          </a>
+          <div class="cf-link" style="cursor:default">
+            <div class="cf-link-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <span><span class="cf-link-tag">--location&nbsp;</span>Portugal · Remote-first</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: terminal form -->
+      <div class="cf-terminal rv-r">
+        <div class="cft-head">
+          <div class="cft-head-left">
+            <div class="t-dots"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div></div>
+            <span class="t-title">send_message.sh — chike.oguh</span>
+          </div>
+          <div class="cft-status"><span class="cft-status-dot"></span>LISTENING</div>
+        </div>
+
+        <form id="cf-form" onsubmit="submitForm(event)">
+          <div class="cf-form-inner" id="cf-form-inner">
+
+            <!-- name -->
+            <div class="cf-field">
+              <div class="cf-field-inner">
+                <span class="cf-prompt">$</span>
+                <span class="cf-flag">send&nbsp;--name</span>
+                <input class="cf-input" type="text" id="cf-name" placeholder="your_name" required autocomplete="off" spellcheck="false">
+              </div>
+            </div>
+
+            <!-- email -->
+            <div class="cf-field">
+              <div class="cf-field-inner">
+                <span class="cf-prompt">$</span>
+                <span class="cf-flag">send&nbsp;--from</span>
+                <input class="cf-input" type="email" id="cf-email" placeholder="your@email.com" required autocomplete="off" spellcheck="false">
+              </div>
+            </div>
+
+            <!-- subject / type -->
+            <div class="cf-field">
+              <div class="cf-field-inner">
+                <span class="cf-prompt">$</span>
+                <span class="cf-flag">send&nbsp;--type</span>
+                <div class="cf-select-wrap">
+                  <select class="cf-select" id="cf-type" required>
+                    <option value="" disabled selected>select_inquiry_type</option>
+                    <option value="job_opportunity">job_opportunity</option>
+                    <option value="freelance_project">freelance_project</option>
+                    <option value="technical_collaboration">technical_collaboration</option>
+                    <option value="general_inquiry">general_inquiry</option>
+                  </select>
+                  <span class="cf-select-arrow">▾</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- subject -->
+            <div class="cf-field">
+              <div class="cf-field-inner">
+                <span class="cf-prompt">$</span>
+                <span class="cf-flag">send&nbsp;--subject</span>
+                <input class="cf-input" type="text" id="cf-subject" placeholder="message_subject" required autocomplete="off" spellcheck="false">
+              </div>
+            </div>
+
+            <!-- message -->
+            <div class="cf-field">
+              <div class="cf-field-inner" style="align-items:flex-start">
+                <span class="cf-prompt" style="padding-top:14px">$</span>
+                <span class="cf-flag" style="padding-top:14px">send&nbsp;--body</span>
+                <textarea class="cf-input" id="cf-message" placeholder="write your message here..." required spellcheck="false"></textarea>
+              </div>
+            </div>
+
+            <!-- submit -->
+            <div class="cf-submit-row">
+              <div>
+                <div class="cf-submit-hint">press <span>[ EXECUTE ]</span> to transmit</div>
+                <div id="cf-error" style="display:none;font-family:var(--mono);font-size:11px;color:#f87171;margin-top:6px"></div>
+              </div>
+              <button type="submit" class="cf-btn">Execute&nbsp;›</button>
+            </div>
+
+          </div><!-- /cf-form-inner -->
+
+          <!-- Success state -->
+          <div class="cf-sent" id="cf-sent">
+            <div style="color:var(--ng);font-size:13px;margin-bottom:20px;letter-spacing:.05em">✓ Transmission successful</div>
+            <div style="font-family:var(--mono);font-size:12px;line-height:2;color:var(--t3)">
+              <span style="color:var(--ng)">$</span> log --event "msg_received"<br>
+              <span style="padding-left:14px;display:block">
+                <span style="color:var(--nc)">STATUS&nbsp;&nbsp;</span>202 Accepted<br>
+                <span style="color:var(--nc)">TO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>hello@chike.ng<br>
+                <span style="color:var(--nc)">ACK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>confirmation sent to <span id="cf-sent-email" style="color:var(--t1)"></span><br>
+                <span style="color:var(--nc)">ETA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>response within 24h
+              </span>
+            </div>
+            <div style="margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--t3)">
+              <span style="color:var(--ng)">$</span> echo "Check your inbox — talk soon, <span id="cf-sent-name" style="color:var(--t1)"></span>."&nbsp;<span class="tcursor"></span>
+            </div>
+          </div>
+
+        </form>
+      </div><!-- /cf-terminal -->
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+<footer>
+  <div class="ft-l"><span>chike</span>.oguh · Support Engineer · Portugal · Remote-first</div>
+  <div class="ft-r" style="color:var(--t3)">Built with <span style="color:var(--ng)">lines of code</span> by <span style="color:var(--t1);font-weight:600">Chike</span></div>
+</footer>
+
+<!-- =========================================
+     SCRIPTS
+========================================= -->
+<script>
+/* ---- LOADER ---- */
+(function(){
+  const bar = document.getElementById('ld-bar');
+  const lines = [
+    {id:'ll2', delay:380},
+    {id:'ll3', delay:860},
+    {id:'ll4', delay:1320},
+    {id:'ll5', delay:1820},
+  ];
+  let w = 0;
+  const iv = setInterval(()=>{ w = Math.min(w+1.3,100); bar.style.width=w+'%'; if(w>=100) clearInterval(iv); }, 22);
+  lines.forEach(({id,delay})=> setTimeout(()=>{ const el=document.getElementById(id); if(el) el.classList.add('show'); }, delay));
+  setTimeout(()=>{
+    const l = document.getElementById('loader');
+    l.classList.add('out');
+    setTimeout(()=> l.remove(), 900);
+  }, 2500);
+})();
+
+/* ---- CURSOR ---- */
+const cur = document.getElementById('cur');
+const ring = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e=>{
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+(function animRing(){
+  rx += (mx-rx)*.13; ry += (my-ry)*.13;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+
+/* ---- HERO CANVAS PARTICLES ---- */
+(function(){
+  const c = document.getElementById('hero-canvas');
+  const ctx = c.getContext('2d');
+  function resize(){ c.width=innerWidth; c.height=innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+
+  class P {
+    constructor(){ this.reset(true); }
+    reset(init){
+      this.x = Math.random()*c.width;
+      this.y = init ? Math.random()*c.height : (Math.random()>.5 ? -4 : c.height+4);
+      this.r = Math.random()*1.3+.3;
+      this.vx = (Math.random()-.5)*.35;
+      this.vy = (Math.random()-.5)*.35;
+      this.a = Math.random()*.45+.08;
+      this.col = Math.random()>.55 ? '0,255,136' : '0,212,255';
+    }
+    update(){
+      this.x+=this.vx; this.y+=this.vy;
+      if(this.x<-8||this.x>c.width+8||this.y<-8||this.y>c.height+8) this.reset();
+    }
+    draw(){
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${this.col},${this.a})`;
+      ctx.fill();
+    }
+  }
+  const pts = Array.from({length:110},()=>new P());
+  function frame(){
+    ctx.clearRect(0,0,c.width,c.height);
+    for(let i=0;i<pts.length;i++){
+      pts[i].update(); pts[i].draw();
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<90){
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(0,255,136,${.045*(1-d/90)})`;
+          ctx.lineWidth=.5;
+          ctx.moveTo(pts[i].x,pts[i].y);
+          ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+/* ---- TYPED EFFECT ---- */
+(function(){
+  const el = document.getElementById('typed');
+  const phrases = [
+    'Technical Support Engineer',
+    'Infrastructure Specialist',
+    'Network Operations',
+    'WordPress & Hosting Expert',
+    'Cloud Troubleshooting',
+    'System Administration',
+    'SaaS Support Engineer',
+    'Customer Success Engineering',
+  ];
+  let pi=0, ci=0, del=false;
+  function tick(){
+    const ph = phrases[pi];
+    if(del){ el.textContent=ph.slice(0,--ci); }
+    else { el.textContent=ph.slice(0,++ci); }
+    let wait = del ? 48 : 78;
+    if(!del && ci===ph.length){ wait=2400; del=true; }
+    else if(del && ci===0){ del=false; pi=(pi+1)%phrases.length; wait=320; }
+    setTimeout(tick, wait);
+  }
+  setTimeout(tick, 2900);
+})();
+
+/* ---- SCROLL PROGRESS ---- */
+window.addEventListener('scroll',()=>{
+  const pct = scrollY/(document.documentElement.scrollHeight-innerHeight)*100;
+  document.getElementById('sp').style.width=pct+'%';
+});
+
+/* ---- NAV SCROLL ---- */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled', scrollY>40);
+});
+
+/* ---- MOBILE MENU ---- */
+const burger=document.getElementById('burger');
+const mmenu=document.getElementById('mmenu');
+burger.addEventListener('click',()=>{
+  burger.classList.toggle('open');
+  mmenu.classList.toggle('open');
+});
+function closeMM(){ burger.classList.remove('open'); mmenu.classList.remove('open'); }
+mmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMM));
+
+/* ---- REVEAL ON SCROLL ---- */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('on'); observer.unobserve(e.target); }
+  });
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv,.rv-l,.rv-r,.exp-item,.sk-cat,.proj-card').forEach(el=>observer.observe(el));
+
+/* ---- SKILL BARS ---- */
+const sbObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.sk-fill').forEach((b,i)=>{
+        setTimeout(()=>{ b.style.width=b.dataset.w+'%'; }, i*140);
+      });
+      sbObs.unobserve(e.target);
+    }
+  });
+},{threshold:.25});
+document.querySelectorAll('.sk-cat').forEach(el=>sbObs.observe(el));
+
+/* ---- 3D TILT ---- */
+document.querySelectorAll('.exp-card,.proj-card,.stat-card,.cert-card,.edu-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=e.clientX-r.left, y=e.clientY-r.top;
+    const rx2=((y-r.height/2)/r.height)*-5;
+    const ry2=((x-r.width/2)/r.width)*5;
+    card.style.transform=`perspective(900px) rotateX(${rx2}deg) rotateY(${ry2}deg) translateY(-3px)`;
+  });
+  card.addEventListener('mouseleave',()=>{ card.style.transform=''; });
+});
+
+/* ---- STAGGER EXPERIENCE ITEMS ---- */
+document.querySelectorAll('.exp-item').forEach((el,i)=>{
+  el.style.transitionDelay=`${i*0.07}s`;
+});
+
+/* ---- SMOOTH SCROLL ---- */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+
+/* ---- CONTACT FORM ---- */
+async function submitForm(e){
+  e.preventDefault();
+  const btn   = e.target.querySelector('.cf-btn');
+  const inner = document.getElementById('cf-form-inner');
+  const sent  = document.getElementById('cf-sent');
+  const errEl = document.getElementById('cf-error');
+
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const type    = document.getElementById('cf-type').value;
+  const subject = document.getElementById('cf-subject').value.trim();
+  const message = document.getElementById('cf-message').value.trim();
+
+  if(errEl) errEl.style.display='none';
+  btn.textContent='Transmitting...';
+  btn.style.opacity='.55';
+  btn.disabled=true;
+
+  try{
+    const res = await fetch('/api/contact',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name,email,type,subject,message})
+    });
+    const data = await res.json();
+    if(!res.ok) throw new Error(data.error||'Transmission failed. Try again.');
+    // Show success
+    inner.classList.add('hide');
+    sent.classList.add('show');
+    const n = document.getElementById('cf-sent-name');
+    const m = document.getElementById('cf-sent-email');
+    if(n) n.textContent = name;
+    if(m) m.textContent = email;
+  } catch(err){
+    btn.textContent='Execute ›';
+    btn.style.opacity='1';
+    btn.disabled=false;
+    if(errEl){
+      errEl.textContent='✗ '+err.message;
+      errEl.style.display='block';
+    }
+  }
+}
+
+/* ---- CONTACT FORM INPUT GLOW ---- */
+document.querySelectorAll('.cf-input,.cf-select').forEach(el=>{
+  el.addEventListener('focus',()=>{
+    el.closest('.cf-field').style.borderBottomColor='rgba(0,255,136,.25)';
+  });
+  el.addEventListener('blur',()=>{
+    el.closest('.cf-field').style.borderBottomColor='';
+  });
+});
+</script>
+
+</body>
+</html>
