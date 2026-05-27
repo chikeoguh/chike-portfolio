@@ -551,6 +551,118 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
 </div>
 
 <!-- =========================================
+     CONTACT MODAL
+========================================= -->
+<div id="contact-modal" class="cm" aria-hidden="true" role="dialog" aria-label="Contact Chike">
+  <div class="cm-bd" onclick="closeContactModal()"></div>
+  <div class="cm-wrap">
+    <div class="cf-terminal" style="background:var(--bg2)">
+      <div class="cft-head">
+        <div class="cft-head-left">
+          <div class="t-dots"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div></div>
+          <span class="t-title">send_message.sh — chike.oguh</span>
+        </div>
+        <div class="cft-status"><span class="cft-status-dot"></span>LISTENING</div>
+      </div>
+      <button class="cm-close" onclick="closeContactModal()" aria-label="Close dialog" type="button">✕</button>
+
+      <!-- intro line -->
+      <div class="cm-intro">
+        <div><span class="cp">$</span> connect --to <span class="cv">chike.oguh</span></div>
+        <div style="padding-left:14px"><b>Initiating secure transmission...</b> fill the form below.</div>
+      </div>
+
+      <form id="m-cf-form" onsubmit="submitForm(event,'m-')">
+        <!-- honeypot fields — bots fill, humans don't see -->
+        <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none" aria-hidden="true" tabindex="-1">
+          <input type="text"  name="m_hp_name"  id="m-_hp_name"  tabindex="-1" autocomplete="off" value="">
+          <input type="email" name="m_hp_email" id="m-_hp_email" tabindex="-1" autocomplete="off" value="">
+        </div>
+        <input type="hidden" id="m-_t" value="">
+
+        <div class="cf-form-inner" id="m-cf-form-inner">
+
+          <div class="cf-field">
+            <div class="cf-field-inner">
+              <span class="cf-prompt">$</span>
+              <span class="cf-flag">send&nbsp;--name</span>
+              <input class="cf-input" type="text" id="m-cf-name" placeholder="your_name" required autocomplete="off" spellcheck="false">
+            </div>
+          </div>
+
+          <div class="cf-field">
+            <div class="cf-field-inner">
+              <span class="cf-prompt">$</span>
+              <span class="cf-flag">send&nbsp;--from</span>
+              <input class="cf-input" type="email" id="m-cf-email" placeholder="your@email.com" required autocomplete="off" spellcheck="false">
+            </div>
+          </div>
+
+          <div class="cf-field">
+            <div class="cf-field-inner">
+              <span class="cf-prompt">$</span>
+              <span class="cf-flag">send&nbsp;--type</span>
+              <div class="cf-select-wrap">
+                <select class="cf-select" id="m-cf-type" required>
+                  <option value="" disabled selected>select_inquiry_type</option>
+                  <option value="job_opportunity">job_opportunity</option>
+                  <option value="freelance_project">freelance_project</option>
+                  <option value="technical_collaboration">technical_collaboration</option>
+                  <option value="general_inquiry">general_inquiry</option>
+                </select>
+                <span class="cf-select-arrow">▾</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cf-field">
+            <div class="cf-field-inner">
+              <span class="cf-prompt">$</span>
+              <span class="cf-flag">send&nbsp;--subject</span>
+              <input class="cf-input" type="text" id="m-cf-subject" placeholder="message_subject" required autocomplete="off" spellcheck="false">
+            </div>
+          </div>
+
+          <div class="cf-field">
+            <div class="cf-field-inner" style="align-items:flex-start">
+              <span class="cf-prompt" style="padding-top:14px">$</span>
+              <span class="cf-flag" style="padding-top:14px">send&nbsp;--body</span>
+              <textarea class="cf-input" id="m-cf-message" placeholder="write your message here..." required spellcheck="false"></textarea>
+            </div>
+          </div>
+
+          <div class="cf-submit-row">
+            <div>
+              <div class="cf-submit-hint">press <span>[ EXECUTE ]</span> to transmit</div>
+              <div id="m-cf-error" style="display:none;font-family:var(--mono);font-size:11px;color:#f87171;margin-top:6px"></div>
+            </div>
+            <button type="submit" class="cf-btn">Execute&nbsp;›</button>
+          </div>
+
+        </div>
+
+        <!-- Success state -->
+        <div class="cf-sent" id="m-cf-sent">
+          <div style="color:var(--ng);font-size:13px;margin-bottom:20px;letter-spacing:.05em">✓ Transmission successful</div>
+          <div style="font-family:var(--mono);font-size:12px;line-height:2;color:var(--t3)">
+            <span style="color:var(--ng)">$</span> log --event "msg_received"<br>
+            <span style="padding-left:14px;display:block">
+              <span style="color:var(--nc)">STATUS&nbsp;&nbsp;</span>202 Accepted<br>
+              <span style="color:var(--nc)">TO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>hello@chike.ng<br>
+              <span style="color:var(--nc)">ACK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>confirmation sent to <span id="m-cf-sent-email" style="color:var(--t1)"></span><br>
+              <span style="color:var(--nc)">ETA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>response within 24h
+            </span>
+          </div>
+          <div style="margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--t3)">
+            <span style="color:var(--ng)">$</span> echo "Check your inbox — talk soon, <span id="m-cf-sent-name" style="color:var(--t1)"></span>."&nbsp;<span class="tcursor"></span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================
      NAV
 ========================================= -->
 <nav id="nav">
@@ -562,7 +674,7 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
     <li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:hello@chike.ng" class="nav-btn">Hire Me</a>
+  <a href="#" onclick="openContactModal();return false" class="nav-btn">Hire Me</a>
   <div class="nav-burger" id="burger"><span></span><span></span><span></span></div>
 </nav>
 
@@ -596,7 +708,7 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
       <span class="hero-typed" id="typed"></span><span class="tcursor"></span>
     </div>
     <div class="hero-btns">
-      <a href="mailto:hello@chike.ng" class="btn-p">Get in Touch</a>
+      <a href="#" onclick="openContactModal();return false" class="btn-p">Get in Touch</a>
       <a href="#about" class="btn-s">Explore Portfolio</a>
     </div>
   </div>
@@ -1157,6 +1269,25 @@ textarea.cf-input{min-height:100px;resize:none}
 .cf-form-inner.hide{display:none}
 @media(max-width:960px){.cf-wrap{grid-template-columns:1fr}}
 @media(max-width:640px){.cf-meta{display:none}}
+
+/* ============================================
+   CONTACT MODAL
+============================================ */
+.cm{position:fixed;inset:0;z-index:99996;display:none;align-items:center;justify-content:center;padding:20px}
+.cm.open{display:flex;animation:cmFade .3s var(--ease)}
+@keyframes cmFade{from{opacity:0}to{opacity:1}}
+.cm-bd{position:absolute;inset:0;background:rgba(0,2,5,.85);backdrop-filter:blur(20px);cursor:pointer}
+.cm-wrap{position:relative;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;animation:cmIn .4s var(--ease);z-index:1}
+@keyframes cmIn{from{opacity:0;transform:scale(.96) translateY(16px)}to{opacity:1;transform:none}}
+.cm-close{position:absolute;top:14px;right:14px;width:30px;height:30px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;color:var(--t2);font-size:14px;cursor:pointer;z-index:10;transition:all .2s var(--ease);font-family:var(--mono);display:flex;align-items:center;justify-content:center}
+.cm-close:hover{background:rgba(0,255,136,.08);border-color:rgba(0,255,136,.3);color:var(--ng);transform:rotate(90deg)}
+.cm-intro{padding:24px 24px 0;font-family:var(--mono);font-size:11px;color:var(--t3);line-height:1.9;border-bottom:1px solid var(--border);margin-bottom:0;padding-bottom:18px}
+.cm-intro .cp{color:var(--ng)}
+.cm-intro .cv{color:var(--nc)}
+.cm-intro b{color:var(--t1);font-weight:500}
+body.cm-open{overflow:hidden}
+.cm-wrap::-webkit-scrollbar{width:6px}
+.cm-wrap::-webkit-scrollbar-thumb{background:rgba(0,255,136,.15);border-radius:3px}
 </style>
 
 <section id="contact" aria-label="Contact Chike Oguh" style="position:relative;overflow:hidden">
@@ -1497,26 +1628,25 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-/* ---- CONTACT FORM ---- */
-// Set timing token on page load
+/* ---- CONTACT FORM (works for both inline + modal via prefix) ---- */
+// Set timing token on page load (inline form)
 document.getElementById('_t').value = Date.now();
 
-async function submitForm(e){
+async function submitForm(e, p=''){
   e.preventDefault();
   const btn   = e.target.querySelector('.cf-btn');
-  const inner = document.getElementById('cf-form-inner');
-  const sent  = document.getElementById('cf-sent');
-  const errEl = document.getElementById('cf-error');
+  const inner = document.getElementById(p+'cf-form-inner');
+  const sent  = document.getElementById(p+'cf-sent');
+  const errEl = document.getElementById(p+'cf-error');
 
-  const name    = document.getElementById('cf-name').value.trim();
-  const email   = document.getElementById('cf-email').value.trim();
-  const type    = document.getElementById('cf-type').value;
-  const subject = document.getElementById('cf-subject').value.trim();
-  const message = document.getElementById('cf-message').value.trim();
-  // anti-spam fields — sent but never shown to user
-  const _hp_name  = document.getElementById('_hp_name').value;
-  const _hp_email = document.getElementById('_hp_email').value;
-  const _t        = document.getElementById('_t').value;
+  const name    = document.getElementById(p+'cf-name').value.trim();
+  const email   = document.getElementById(p+'cf-email').value.trim();
+  const type    = document.getElementById(p+'cf-type').value;
+  const subject = document.getElementById(p+'cf-subject').value.trim();
+  const message = document.getElementById(p+'cf-message').value.trim();
+  const _hp_name  = document.getElementById(p+'_hp_name').value;
+  const _hp_email = document.getElementById(p+'_hp_email').value;
+  const _t        = document.getElementById(p+'_t').value;
 
   if(errEl) errEl.style.display='none';
   btn.textContent='Transmitting...';
@@ -1533,8 +1663,8 @@ async function submitForm(e){
     if(!res.ok) throw new Error(data.error||'Transmission failed. Try again.');
     inner.classList.add('hide');
     sent.classList.add('show');
-    const n = document.getElementById('cf-sent-name');
-    const m = document.getElementById('cf-sent-email');
+    const n = document.getElementById(p+'cf-sent-name');
+    const m = document.getElementById(p+'cf-sent-email');
     if(n) n.textContent = name;
     if(m) m.textContent = email;
   } catch(err){
@@ -1547,6 +1677,34 @@ async function submitForm(e){
     }
   }
 }
+
+/* ---- CONTACT MODAL ---- */
+function openContactModal(){
+  const m = document.getElementById('contact-modal');
+  m.classList.add('open');
+  document.body.classList.add('cm-open');
+  // Reset timing token AND form when modal opens (humans need >3s from open)
+  document.getElementById('m-_t').value = Date.now();
+  document.getElementById('m-_hp_name').value = '';
+  document.getElementById('m-_hp_email').value = '';
+  // If previously submitted, reset to fresh form
+  document.getElementById('m-cf-form-inner').classList.remove('hide');
+  document.getElementById('m-cf-sent').classList.remove('show');
+  const btn = m.querySelector('.cf-btn');
+  if(btn){ btn.textContent='Execute ›'; btn.style.opacity='1'; btn.disabled=false; }
+  // Focus first field after entrance animation
+  setTimeout(()=>{ const n=document.getElementById('m-cf-name'); if(n) n.focus(); }, 380);
+}
+function closeContactModal(){
+  document.getElementById('contact-modal').classList.remove('open');
+  document.body.classList.remove('cm-open');
+}
+// Close on Escape
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && document.getElementById('contact-modal').classList.contains('open')){
+    closeContactModal();
+  }
+});
 
 /* ---- CONTACT FORM INPUT GLOW ---- */
 document.querySelectorAll('.cf-input,.cf-select').forEach(el=>{
