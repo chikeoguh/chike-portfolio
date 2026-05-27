@@ -1715,6 +1715,77 @@ document.querySelectorAll('.cf-input,.cf-select').forEach(el=>{
     el.closest('.cf-field').style.borderBottomColor='';
   });
 });
+
+/* ============================================================
+   SOURCE CODE PROTECTION
+   Casual-viewer deterrent — not cryptographic security.
+   A determined developer can still view via curl, network panel,
+   or view-source: URL prefix. This stops ~95% of casual snoops.
+============================================================ */
+(function(){
+  const isFormField = el => el && ['INPUT','TEXTAREA','SELECT'].includes(el.tagName);
+
+  /* 1. block right-click context menu (except in form fields) */
+  document.addEventListener('contextmenu', e=>{
+    if(!isFormField(e.target)){ e.preventDefault(); return false; }
+  });
+
+  /* 2. block dev keyboard shortcuts */
+  document.addEventListener('keydown', e=>{
+    const k = (e.key||'').toLowerCase();
+    const ctrl = e.ctrlKey || e.metaKey;
+    // F12
+    if(e.key === 'F12'){ e.preventDefault(); return false; }
+    // Ctrl/Cmd + U  → view source
+    if(ctrl && k === 'u'){ e.preventDefault(); return false; }
+    // Ctrl/Cmd + S  → save page
+    if(ctrl && k === 's'){ e.preventDefault(); return false; }
+    // Ctrl+Shift+I / J / C  → inspector, console, picker
+    if(ctrl && e.shiftKey && (k === 'i' || k === 'j' || k === 'c')){ e.preventDefault(); return false; }
+    // Cmd+Option+I / J / C (Safari/Chrome on Mac)
+    if(e.metaKey && e.altKey && (k === 'i' || k === 'j' || k === 'c' || k === 'u')){ e.preventDefault(); return false; }
+  });
+
+  /* 3. block drag-to-save on images / canvas */
+  document.addEventListener('dragstart', e=>{
+    if(['IMG','CANVAS'].includes(e.target.tagName)){ e.preventDefault(); return false; }
+  });
+
+  /* 4. console branding & warning — runs once */
+  const css = (c,s='') => `color:${c};font-family:'JetBrains Mono',monospace;${s}`;
+  console.log('%c⚠ STOP', css('#ff5f57','font-size:56px;font-weight:900;text-shadow:2px 2px 0 #000'));
+  console.log('%c'+'═'.repeat(56), css('#00ff88'));
+  console.log('%c  CHIKE.NG — RESTRICTED ZONE', css('#00ff88','font-size:14px;font-weight:700;letter-spacing:.15em'));
+  console.log('%c'+'═'.repeat(56), css('#00ff88'));
+  console.log('%c\n$ whoami', css('#00ff88','font-size:12px'));
+  console.log('%c  You\'ve opened developer tools on chike.ng.', css('#8892a4','font-size:12px'));
+  console.log('%c\n$ warn --about console_attack', css('#febc2e','font-size:12px'));
+  console.log('%c  Pasting code anyone gave you here could compromise your', css('#febc2e','font-size:12px'));
+  console.log('%c  accounts, email, or browser session. Never paste unknown JS.', css('#febc2e','font-size:12px'));
+  console.log('%c\n$ echo $WORK_INQUIRY', css('#00d4ff','font-size:12px'));
+  console.log('%c  Looking to work together? Use the contact form.', css('#edf2f7','font-size:12px'));
+  console.log('%c  Email   →  hello@chike.ng', css('#edf2f7','font-size:12px'));
+  console.log('%c  LinkedIn →  linkedin.com/in/chikeoguh\n', css('#edf2f7','font-size:12px'));
+
+  /* 5. devtools-open detection — width/height differential */
+  let warned = false;
+  const detect = () => {
+    const threshold = 170;
+    const wDiff = window.outerWidth  - window.innerWidth;
+    const hDiff = window.outerHeight - window.innerHeight;
+    if(wDiff > threshold || hDiff > threshold){
+      if(!warned){
+        warned = true;
+        console.clear();
+        console.log('%c⚠  DevTools detected', css('#febc2e','font-size:20px;font-weight:700'));
+        console.log('%cPlease respect the source. Reach out instead — hello@chike.ng', css('#8892a4','font-size:12px'));
+      }
+    } else {
+      warned = false;
+    }
+  };
+  setInterval(detect, 1500);
+})();
 </script>
 
 </body>
