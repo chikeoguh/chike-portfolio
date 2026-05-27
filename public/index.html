@@ -1208,6 +1208,14 @@ textarea.cf-input{min-height:100px;resize:none}
         </div>
 
         <form id="cf-form" onsubmit="submitForm(event)">
+          <!-- honeypot: bots fill this, humans don't see it -->
+          <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none" aria-hidden="true" tabindex="-1">
+            <input type="text" name="_hp_name" id="_hp_name" tabindex="-1" autocomplete="off" value="">
+            <input type="email" name="_hp_email" id="_hp_email" tabindex="-1" autocomplete="off" value="">
+          </div>
+          <!-- timing token: set on page load, checked server-side -->
+          <input type="hidden" name="_t" id="_t" value="">
+
           <div class="cf-form-inner" id="cf-form-inner">
 
             <!-- name -->
@@ -1490,6 +1498,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 });
 
 /* ---- CONTACT FORM ---- */
+// Set timing token on page load
+document.getElementById('_t').value = Date.now();
+
 async function submitForm(e){
   e.preventDefault();
   const btn   = e.target.querySelector('.cf-btn');
@@ -1502,6 +1513,10 @@ async function submitForm(e){
   const type    = document.getElementById('cf-type').value;
   const subject = document.getElementById('cf-subject').value.trim();
   const message = document.getElementById('cf-message').value.trim();
+  // anti-spam fields — sent but never shown to user
+  const _hp_name  = document.getElementById('_hp_name').value;
+  const _hp_email = document.getElementById('_hp_email').value;
+  const _t        = document.getElementById('_t').value;
 
   if(errEl) errEl.style.display='none';
   btn.textContent='Transmitting...';
@@ -1512,11 +1527,10 @@ async function submitForm(e){
     const res = await fetch('/api/contact',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({name,email,type,subject,message})
+      body: JSON.stringify({name,email,type,subject,message,_hp_name,_hp_email,_t})
     });
     const data = await res.json();
     if(!res.ok) throw new Error(data.error||'Transmission failed. Try again.');
-    // Show success
     inner.classList.add('hide');
     sent.classList.add('show');
     const n = document.getElementById('cf-sent-name');
