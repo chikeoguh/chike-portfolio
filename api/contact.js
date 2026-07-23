@@ -211,7 +211,7 @@ function confirmationEmail({ name, email, type, subject, message, ts }) {
       <p style="margin:0 0 28px;font-size:13px;color:#edf2f7;padding-left:14px;line-height:1.7">
         Your message has been received and logged.<br>
         Chike will be in touch shortly. Connect on
-        <a href="https://linkedin.com/in/chikeoguh" style="color:#00d4ff;text-decoration:none">LinkedIn</a> in the meantime.
+        <a href="https://www.linkedin.com/in/chike-oguh/" style="color:#00d4ff;text-decoration:none">LinkedIn</a> in the meantime.
       </p>
       <p style="margin:0;font-size:12px;color:#4a5568">
         <span style="color:#00ff88">$</span>
