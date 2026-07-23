@@ -4,7 +4,8 @@
  * All three notification types share this file so we send consistent embeds.
  */
 
-const WEBHOOK = process.env.DISCORD_WEBHOOK;
+/* Normalise legacy discordapp.com → discord.com (Node fetch fails the redirect) */
+const WEBHOOK = (process.env.DISCORD_WEBHOOK || '').replace(/discordapp\.com/i, 'discord.com');
 
 /* ISO country code → flag emoji */
 function flag(cc = 'XX') {
@@ -47,9 +48,10 @@ async function post(payload) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
-    if (!res.ok) console.warn('[DISCORD] webhook returned', res.status, await res.text());
+    if (!res.ok) console.warn('[DISCORD] webhook returned', res.status, await res.text().catch(()=>'(no body)'));
+    else         console.log('[DISCORD] webhook OK');
   } catch (err) {
-    console.warn('[DISCORD] webhook error:', err?.message);
+    console.warn('[DISCORD] webhook error:', err?.name, err?.message, err?.cause?.code || '');
   }
 }
 
