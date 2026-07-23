@@ -70,7 +70,7 @@ module.exports = async function handler(req, res) {
   /* ── 1. HONEYPOT — bots fill hidden fields, humans leave them empty ── */
   if (_hp_name || _hp_email) {
     console.warn('[SPAM] Honeypot triggered');
-    notifyDiscord.spam({ layer: 'honeypot', ip, country, city }).catch(()=>{});
+    await notifyDiscord.spam({ layer: 'honeypot', ip, country, city }).catch(err => console.warn('[DISCORD] spam notify failed:', err?.message));
     return res.status(200).json({ success: true }); // silent reject
   }
 
@@ -78,14 +78,14 @@ module.exports = async function handler(req, res) {
   const elapsed = Date.now() - parseInt(_t || '0', 10);
   if (!_t || elapsed < 3000) {
     console.warn('[SPAM] Submitted too fast:', elapsed, 'ms');
-    notifyDiscord.spam({ layer: 'timing', ip, country, city, meta: `${elapsed}ms` }).catch(()=>{});
+    await notifyDiscord.spam({ layer: 'timing', ip, country, city, meta: `${elapsed}ms` }).catch(err => console.warn('[DISCORD] spam notify failed:', err?.message));
     return res.status(200).json({ success: true }); // silent reject
   }
 
   /* ── 3. RATE LIMIT — max 3 submissions per IP per 10 min ── */
   if (isRateLimited(ip)) {
     console.warn('[SPAM] Rate limited IP:', ip);
-    notifyDiscord.spam({ layer: 'rate-limit', ip, country, city }).catch(()=>{});
+    await notifyDiscord.spam({ layer: 'rate-limit', ip, country, city }).catch(err => console.warn('[DISCORD] spam notify failed:', err?.message));
     return res.status(429).json({ error: 'Too many submissions. Please wait a few minutes.' });
   }
 
@@ -103,7 +103,7 @@ module.exports = async function handler(req, res) {
   /* ── 5. SPAM CONTENT FILTER ── */
   if (isSpam({ name, email, subject, message })) {
     console.warn('[SPAM] Content filter triggered — from:', email);
-    notifyDiscord.spam({ layer: 'content-filter', ip, country, city, meta: `from ${email}` }).catch(()=>{});
+    await notifyDiscord.spam({ layer: 'content-filter', ip, country, city, meta: `from ${email}` }).catch(err => console.warn('[DISCORD] spam notify failed:', err?.message));
     return res.status(200).json({ success: true }); // silent reject
   }
 
@@ -129,7 +129,7 @@ module.exports = async function handler(req, res) {
     });
 
     /* ── ping Discord with rich embed (non-blocking) ── */
-    notifyDiscord.contact({ name, email, type: label, subject, message, ip, country, city }).catch(err =>
+    await notifyDiscord.contact({ name, email, type: label, subject, message, ip, country, city }).catch(err =>
       console.warn('[DISCORD] contact notify failed:', err?.message)
     );
 

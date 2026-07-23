@@ -38,10 +38,9 @@ module.exports = async function handler(req, res) {
 
   const { path = '/', referrer = '', screen = '' } = req.body || {};
 
-  // Fire-and-forget — never let a slow Discord API delay the beacon
-  notifyDiscord.visit({ path, referrer, country, city, ua, screen, ip }).catch(err =>
-    console.warn('[TRACK] discord notify failed:', err?.message)
-  );
+  // AWAIT — Vercel serverless terminates the container on `return`, killing
+  // any in-flight fetch. sendBeacon on the client already means UX isn't blocked.
+  await notifyDiscord.visit({ path, referrer, country, city, ua, screen, ip });
 
   return res.status(204).end();
 };
