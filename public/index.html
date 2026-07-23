@@ -317,6 +317,11 @@ body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:52px;height:5
 .nav-links a:hover{color:var(--ng)}
 .nav-btn{font-family:var(--mono);font-size:11px;padding:7px 18px;border:1px solid var(--ng);color:var(--ng);border-radius:4px;letter-spacing:.08em;text-transform:uppercase;transition:all .25s var(--ease)}
 .nav-btn:hover{background:var(--ng);color:#000;box-shadow:var(--gng)}
+/* language toggle chip */
+.lang-toggle{display:inline-flex;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:6px;padding:2px;margin-right:14px;font-family:var(--mono)}
+.lang-btn{background:transparent;border:none;color:var(--t3);font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;padding:5px 10px;cursor:pointer;border-radius:4px;transition:all .2s var(--ease)}
+.lang-btn:hover{color:var(--t1)}
+.lang-btn.active{background:rgba(0,255,136,.1);color:var(--ng)}
 .nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
 .nav-burger span{width:22px;height:1px;background:var(--t2);transition:all .3s var(--ease);display:block}
 .nav-burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
@@ -724,23 +729,27 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
 <nav id="nav">
   <a href="#hero" class="nav-logo">chike<em>.oguh</em></a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+    <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+    <li><a href="#education" data-i18n="nav.education">Education</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
-  <a href="#" onclick="openContactModal();return false" class="nav-btn">Hire Me</a>
+  <div class="lang-toggle" role="group" aria-label="Language">
+    <button class="lang-btn active" data-lang="en" onclick="setLang('en')" type="button">EN</button>
+    <button class="lang-btn"        data-lang="pt" onclick="setLang('pt')" type="button">PT</button>
+  </div>
+  <a href="#" onclick="openContactModal();return false" class="nav-btn" data-i18n="nav.hire">Hire Me</a>
   <div class="nav-burger" id="burger"><span></span><span></span><span></span></div>
 </nav>
 
 <!-- MOBILE MENU -->
 <div id="mmenu">
-  <a href="#about" onclick="closeMM()">About</a>
-  <a href="#skills" onclick="closeMM()">Skills</a>
-  <a href="#projects" onclick="closeMM()">Projects</a>
-  <a href="#education" onclick="closeMM()">Education</a>
-  <a href="#contact" onclick="closeMM()">Contact</a>
+  <a href="#about"     onclick="closeMM()" data-i18n="nav.about">About</a>
+  <a href="#skills"    onclick="closeMM()" data-i18n="nav.skills">Skills</a>
+  <a href="#projects"  onclick="closeMM()" data-i18n="nav.projects">Projects</a>
+  <a href="#education" onclick="closeMM()" data-i18n="nav.education">Education</a>
+  <a href="#contact"   onclick="closeMM()" data-i18n="nav.contact">Contact</a>
 </div>
 
 <!-- SEO: keyword-rich hidden text block — visible to crawlers, not users -->
@@ -757,7 +766,7 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
   <div class="hero-radial"></div>
 
   <div class="hero-inner">
-    <div class="hero-pill"><div class="dot"></div>Open to new opportunities</div>
+    <div class="hero-pill"><div class="dot"></div><span data-i18n="hero.pill">Open to new opportunities</span></div>
     <h1 class="hero-name glitch" data-text="Chike">Chike</h1>
     <p class="hero-sub">Chike Oguh &nbsp;·&nbsp; Portugal &nbsp;·&nbsp; hello@chike.ng</p>
     <div class="hero-typed-row">
@@ -766,12 +775,12 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
     <div class="hero-btns">
       <button type="button" data-cal-link="chike-oguh-4bnilm/15min" data-cal-namespace="15min" data-cal-config='{"layout":"month_view","theme":"dark"}' class="btn-p" style="border:1px solid var(--ng);cursor:pointer;font-family:var(--mono)">
         <svg style="width:14px;height:14px;vertical-align:-2px;margin-right:6px;display:inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Book a Call
+        <span data-i18n="hero.book">Book a Call</span>
       </button>
-      <a href="#" onclick="openContactModal();return false" class="btn-s">Send Message</a>
+      <a href="#" onclick="openContactModal();return false" class="btn-s" data-i18n="hero.send">Send Message</a>
       <a href="/cv.pdf" download="Chike_Oguh_CV.pdf" class="btn-s">
         <svg style="width:14px;height:14px;vertical-align:-2px;margin-right:6px;display:inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download CV
+        <span data-i18n="hero.cv">Download CV</span>
       </a>
     </div>
 
@@ -808,7 +817,7 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
     <div class="h-stat"><div><div class="h-stat-val" style="color:#a78bfa;font-size:18px">MSc</div><div class="h-stat-lbl">Informatics<br>Engineering</div></div></div>
   </div>
 
-  <div class="hero-scroll"><div class="hero-scroll-line"></div><span>Scroll</span></div>
+  <div class="hero-scroll"><div class="hero-scroll-line"></div><span data-i18n="hero.scroll">Scroll</span></div>
 </section>
 
 <div class="divider"></div>
@@ -819,9 +828,9 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
 <section id="about" aria-label="About Chike Oguh" style="position:relative;overflow:hidden">
   <div class="blob blob-g" style="top:-150px;right:-200px"></div>
   <div class="wrap">
-    <div class="s-label rv">Profile</div>
-    <h2 class="s-title rv">Support Engineer.<br>Infrastructure Specialist.</h2>
-    <p class="s-sub rv">6+ years owning technical issues end-to-end — from first response to root cause resolution.</p>
+    <div class="s-label rv" data-i18n="about.label">Profile</div>
+    <h2 class="s-title rv" data-i18n="about.title" data-i18n-html>Support Engineer.<br>Infrastructure Specialist.</h2>
+    <p class="s-sub rv" data-i18n="about.sub">6+ years owning technical issues end-to-end — from first response to root cause resolution.</p>
 
     <div class="about-grid">
       <!-- Left: text -->
@@ -1017,9 +1026,9 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
 <section id="skills" aria-label="Technical Skills" style="position:relative;overflow:hidden">
   <div class="blob blob-g" style="top:50%;left:-250px;transform:translateY(-50%);opacity:.06"></div>
   <div class="wrap">
-    <div class="s-label rv">Skills</div>
-    <h2 class="s-title rv">Technical Arsenal</h2>
-    <p class="s-sub rv">A full-stack support toolkit built across 6+ years of enterprise, cloud, and infrastructure environments.</p>
+    <div class="s-label rv" data-i18n="skills.label">Skills</div>
+    <h2 class="s-title rv" data-i18n="skills.title">Technical Arsenal</h2>
+    <p class="s-sub rv" data-i18n="skills.sub">A full-stack support toolkit built across 6+ years of enterprise, cloud, and infrastructure environments.</p>
 
     <div class="skills-grid">
 
@@ -1089,9 +1098,9 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
 <section id="projects" aria-label="Projects and Labs" style="position:relative;overflow:hidden">
   <div class="blob blob-g" style="top:0;right:-300px;opacity:.06"></div>
   <div class="wrap">
-    <div class="s-label rv">Projects &amp; Labs</div>
-    <h2 class="s-title rv">Technical Initiatives</h2>
-    <p class="s-sub rv">Environments built, maintained, and operated — from enterprise ops to hands-on lab work.</p>
+    <div class="s-label rv" data-i18n="projects.label">Projects &amp; Labs</div>
+    <h2 class="s-title rv" data-i18n="projects.title">Technical Initiatives</h2>
+    <p class="s-sub rv" data-i18n="projects.sub">Environments built, maintained, and operated — from enterprise ops to hands-on lab work.</p>
 
     <div class="proj-grid">
 
@@ -1215,14 +1224,14 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
 <section id="education" aria-label="Education and Certifications" style="position:relative;overflow:hidden">
   <div class="blob blob-c" style="top:0;right:-200px;opacity:.07"></div>
   <div class="wrap">
-    <div class="s-label rv">Education &amp; Certifications</div>
-    <h2 class="s-title rv">Credentials</h2>
-    <p class="s-sub rv">Academic foundation combined with industry-recognised certifications.</p>
+    <div class="s-label rv" data-i18n="edu.label">Education &amp; Certifications</div>
+    <h2 class="s-title rv" data-i18n="edu.title">Credentials</h2>
+    <p class="s-sub rv" data-i18n="edu.sub">Academic foundation combined with industry-recognised certifications.</p>
 
     <div class="edu-grid">
 
       <div class="rv-l">
-        <div class="edu-section-title">Academic</div>
+        <div class="edu-section-title" data-i18n="edu.academic">Academic</div>
         <div class="edu-cards">
           <div class="edu-card">
             <div class="edu-deg">MSc — Informatics Engineering</div>
@@ -1236,7 +1245,7 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
       </div>
 
       <div class="rv-r">
-        <div class="edu-section-title">Certifications</div>
+        <div class="edu-section-title" data-i18n="edu.certs">Certifications</div>
         <div class="cert-grid">
 
           <div class="cert-card">
@@ -1422,9 +1431,9 @@ body.cm-open{overflow:hidden}
 <section id="contact" aria-label="Contact Chike Oguh" style="position:relative;overflow:hidden">
   <div class="blob blob-g" style="bottom:-150px;right:-200px;opacity:.08"></div>
   <div class="wrap">
-    <div class="s-label rv">Contact</div>
-    <h2 class="s-title rv">Initiate Connection</h2>
-    <p class="s-sub rv">Open to technical support roles, infrastructure positions, and remote opportunities worldwide.</p>
+    <div class="s-label rv" data-i18n="contact.label">Contact</div>
+    <h2 class="s-title rv" data-i18n="contact.title">Initiate Connection</h2>
+    <p class="s-sub rv" data-i18n="contact.sub">Open to technical support roles, infrastructure positions, and remote opportunities worldwide.</p>
 
     <div class="cf-wrap">
 
@@ -1571,8 +1580,8 @@ body.cm-open{overflow:hidden}
      FOOTER
 ========================================= -->
 <footer>
-  <div class="ft-l"><span>chike</span>.oguh · Support Engineer · Portugal · Remote-first</div>
-  <div class="ft-r" style="color:var(--t3)">Built with <span style="color:var(--ng)">lines of code</span> by <span style="color:var(--t1);font-weight:600">Chike</span></div>
+  <div class="ft-l"><span>chike</span>.oguh · <span data-i18n="footer.role">Support Engineer</span> · Portugal · <span data-i18n="footer.remote">Remote-first</span></div>
+  <div class="ft-r" style="color:var(--t3)"><span data-i18n="footer.built">Built with</span> <span style="color:var(--ng)" data-i18n="footer.loc">lines of code</span> <span data-i18n="footer.by">by</span> <span style="color:var(--t1);font-weight:600">Chike</span></div>
 </footer>
 
 <!-- =========================================
@@ -1606,6 +1615,124 @@ body.cm-open{overflow:hidden}
      SCRIPTS
 ========================================= -->
 <script>
+/* ============================================================
+   I18N — EN / PT toggle
+   All translatable text lives in this dict. Add data-i18n="key"
+   on elements. Data-i18n-html allows HTML content (like <br>).
+   Persisted per-visitor in localStorage.
+============================================================ */
+const I18N = {
+  en: {
+    'nav.about':    'About',
+    'nav.skills':   'Skills',
+    'nav.projects': 'Projects',
+    'nav.education':'Education',
+    'nav.contact':  'Contact',
+    'nav.hire':     'Hire Me',
+    'hero.pill':    'Open to new opportunities',
+    'hero.book':    'Book a Call',
+    'hero.send':    'Send Message',
+    'hero.cv':      'Download CV',
+    'hero.scroll':  'Scroll',
+    'about.label':  'Profile',
+    'about.title':  'Support Engineer.<br>Infrastructure Specialist.',
+    'about.sub':    '6+ years owning technical issues end-to-end — from first response to root cause resolution.',
+    'skills.label': 'Skills',
+    'skills.title': 'Technical Arsenal',
+    'skills.sub':   'A full-stack support toolkit built across 6+ years of enterprise, cloud, and infrastructure environments.',
+    'projects.label':'Projects & Labs',
+    'projects.title':'Technical Initiatives',
+    'projects.sub': 'Environments built, maintained, and operated — from enterprise ops to hands-on lab work.',
+    'edu.label':    'Education & Certifications',
+    'edu.title':    'Credentials',
+    'edu.sub':      'Academic foundation combined with industry-recognised certifications.',
+    'edu.academic': 'Academic',
+    'edu.certs':    'Certifications',
+    'contact.label':'Contact',
+    'contact.title':'Initiate Connection',
+    'contact.sub':  'Open to technical support roles, infrastructure positions, and remote opportunities worldwide.',
+    'footer.role':  'Support Engineer',
+    'footer.remote':'Remote-first',
+    'footer.built': 'Built with',
+    'footer.loc':   'lines of code',
+    'footer.by':    'by',
+  },
+  pt: {
+    'nav.about':    'Sobre',
+    'nav.skills':   'Competências',
+    'nav.projects': 'Projetos',
+    'nav.education':'Formação',
+    'nav.contact':  'Contacto',
+    'nav.hire':     'Contratar',
+    'hero.pill':    'Aberto a novas oportunidades',
+    'hero.book':    'Agendar Chamada',
+    'hero.send':    'Enviar Mensagem',
+    'hero.cv':      'Descarregar CV',
+    'hero.scroll':  'Deslizar',
+    'about.label':  'Perfil',
+    'about.title':  'Engenheiro de Suporte.<br>Especialista em Infraestrutura.',
+    'about.sub':    '6+ anos a resolver problemas técnicos de ponta a ponta — do primeiro contacto à resolução da causa raiz.',
+    'skills.label': 'Competências',
+    'skills.title': 'Arsenal Técnico',
+    'skills.sub':   'Um conjunto completo de competências de suporte, construído ao longo de 6+ anos em ambientes empresariais, cloud e de infraestrutura.',
+    'projects.label':'Projetos e Laboratórios',
+    'projects.title':'Iniciativas Técnicas',
+    'projects.sub': 'Ambientes construídos, mantidos e operados — desde operações empresariais até trabalho prático em laboratório.',
+    'edu.label':    'Formação e Certificações',
+    'edu.title':    'Credenciais',
+    'edu.sub':      'Base académica combinada com certificações reconhecidas no setor.',
+    'edu.academic': 'Académico',
+    'edu.certs':    'Certificações',
+    'contact.label':'Contacto',
+    'contact.title':'Iniciar Ligação',
+    'contact.sub':  'Aberto a funções de suporte técnico, infraestrutura e oportunidades remotas em todo o mundo.',
+    'footer.role':  'Engenheiro de Suporte',
+    'footer.remote':'Remote-first',
+    'footer.built': 'Construído com',
+    'footer.loc':   'linhas de código',
+    'footer.by':    'por',
+  },
+};
+
+function applyLang(lang){
+  if(!I18N[lang]) lang = 'en';
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if(!dict[key]) return;
+    if(el.hasAttribute('data-i18n-html')) el.innerHTML   = dict[key];
+    else                                  el.textContent = dict[key];
+  });
+  // Toggle chip active state
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  try { localStorage.setItem('lang', lang); } catch(e){}
+}
+
+function setLang(lang){
+  applyLang(lang);
+  // Emit a small confirmation via the sound engine (if enabled)
+  if(window.snd && snd.isOn && snd.isOn()) snd.beep();
+}
+
+/* Detect initial language: stored preference > browser default > EN */
+(function(){
+  let lang = 'en';
+  try {
+    const stored = localStorage.getItem('lang');
+    if(stored && I18N[stored]) lang = stored;
+    else if((navigator.language || '').toLowerCase().startsWith('pt')) lang = 'pt';
+  } catch(e){}
+  // Defer to DOMContentLoaded so all elements exist
+  if(document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => applyLang(lang));
+  } else {
+    applyLang(lang);
+  }
+})();
+
 /* ---- LOADER ---- */
 (function(){
   const bar = document.getElementById('ld-bar');
