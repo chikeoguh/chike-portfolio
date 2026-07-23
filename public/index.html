@@ -717,7 +717,11 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
     </div>
     <div class="hero-btns">
       <a href="#" onclick="openContactModal();return false" class="btn-p">Get in Touch</a>
-      <a href="#about" class="btn-s">Explore Portfolio</a>
+      <a href="/cv.pdf" download="Chike_Oguh_CV.pdf" class="btn-s">
+        <svg style="width:14px;height:14px;vertical-align:-2px;margin-right:6px;display:inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CV
+      </a>
+      <a href="#about" class="btn-s">Explore</a>
     </div>
   </div>
 
@@ -1279,6 +1283,37 @@ textarea.cf-input{min-height:100px;resize:none}
 @media(max-width:640px){.cf-meta{display:none}}
 
 /* ============================================
+   INTERACTIVE TERMINAL EASTER EGG
+============================================ */
+/* trigger button (bottom-right corner) */
+.tt-trigger{position:fixed;bottom:20px;right:20px;z-index:9500;width:46px;height:46px;background:rgba(10,14,20,.92);border:1px solid rgba(0,255,136,.28);border-radius:10px;color:var(--ng);font-family:var(--mono);font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s var(--ease);backdrop-filter:blur(20px);box-shadow:0 4px 24px rgba(0,0,0,.4),0 0 0 rgba(0,255,136,0)}
+.tt-trigger::before{content:'';position:absolute;inset:0;border-radius:10px;box-shadow:0 0 0 2px transparent;transition:box-shadow .3s var(--ease)}
+.tt-trigger:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 24px rgba(0,255,136,.25);border-color:var(--ng)}
+.tt-trigger .tt-hint{position:absolute;right:56px;top:50%;transform:translateY(-50%) translateX(10px);white-space:nowrap;font-size:10px;color:var(--t2);background:rgba(10,14,20,.95);border:1px solid var(--border);padding:6px 12px;border-radius:6px;letter-spacing:.06em;opacity:0;pointer-events:none;transition:all .3s var(--ease);backdrop-filter:blur(20px)}
+.tt-trigger:hover .tt-hint{opacity:1;transform:translateY(-50%) translateX(0)}
+.tt-trigger .tt-hint kbd{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:var(--ng);padding:1px 6px;border-radius:3px;font-family:var(--mono);font-size:9px;margin-left:4px}
+/* window */
+.tt{position:fixed;bottom:78px;right:20px;z-index:9499;width:min(560px,calc(100vw - 40px));max-height:min(560px,calc(100vh - 120px));background:rgba(6,8,12,.98);border:1px solid rgba(0,255,136,.2);border-radius:12px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.6),0 0 40px rgba(0,255,136,.06);backdrop-filter:blur(30px);transform-origin:bottom right}
+.tt.open{display:flex;animation:ttIn .3s var(--ease)}
+@keyframes ttIn{from{opacity:0;transform:scale(.94) translateY(10px)}to{opacity:1;transform:none}}
+.tt-head{padding:10px 14px;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tt-head-left{display:flex;align-items:center;gap:8px}
+.tt-body{flex:1;overflow-y:auto;padding:14px 16px;font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--t1);scroll-behavior:smooth}
+.tt-body::-webkit-scrollbar{width:5px}
+.tt-body::-webkit-scrollbar-thumb{background:rgba(0,255,136,.15);border-radius:3px}
+.tt-line{white-space:pre-wrap;word-break:break-word}
+.tt-line .p{color:var(--ng)}
+.tt-line .k{color:var(--nc)}
+.tt-line .m{color:var(--t2)}
+.tt-line .w{color:var(--na)}
+.tt-line .e{color:#f87171}
+.tt-line .s{color:var(--ng)}
+.tt-input-row{display:flex;align-items:center;padding:10px 16px;border-top:1px solid var(--border);background:rgba(0,0,0,.3);flex-shrink:0}
+.tt-input-prompt{color:var(--ng);font-family:var(--mono);font-size:12px;margin-right:8px;user-select:none}
+.tt-input{flex:1;background:transparent;border:none;outline:none;color:var(--t1);font-family:var(--mono);font-size:12px;caret-color:var(--ng)}
+@media(max-width:600px){.tt{bottom:76px;right:12px;left:12px;width:auto}.tt-trigger{bottom:14px;right:14px}}
+
+/* ============================================
    CONTACT MODAL
 ============================================ */
 .cm{position:fixed;inset:0;z-index:99996;display:none;align-items:center;justify-content:center;padding:20px}
@@ -1453,6 +1488,29 @@ body.cm-open{overflow:hidden}
   <div class="ft-l"><span>chike</span>.oguh · Support Engineer · Portugal · Remote-first</div>
   <div class="ft-r" style="color:var(--t3)">Built with <span style="color:var(--ng)">lines of code</span> by <span style="color:var(--t1);font-weight:600">Chike</span></div>
 </footer>
+
+<!-- =========================================
+     INTERACTIVE TERMINAL EASTER EGG
+========================================= -->
+<button class="tt-trigger" onclick="ttToggle()" aria-label="Open terminal" type="button">
+  &gt;_
+  <span class="tt-hint">Terminal <kbd>~</kbd></span>
+</button>
+
+<div id="tt" class="tt" aria-hidden="true" role="dialog" aria-label="Interactive terminal">
+  <div class="tt-head">
+    <div class="tt-head-left">
+      <div class="t-dots"><div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div></div>
+      <span class="t-title">chike@portfolio:~ $</span>
+    </div>
+    <div class="cft-status"><span class="cft-status-dot"></span>LIVE</div>
+  </div>
+  <div class="tt-body" id="tt-body"></div>
+  <div class="tt-input-row">
+    <span class="tt-input-prompt">$</span>
+    <input class="tt-input" id="tt-input" type="text" autocomplete="off" spellcheck="false" aria-label="Terminal input">
+  </div>
+</div>
 
 <!-- =========================================
      SCRIPTS
@@ -1723,6 +1781,210 @@ document.querySelectorAll('.cf-input,.cf-select').forEach(el=>{
     el.closest('.cf-field').style.borderBottomColor='';
   });
 });
+
+/* ============================================================
+   INTERACTIVE TERMINAL — real working commands
+============================================================ */
+(function(){
+  const tt      = document.getElementById('tt');
+  const body    = document.getElementById('tt-body');
+  const input   = document.getElementById('tt-input');
+  const history = [];
+  let hIdx = -1;
+
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const print = (html, cls='') => {
+    const line = document.createElement('div');
+    line.className = 'tt-line ' + cls;
+    line.innerHTML = html;
+    body.appendChild(line);
+    body.scrollTop = body.scrollHeight;
+  };
+  const echoCmd = cmd => print(`<span class="p">chike@portfolio</span>:<span class="k">~</span>$ ${esc(cmd)}`);
+
+  /* ────── COMMANDS ────── */
+  const commands = {
+    help(){
+      print('');
+      print('<span class="k">AVAILABLE COMMANDS</span>');
+      print('─'.repeat(46));
+      const list = [
+        ['help',        'show this menu'],
+        ['whoami',      'about Chike'],
+        ['ls',          'list sections'],
+        ['cat &lt;section&gt;','read a section (about, skills, projects)'],
+        ['open &lt;section&gt;','scroll to a section'],
+        ['contact',     'open contact form'],
+        ['cv',          'download CV'],
+        ['stack',       'show tech stack'],
+        ['location',    'where I am'],
+        ['social',      'links'],
+        ['theme',       'toggle color highlights'],
+        ['clear',       'clear terminal'],
+        ['exit',        'close terminal'],
+      ];
+      list.forEach(([c,d]) => print(`  <span class="s">${c.padEnd(22,' ')}</span><span class="m">${d}</span>`));
+      print('');
+      print('<span class="m">try: <span class="k">sudo hire chike</span> ...just for fun</span>');
+    },
+    whoami(){
+      print('');
+      print('<span class="k">CHIKE OGUH</span>');
+      print('<span class="m">Technical Support Engineer · Portugal</span>');
+      print('');
+      print('  6+ years of enterprise IT support experience');
+      print('  CCNA · Google IT Support · MCDST certified');
+      print('  Bilingual: <span class="k">English</span> · <span class="k">Portuguese</span>');
+      print('  Currently open to new opportunities <span class="s">✓</span>');
+    },
+    ls(){
+      print('');
+      const sections = [
+        ['about/',      'Professional summary & skills cloud'],
+        ['skills/',     'Full technical arsenal — 6 categories'],
+        ['projects/',   'Enterprise ops, labs, WP, endpoint deploy'],
+        ['education/',  'MSc Informatics, CCNA, MCDST, Google IT'],
+        ['contact/',    'Terminal-style contact form'],
+      ];
+      sections.forEach(([n,d]) => print(`  <span class="k">${n.padEnd(14,' ')}</span><span class="m">${d}</span>`));
+    },
+    cat(arg){
+      if(!arg) return print('<span class="e">usage:</span> cat &lt;section&gt;');
+      const map = {
+        about:   'Support Engineer with 6+ years delivering hands-on, customer-facing\ntechnical support. Strong in WordPress, DNS, hosting, SSH,\nOffice 365, Active Directory, networking, cloud infrastructure.\nEnd-to-end incident ownership. Documentation-first mindset.',
+        skills:  'Technical Support · Networking · Sys Admin\nWordPress & Hosting · Cloud & SaaS · OS & Infra\n\nExpert:      WordPress, DNS, SSH, incident mgmt\nAdvanced:    TCP/IP, VPN, Office 365, Active Directory\nProficient:  Intune, Autopilot, ServiceNow, Windows 365',
+        projects:'• Enterprise Support Operations (ServiceNow, ITIL)\n• Home Lab Environment (Linux, Docker, Pi-hole)\n• WordPress & Hosting Ops (WP-CLI, SSH, VPS)\n• Network Diagnostics Lab (DNS, DHCP, TCP/IP)\n• Endpoint Deployment (Intune, Autopilot, Azure AD)\n• IT Documentation System (ServiceNow, SOPs)',
+      };
+      const key = arg.toLowerCase().replace(/\/$/,'');
+      if(map[key]){ print(''); map[key].split('\n').forEach(l => print('  <span class="m">'+esc(l)+'</span>')); }
+      else print(`<span class="e">cat:</span> ${esc(arg)}: no such section. try: <span class="k">ls</span>`);
+    },
+    open(arg){
+      if(!arg) return print('<span class="e">usage:</span> open &lt;section&gt;');
+      const key = arg.toLowerCase().replace(/\/$/,'');
+      const el = document.getElementById(key);
+      if(el){ el.scrollIntoView({behavior:'smooth'}); print(`<span class="s">→</span> scrolling to #${key}`); setTimeout(ttClose, 500); }
+      else print(`<span class="e">open:</span> #${esc(arg)} not found. sections: about, skills, projects, education, contact`);
+    },
+    contact(){
+      print('<span class="s">→</span> opening contact form...');
+      setTimeout(()=>{ ttClose(); if(typeof openContactModal==='function') openContactModal(); }, 400);
+    },
+    cv(){
+      print('<span class="s">→</span> downloading CV...');
+      const a = document.createElement('a');
+      a.href = '/cv.pdf';
+      a.download = 'Chike_Oguh_CV.pdf';
+      document.body.appendChild(a); a.click(); a.remove();
+    },
+    stack(){
+      print('');
+      print('<span class="k">CORE STACK</span>');
+      const rows = [
+        ['OS',       'Windows · Linux · macOS'],
+        ['Cloud',    'Office 365 · Azure · Windows 365'],
+        ['Network',  'TCP/IP · DNS · DHCP · VPN'],
+        ['Tools',    'ServiceNow · Intune · WP-CLI · SSH'],
+        ['ITSM',     'Incident · Request · Knowledge · Problem'],
+      ];
+      rows.forEach(([k,v]) => print(`  <span class="s">${k.padEnd(10,' ')}</span><span class="m">${v}</span>`));
+    },
+    location(){
+      print('');
+      print('  <span class="k">📍</span> Portugal · Europe/Lisbon (UTC+0)');
+      print('  <span class="s">✓</span> Remote-first · Available on-call');
+      print('  <span class="s">✓</span> EN · PT fluent');
+    },
+    social(){
+      print('');
+      print('  <span class="k">email     </span>hello@chike.ng');
+      print('  <span class="k">linkedin  </span>linkedin.com/in/chike-oguh');
+      print('  <span class="k">github    </span>github.com/chikeoguh');
+      print('  <span class="k">web       </span>https://chike.ng');
+    },
+    theme(){
+      document.documentElement.style.setProperty('--ng', document.documentElement.style.getPropertyValue('--ng') === '#00d4ff' ? '#00ff88' : '#00d4ff');
+      print('<span class="s">✓</span> palette toggled');
+    },
+    clear(){ body.innerHTML = ''; },
+    exit(){ ttClose(); },
+    /* ─── easter eggs ─── */
+    sudo(arg){
+      if(arg && arg.startsWith('hire')){
+        print('');
+        print('  <span class="s">✓</span> permission granted');
+        print('  <span class="k">→</span> initiating hire sequence...');
+        print('  <span class="k">→</span> opening contact form');
+        setTimeout(()=>{ ttClose(); if(typeof openContactModal==='function') openContactModal(); }, 700);
+      } else {
+        print(`<span class="e">sudo:</span> ${esc(arg||'')}: command not found`);
+        print('<span class="m">hint: try</span> <span class="k">sudo hire chike</span>');
+      }
+    },
+    hack(){
+      print('<span class="e">access denied.</span> <span class="m">this is a portfolio, not the pentagon.</span>');
+      print('<span class="m">but if you\'re into that — <span class="k">social</span> to reach out.</span>');
+    },
+    matrix(){
+      const chars = '01アイウエオカキクケコサシスセソタチツテト';
+      let out = '';
+      for(let i=0;i<8;i++){
+        for(let j=0;j<44;j++) out += chars[Math.floor(Math.random()*chars.length)];
+        out += '\n';
+      }
+      print('<span class="s">'+esc(out).trim()+'</span>');
+      print('<span class="m">welcome to the desert of the real.</span>');
+    },
+    'rm'(){ print('<span class="e">nice try. try:</span> <span class="k">help</span>'); },
+    'npm'(){ print('<span class="m">npm err! cannot install:</span> <span class="k">chike-oguh</span> <span class="m">is not for sale — but is for hire.</span>'); },
+    date(){ print('<span class="m">'+new Date().toString()+'</span>'); },
+    echo(arg){ print(esc(arg||'')); },
+    pwd(){ print('<span class="m">/home/chike/portfolio</span>'); },
+  };
+
+  /* ────── EXECUTION ────── */
+  function run(raw){
+    const trimmed = raw.trim();
+    if(!trimmed) return;
+    history.push(trimmed); hIdx = history.length;
+    echoCmd(trimmed);
+    const [cmd, ...rest] = trimmed.split(/\s+/);
+    const fn = commands[cmd.toLowerCase()];
+    if(fn) fn(rest.join(' '));
+    else print(`<span class="e">command not found:</span> ${esc(cmd)}. try <span class="k">help</span>`);
+  }
+
+  /* ────── OPEN / CLOSE ────── */
+  window.ttToggle = () => tt.classList.contains('open') ? ttClose() : ttOpen();
+  window.ttOpen = () => {
+    if(tt.classList.contains('open')) return;
+    tt.classList.add('open');
+    if(!body.hasChildNodes()){
+      print('<span class="k">chike.oguh</span> terminal <span class="m">v1.0</span>');
+      print('<span class="m">type</span> <span class="s">help</span> <span class="m">to list commands, or</span> <span class="s">whoami</span> <span class="m">to start.</span>');
+      print('');
+    }
+    setTimeout(()=> input.focus(), 100);
+  };
+  window.ttClose = () => tt.classList.remove('open');
+
+  /* ────── INPUT HANDLING ────── */
+  input.addEventListener('keydown', e => {
+    if(e.key === 'Enter'){ run(input.value); input.value = ''; }
+    else if(e.key === 'ArrowUp'){ e.preventDefault(); if(hIdx > 0){ hIdx--; input.value = history[hIdx]; } }
+    else if(e.key === 'ArrowDown'){ e.preventDefault(); if(hIdx < history.length-1){ hIdx++; input.value = history[hIdx]; } else { hIdx = history.length; input.value = ''; } }
+    else if(e.key === 'Escape'){ ttClose(); }
+    else if(e.key === 'l' && e.ctrlKey){ e.preventDefault(); commands.clear(); }
+  });
+
+  /* ────── GLOBAL SHORTCUT (backtick or ~) ────── */
+  document.addEventListener('keydown', e => {
+    if((e.key === '`' || e.key === '~') && !['INPUT','TEXTAREA','SELECT'].includes(e.target.tagName)){
+      e.preventDefault();
+      ttToggle();
+    }
+  });
+})();
 
 /* ============================================================
    SOURCE CODE PROTECTION
