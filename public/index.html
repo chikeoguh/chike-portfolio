@@ -16,6 +16,13 @@
 <link rel="canonical" href="https://chike.ng">
 
 <!-- ═══════════════════════════════════════════
+     FAVICONS
+═══════════════════════════════════════════ -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="mask-icon" href="/favicon.svg" color="#00ff88">
+<link rel="apple-touch-icon" href="/favicon.svg">
+
+<!-- ═══════════════════════════════════════════
      OPEN GRAPH (LinkedIn, Facebook, WhatsApp)
 ═══════════════════════════════════════════ -->
 <meta property="og:type" content="profile">
@@ -767,6 +774,16 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
         Download CV
       </a>
     </div>
+
+    <!-- LIVE STATUS WIDGET — fetched from /status.json -->
+    <div class="live-status" id="live-status" hidden>
+      <span class="ls-prompt">$ status --live</span>
+      <div class="ls-row">
+        <span class="ls-dot"></span>
+        <span class="ls-msg" id="ls-msg">Loading status…</span>
+      </div>
+      <div class="ls-focus" id="ls-focus"></div>
+    </div>
   </div>
 
   <!-- Floating terminal (desktop) -->
@@ -786,8 +803,8 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
 
   <!-- Floating stats (desktop) -->
   <div class="hero-float-right">
-    <div class="h-stat"><div><div class="h-stat-val" style="color:var(--ng)">6+</div><div class="h-stat-lbl">Years<br>Experience</div></div></div>
-    <div class="h-stat"><div><div class="h-stat-val" style="color:var(--nc)">5</div><div class="h-stat-lbl">Roles<br>Worldwide</div></div></div>
+    <div class="h-stat"><div><div class="h-stat-val" style="color:var(--ng)" data-counter="6" data-suffix="+">0</div><div class="h-stat-lbl">Years<br>Experience</div></div></div>
+    <div class="h-stat"><div><div class="h-stat-val" style="color:var(--nc)" data-counter="5">0</div><div class="h-stat-lbl">Roles<br>Worldwide</div></div></div>
     <div class="h-stat"><div><div class="h-stat-val" style="color:#a78bfa;font-size:18px">MSc</div><div class="h-stat-lbl">Informatics<br>Engineering</div></div></div>
   </div>
 
@@ -834,8 +851,8 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
       <!-- Right: stats + terminal -->
       <div>
         <div class="stat-grid rv-r">
-          <div class="stat-card"><div class="stat-n" style="color:var(--ng)">6+</div><div class="stat-d">Years enterprise-grade technical support</div></div>
-          <div class="stat-card"><div class="stat-n" style="color:var(--nc)">5</div><div class="stat-d">Roles across 4 countries</div></div>
+          <div class="stat-card"><div class="stat-n" style="color:var(--ng)" data-counter="6" data-suffix="+">0</div><div class="stat-d">Years enterprise-grade technical support</div></div>
+          <div class="stat-card"><div class="stat-n" style="color:var(--nc)" data-counter="5">0</div><div class="stat-d">Roles across 4 countries</div></div>
           <div class="stat-card"><div class="stat-n" style="color:#a78bfa;font-size:28px">EN/PT</div><div class="stat-d">English &amp; Portuguese fluency</div></div>
           <div class="stat-card"><div class="stat-n" style="color:var(--na);font-size:24px">CCNA</div><div class="stat-d">Cisco Certified Network Associate</div></div>
         </div>
@@ -1327,6 +1344,31 @@ textarea.cf-input{min-height:100px;resize:none}
 @media(max-width:640px){.cf-meta{display:none}}
 
 /* ============================================
+   LIVE STATUS WIDGET (hero)
+============================================ */
+.live-status{margin-top:36px;font-family:var(--mono);font-size:12px;line-height:1.7;text-align:center;animation:fdU .8s var(--ease) 1.1s both;opacity:0}
+.live-status:not([hidden]){opacity:1}
+.ls-prompt{color:var(--t3);font-size:10px;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:8px}
+.ls-row{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;background:rgba(0,255,136,.04);border:1px solid rgba(0,255,136,.18);border-radius:99px;transition:all .3s var(--ease)}
+.ls-row:hover{background:rgba(0,255,136,.07);border-color:rgba(0,255,136,.3)}
+.ls-dot{width:7px;height:7px;border-radius:50%;background:var(--ng);flex-shrink:0;box-shadow:0 0 8px var(--ng);animation:pls 2s ease infinite}
+.ls-msg{color:var(--t1);font-size:12px;font-weight:500;letter-spacing:.02em}
+.ls-focus{color:var(--t3);font-size:11px;margin-top:8px;letter-spacing:.02em}
+.ls-focus:not(:empty)::before{content:'▸ ';color:var(--nc)}
+.live-status[data-state="busy"] .ls-dot{background:var(--na);box-shadow:0 0 8px var(--na)}
+.live-status[data-state="offline"] .ls-dot{background:var(--t3);box-shadow:none;animation:none}
+
+/* ============================================
+   SOUND TOGGLE (bottom-right, next to terminal)
+============================================ */
+.snd-toggle{position:fixed;bottom:76px;right:20px;z-index:9500;width:38px;height:38px;background:rgba(10,14,20,.92);border:1px solid var(--border);border-radius:9px;color:var(--t3);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s var(--ease);backdrop-filter:blur(20px)}
+.snd-toggle:hover{color:var(--nc);border-color:rgba(0,212,255,.28);transform:translateY(-1px)}
+.snd-toggle svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8}
+.snd-toggle.on{color:var(--ng);border-color:rgba(0,255,136,.28)}
+.snd-toggle.on:hover{color:var(--ng)}
+@media(max-width:600px){.snd-toggle{bottom:66px;right:14px}}
+
+/* ============================================
    INTERACTIVE TERMINAL EASTER EGG
 ============================================ */
 /* trigger button (bottom-right corner) */
@@ -1536,6 +1578,10 @@ body.cm-open{overflow:hidden}
 <!-- =========================================
      INTERACTIVE TERMINAL EASTER EGG
 ========================================= -->
+<button class="snd-toggle" id="snd-toggle" onclick="sndToggle()" aria-label="Toggle sound effects" type="button" title="Sound effects">
+  <svg viewBox="0 0 24 24" id="snd-icon-off"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+</button>
+
 <button class="tt-trigger" onclick="ttToggle()" aria-label="Open terminal" type="button">
   &gt;_
   <span class="tt-hint">Terminal <kbd>~</kbd></span>
@@ -1824,6 +1870,143 @@ document.querySelectorAll('.cf-input,.cf-select').forEach(el=>{
   el.addEventListener('blur',()=>{
     el.closest('.cf-field').style.borderBottomColor='';
   });
+});
+
+/* ============================================================
+   ACHIEVEMENT COUNTERS — animate 0 → target on scroll-in
+============================================================ */
+(function(){
+  const nodes = document.querySelectorAll('[data-counter]');
+  if(!nodes.length) return;
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.counter, 10);
+      const suffix = el.dataset.suffix || '';
+      const dur = 1400;
+      const start = performance.now();
+      function tick(now){
+        const p = Math.min((now - start) / dur, 1);
+        // easeOutQuint
+        const eased = 1 - Math.pow(1 - p, 5);
+        el.textContent = Math.round(target * eased) + suffix;
+        if(p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      io.unobserve(el);
+    });
+  }, { threshold: .4 });
+  nodes.forEach(n => io.observe(n));
+})();
+
+/* ============================================================
+   LIVE STATUS WIDGET — fetches /status.json
+   Edit that file anytime and the site updates within 5 minutes.
+============================================================ */
+(function(){
+  const box   = document.getElementById('live-status');
+  const msgEl = document.getElementById('ls-msg');
+  const focEl = document.getElementById('ls-focus');
+  if(!box) return;
+  async function fetchStatus(){
+    try {
+      const res = await fetch('/status.json?t=' + Date.now(), { cache: 'no-store' });
+      if(!res.ok) return;
+      const data = await res.json();
+      msgEl.textContent = data.message || 'Open to opportunities';
+      focEl.textContent = data.focus || '';
+      box.dataset.state = data.state || 'available';
+      box.hidden = false;
+    } catch(err) { /* silent */ }
+  }
+  fetchStatus();
+  setInterval(fetchStatus, 5 * 60 * 1000); // refresh every 5 min
+})();
+
+/* ============================================================
+   SOUND ENGINE — Web Audio oscillators, no external files.
+   Off by default. Toggle persisted in localStorage.
+============================================================ */
+window.snd = (function(){
+  let enabled = false;
+  let ctx = null;
+  try { enabled = localStorage.getItem('snd') === 'on'; } catch(e){}
+
+  function ensureCtx(){
+    if(ctx) return ctx;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if(!AC) return null;
+    ctx = new AC();
+    return ctx;
+  }
+  function tone({ freq = 800, type = 'sine', dur = 0.06, vol = 0.05, attack = 0.002, decay = null }){
+    if(!enabled) return;
+    const c = ensureCtx(); if(!c) return;
+    if(c.state === 'suspended') c.resume().catch(()=>{});
+    const now = c.currentTime;
+    const o = c.createOscillator();
+    const g = c.createGain();
+    o.type = type;
+    o.frequency.setValueAtTime(freq, now);
+    g.gain.setValueAtTime(0, now);
+    g.gain.linearRampToValueAtTime(vol, now + attack);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + (decay || dur));
+    o.connect(g).connect(c.destination);
+    o.start(now);
+    o.stop(now + (decay || dur) + 0.02);
+  }
+  return {
+    isOn:    () => enabled,
+    click:   () => tone({ freq: 1400, type: 'square', dur: 0.03, vol: 0.02 }),
+    key:     () => tone({ freq: 900,  type: 'square', dur: 0.02, vol: 0.015 }),
+    chime:   () => { tone({ freq: 660, type: 'sine', dur: 0.12, vol: 0.05, decay: 0.25 }); setTimeout(()=>tone({ freq: 880, type: 'sine', dur: 0.16, vol: 0.05, decay: 0.28 }), 60); },
+    beep:    () => tone({ freq: 1200, type: 'triangle', dur: 0.05, vol: 0.04, decay: 0.15 }),
+    setOn:   (on) => { enabled = !!on; try { localStorage.setItem('snd', on ? 'on' : 'off'); } catch(e){} },
+  };
+})();
+
+/* Toggle button state */
+(function(){
+  const btn = document.getElementById('snd-toggle');
+  if(!btn) return;
+  const iconOff = '<svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+  const iconOn  = '<svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>';
+  function sync(){
+    btn.classList.toggle('on', snd.isOn());
+    btn.innerHTML = snd.isOn() ? iconOn : iconOff;
+    btn.title = snd.isOn() ? 'Sounds ON — click to mute' : 'Sounds OFF — click to enable';
+  }
+  window.sndToggle = () => {
+    snd.setOn(!snd.isOn());
+    sync();
+    if(snd.isOn()) snd.chime(); // feedback
+  };
+  sync();
+})();
+
+/* Hook sounds into existing interactions — deferred so other IIFEs
+   (openContactModal, ttOpen) are defined before we wrap them. */
+window.addEventListener('load', ()=>{
+  // Modal open
+  const origOpen = window.openContactModal;
+  if(typeof origOpen === 'function'){
+    window.openContactModal = function(){ snd.chime(); return origOpen.apply(this, arguments); };
+  }
+  // Terminal open
+  const origTTOpen = window.ttOpen;
+  if(typeof origTTOpen === 'function'){
+    window.ttOpen = function(){ snd.beep(); return origTTOpen.apply(this, arguments); };
+  }
+  // Typing effect key clicks (subtle, throttled)
+  const typedEl = document.getElementById('typed');
+  if(typedEl){
+    let last = 0;
+    new MutationObserver(()=>{
+      const now = performance.now();
+      if(now - last > 55) { snd.key(); last = now; }
+    }).observe(typedEl, { childList: true, characterData: true, subtree: true });
+  }
 });
 
 /* ============================================================
