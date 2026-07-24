@@ -495,6 +495,42 @@ body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:52px;height:5
 .p-sdot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:pls 2s infinite}
 
 /* =====================================================
+   WORK — sites/tools built or maintained
+===================================================== */
+.work-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;margin-top:60px}
+.work-loading{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:10px;padding:60px 20px;font-family:var(--mono);font-size:12px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase}
+.work-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;transition:all .35s var(--ease);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit}
+.work-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--ng),transparent);opacity:0;transition:opacity .3s}
+.work-card:hover{border-color:rgba(0,255,136,.2);transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.4),0 0 32px rgba(0,255,136,.04)}
+.work-card:hover::before{opacity:1}
+.wc-head{display:flex;align-items:flex-start;gap:14px}
+.wc-mono{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:800;font-size:18px;letter-spacing:-.02em;flex-shrink:0;text-transform:uppercase;position:relative}
+.wc-mono.c0{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.24);color:var(--ng)}
+.wc-mono.c1{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.24);color:var(--nc)}
+.wc-mono.c2{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.24);color:#a78bfa}
+.wc-mono.c3{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.24);color:var(--na)}
+.wc-title-wrap{flex:1;min-width:0}
+.wc-title{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:3px;display:flex;align-items:center;gap:6px;line-height:1.3}
+.wc-title .wc-ext{width:11px;height:11px;stroke:var(--t3);fill:none;stroke-width:2;flex-shrink:0;transition:stroke .2s}
+.work-card:hover .wc-title .wc-ext{stroke:var(--ng)}
+.wc-url{font-family:var(--mono);font-size:11px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.wc-status{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:99px;letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;align-self:flex-start;margin-top:2px}
+.wc-status.live{background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.22);color:var(--ng)}
+.wc-status.active{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.22);color:var(--nc)}
+.wc-status.archived{background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--t3)}
+.wc-status-dot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:pls 2.2s infinite}
+.wc-status.archived .wc-status-dot{animation:none}
+.wc-role{font-family:var(--mono);font-size:11px;color:var(--nc);letter-spacing:.03em}
+.wc-desc{font-size:13px;color:var(--t2);line-height:1.65}
+.wc-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap}
+.wc-tags{display:flex;flex-wrap:wrap;gap:5px;flex:1}
+.wc-tag{font-family:var(--mono);font-size:10px;padding:2px 8px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:4px;color:var(--t3);letter-spacing:.03em}
+.wc-period{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.05em;white-space:nowrap}
+.work-note{margin-top:36px;font-family:var(--mono);font-size:11px;color:var(--t3);text-align:center;padding:14px;border-top:1px dashed var(--border);opacity:.7}
+.work-note code{background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.16);color:var(--ng);padding:2px 8px;border-radius:4px;margin:0 4px}
+.wn-prompt{color:var(--ng);margin-right:6px}
+
+/* =====================================================
    EDUCATION
 ===================================================== */
 .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:60px}
@@ -732,6 +768,7 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
     <li><a href="#about" data-i18n="nav.about">About</a></li>
     <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
     <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+    <li><a href="#work" data-i18n="nav.work">Work</a></li>
     <li><a href="#education" data-i18n="nav.education">Education</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
@@ -748,6 +785,7 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
   <a href="#about"     onclick="closeMM()" data-i18n="nav.about">About</a>
   <a href="#skills"    onclick="closeMM()" data-i18n="nav.skills">Skills</a>
   <a href="#projects"  onclick="closeMM()" data-i18n="nav.projects">Projects</a>
+  <a href="#work"      onclick="closeMM()" data-i18n="nav.work">Work</a>
   <a href="#education" onclick="closeMM()" data-i18n="nav.education">Education</a>
   <a href="#contact"   onclick="closeMM()" data-i18n="nav.contact">Contact</a>
 </div>
@@ -1219,6 +1257,36 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
 <div class="divider"></div>
 
 <!-- =========================================
+     WORK — sites/tools built or maintained
+     Content fetched from /work.json — edit that file to update.
+========================================= -->
+<section id="work" aria-label="Work — sites and tools" style="position:relative;overflow:hidden">
+  <div class="blob blob-c" style="top:20%;left:-250px;opacity:.06"></div>
+  <div class="wrap">
+    <div class="s-label rv" data-i18n="work.label">Work</div>
+    <h2 class="s-title rv" data-i18n="work.title">Sites &amp; Tools I've Built</h2>
+    <p class="s-sub rv" data-i18n="work.sub">Websites deployed, hosting environments managed, and tools built for real users.</p>
+
+    <!-- Populated by JS from /work.json -->
+    <div class="work-grid" id="work-grid" aria-live="polite">
+      <div class="work-loading">
+        <span class="cft-status-dot"></span>
+        <span data-i18n="work.loading">Loading portfolio…</span>
+      </div>
+    </div>
+
+    <p class="work-note rv">
+      <span class="wn-prompt">$</span>
+      <span data-i18n="work.note">Edit</span>
+      <code>/work.json</code>
+      <span data-i18n="work.note2">to add or update items — no re-deploy needed.</span>
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =========================================
      EDUCATION & CERTS
 ========================================= -->
 <section id="education" aria-label="Education and Certifications" style="position:relative;overflow:hidden">
@@ -1626,6 +1694,7 @@ const I18N = {
     'nav.about':    'About',
     'nav.skills':   'Skills',
     'nav.projects': 'Projects',
+    'nav.work':     'Work',
     'nav.education':'Education',
     'nav.contact':  'Contact',
     'nav.hire':     'Hire Me',
@@ -1643,6 +1712,12 @@ const I18N = {
     'projects.label':'Projects & Labs',
     'projects.title':'Technical Initiatives',
     'projects.sub': 'Environments built, maintained, and operated — from enterprise ops to hands-on lab work.',
+    'work.label':   'Work',
+    'work.title':   "Sites & Tools I've Built",
+    'work.sub':     'Websites deployed, hosting environments managed, and tools built for real users.',
+    'work.loading': 'Loading portfolio…',
+    'work.note':    'Edit',
+    'work.note2':   'to add or update items — no re-deploy needed.',
     'edu.label':    'Education & Certifications',
     'edu.title':    'Credentials',
     'edu.sub':      'Academic foundation combined with industry-recognised certifications.',
@@ -1661,6 +1736,7 @@ const I18N = {
     'nav.about':    'Sobre',
     'nav.skills':   'Competências',
     'nav.projects': 'Projetos',
+    'nav.work':     'Trabalho',
     'nav.education':'Formação',
     'nav.contact':  'Contacto',
     'nav.hire':     'Contratar',
@@ -1678,6 +1754,12 @@ const I18N = {
     'projects.label':'Projetos e Laboratórios',
     'projects.title':'Iniciativas Técnicas',
     'projects.sub': 'Ambientes construídos, mantidos e operados — desde operações empresariais até trabalho prático em laboratório.',
+    'work.label':   'Trabalho',
+    'work.title':   'Sites e Ferramentas que Construí',
+    'work.sub':     'Websites publicados, ambientes de alojamento geridos e ferramentas construídas para utilizadores reais.',
+    'work.loading': 'A carregar portfólio…',
+    'work.note':    'Edita',
+    'work.note2':   'para adicionar ou atualizar itens — sem necessidade de nova publicação.',
     'edu.label':    'Formação e Certificações',
     'edu.title':    'Credenciais',
     'edu.sub':      'Base académica combinada com certificações reconhecidas no setor.',
@@ -2049,6 +2131,58 @@ document.querySelectorAll('.cf-input,.cf-select').forEach(el=>{
   }
   fetchStatus();
   setInterval(fetchStatus, 5 * 60 * 1000); // refresh every 5 min
+})();
+
+/* ============================================================
+   WORK GRID — renders /work.json into cards
+   Edit that file to add/remove entries. No re-deploy needed.
+============================================================ */
+(function(){
+  const grid = document.getElementById('work-grid');
+  if(!grid) return;
+  const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./,''); } catch(e){ return u; } };
+
+  fetch('/work.json?t=' + Date.now(), { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : Promise.reject('fetch failed'))
+    .then(data => {
+      const items = Array.isArray(data.items) ? data.items : [];
+      if(!items.length){
+        grid.innerHTML = '<div class="work-loading">No entries yet. Edit /work.json to add.</div>';
+        return;
+      }
+      grid.innerHTML = items.map((it, i) => {
+        const initial = (it.name || '?').trim().charAt(0);
+        const colorClass = 'c' + (i % 4);
+        const status = ['live','active','archived'].includes(it.status) ? it.status : 'live';
+        const tags = Array.isArray(it.tags) ? it.tags.slice(0, 6).map(t => `<span class="wc-tag">${esc(t)}</span>`).join('') : '';
+        const url = it.url || '#';
+        const isExternal = /^https?:\/\//.test(url);
+        return `
+          <a class="work-card" href="${esc(url)}"${isExternal ? ' target="_blank" rel="noopener"' : ''}>
+            <div class="wc-head">
+              <div class="wc-mono ${colorClass}">${esc(initial)}</div>
+              <div class="wc-title-wrap">
+                <div class="wc-title">
+                  <span>${esc(it.name || 'Untitled')}</span>
+                  <svg class="wc-ext" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                </div>
+                <span class="wc-url">${esc(hostOf(url))}</span>
+              </div>
+              <span class="wc-status ${status}"><span class="wc-status-dot"></span>${esc(status)}</span>
+            </div>
+            <div class="wc-role">${esc(it.role || '')}</div>
+            <div class="wc-desc">${esc(it.description || '')}</div>
+            <div class="wc-foot">
+              <div class="wc-tags">${tags}</div>
+              ${it.period ? `<span class="wc-period">${esc(it.period)}</span>` : ''}
+            </div>
+          </a>`;
+      }).join('');
+    })
+    .catch(() => {
+      grid.innerHTML = '<div class="work-loading" style="color:#f87171">✗ Failed to load /work.json</div>';
+    });
 })();
 
 /* ============================================================

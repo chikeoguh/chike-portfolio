@@ -1,0 +1,32 @@
+{
+  "_note": "Edit this file to add or remove sites/tools you've worked on. The site fetches this JSON — no re-deploy needed for content updates. Format per item: {name, url, role, description, tags, period, status}. status is 'live' (green dot), 'active' (blue), or 'archived' (grey).",
+  "items": [
+    {
+      "name": "MyAfromania",
+      "url": "https://myafromania.com",
+      "role": "Webmaster & IT Support",
+      "description": "WordPress site management — hosting operations, plugin lifecycle, migrations, WP-CLI automation, backups, and end-user support.",
+      "tags": ["WordPress", "WP-CLI", "SSH", "VPS", "Cloudflare"],
+      "period": "2023 — 2025",
+      "status": "live"
+    },
+    {
+      "name": "chike.ng",
+      "url": "https://chike.ng",
+      "role": "Owner & Engineer",
+      "description": "This portfolio — vanilla HTML/CSS/JS + Vercel serverless functions. Contact form via Resend, real-time visitor pings via Discord webhooks, Cal.com booking, EN/PT i18n.",
+      "tags": ["Vercel", "Serverless", "Resend", "Discord API", "Cal.com"],
+      "period": "2026",
+      "status": "live"
+    },
+    {
+      "name": "Example Client Site",
+      "url": "https://example.com",
+      "role": "Add your role",
+      "description": "Replace this entry — edit /public/work.json. This is a placeholder showing you the format. Add as many items as you like.",
+      "tags": ["Tag", "Tag", "Tag"],
+      "period": "Year",
+      "status": "archived"
+    }
+  ]
+}
