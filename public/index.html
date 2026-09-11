@@ -400,7 +400,7 @@ body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:52px;height:5
 .t-dots{display:flex;gap:6px}
 .t-dot{width:10px;height:10px;border-radius:50%}
 .t-dot.r{background:#ff5f57}.t-dot.y{background:#febc2e}.t-dot.g{background:#28c840}
-.t-title{font-family:var(--mono);font-size:11px;color:var(--t3);margin-left:8px}
+.t-title{font-family:var(--mono);font-size:11px;color:var(--t2);margin-left:8px}
 .term-body{padding:16px;font-family:var(--mono);font-size:12px;line-height:1.95}
 .t-row{display:flex;gap:8px;flex-wrap:nowrap}
 .t-pr{color:var(--ng);flex-shrink:0}.t-cm{color:var(--t1)}.t-out{color:var(--t2)}.t-ok{color:var(--nc)}.t-wa{color:var(--na)}.t-er{color:#f87171}
@@ -513,7 +513,7 @@ body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:52px;height:5
 .wc-title{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:3px;display:flex;align-items:center;gap:6px;line-height:1.3}
 .wc-title .wc-ext{width:11px;height:11px;stroke:var(--t3);fill:none;stroke-width:2;flex-shrink:0;transition:stroke .2s}
 .work-card:hover .wc-title .wc-ext{stroke:var(--ng)}
-.wc-url{font-family:var(--mono);font-size:11px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.wc-url{font-family:var(--mono);font-size:11px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .wc-status{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:99px;letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;align-self:flex-start;margin-top:2px}
 .wc-status.live{background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.22);color:var(--ng)}
 .wc-status.active{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.22);color:var(--nc)}
@@ -793,7 +793,7 @@ body.ck-open{overflow:hidden}
               <span class="cf-prompt">$</span>
               <span class="cf-flag">send&nbsp;--type</span>
               <div class="cf-select-wrap">
-                <select class="cf-select" id="m-cf-type" required>
+                <select class="cf-select" id="m-cf-type" required aria-label="Inquiry type">
                   <option value="" disabled selected>select_inquiry_type</option>
                   <option value="job_opportunity">job_opportunity</option>
                   <option value="freelance_project">freelance_project</option>
@@ -865,7 +865,7 @@ body.ck-open{overflow:hidden}
     <li><a href="#education" data-i18n="nav.education">Education</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
-  <button class="nav-kbd" type="button" onclick="ckOpen()" aria-label="Open command palette"><kbd id="nav-kbd-mod">⌘</kbd>K <span data-i18n="nav.cmdk">Search</span></button>
+  <button class="nav-kbd" type="button" onclick="ckOpen()" title="Open command palette"><kbd id="nav-kbd-mod">⌘</kbd>K <span data-i18n="nav.cmdk">Search</span></button>
   <div class="lang-toggle" role="group" aria-label="Language">
     <button class="lang-btn active" data-lang="en" onclick="setLang('en')" type="button">EN</button>
     <button class="lang-btn"        data-lang="pt" onclick="setLang('pt')" type="button">PT</button>
@@ -1716,7 +1716,7 @@ body.cm-open{overflow:hidden}
                 <span class="cf-prompt">$</span>
                 <span class="cf-flag">send&nbsp;--type</span>
                 <div class="cf-select-wrap">
-                  <select class="cf-select" id="cf-type" required>
+                  <select class="cf-select" id="cf-type" required aria-label="Inquiry type">
                     <option value="" disabled selected>select_inquiry_type</option>
                     <option value="job_opportunity">job_opportunity</option>
                     <option value="freelance_project">freelance_project</option>
