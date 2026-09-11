@@ -249,7 +249,7 @@ window.addEventListener('load', function(){
 ═══════════════════════════════════════════ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 /* =====================================================
@@ -574,6 +574,99 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
 .ft-r{font-family:var(--mono);font-size:11px;color:var(--t3)}
 
 /* =====================================================
+   v2 REFRESH — display type · spotlight · aurora ·
+   marquee · bento · live clock · magnetic · ⌘K palette
+===================================================== */
+
+/* ── Display type: Space Grotesk for headings ── */
+.hero-name{font-family:'Space Grotesk',var(--sans);font-weight:700;letter-spacing:-.045em}
+.s-title{font-family:'Space Grotesk',var(--sans);font-weight:700;letter-spacing:-.025em}
+
+/* ── Spotlight cards: cursor-tracking 1px border glow (ring injected by JS) ── */
+.spot{position:relative}
+.spot-ring{position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;z-index:6;opacity:0;transition:opacity .35s var(--ease);background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(0,255,136,.65),rgba(0,212,255,.28) 42%,transparent 72%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.spot:hover .spot-ring{opacity:1}
+
+/* ── Aurora mesh (hero) ── */
+.aurora{position:absolute;inset:-20%;pointer-events:none;filter:blur(90px);opacity:.55;mix-blend-mode:screen}
+.aurora i{position:absolute;border-radius:50%;will-change:transform}
+.aurora .a1{width:55vw;height:55vw;left:4%;top:0;background:radial-gradient(circle,rgba(0,255,136,.32),transparent 60%);animation:au1 22s ease-in-out infinite alternate}
+.aurora .a2{width:50vw;height:50vw;right:0;top:18%;background:radial-gradient(circle,rgba(0,212,255,.28),transparent 60%);animation:au2 26s ease-in-out infinite alternate}
+.aurora .a3{width:42vw;height:42vw;left:34%;bottom:-12%;background:radial-gradient(circle,rgba(124,58,237,.26),transparent 60%);animation:au3 30s ease-in-out infinite alternate}
+@keyframes au1{to{transform:translate(18vw,12vh) scale(1.15)}}
+@keyframes au2{to{transform:translate(-14vw,-10vh) scale(1.2)}}
+@keyframes au3{to{transform:translate(-10vw,-14vh) scale(1.1)}}
+@media(max-width:768px){.aurora{filter:blur(60px);opacity:.42}}
+
+/* ── Live Lisbon clock (hero) ── */
+.live-clock{display:inline-flex;align-items:center;gap:8px;margin:2px 0 6px;font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;animation:fdU .8s var(--ease) .7s both}
+.live-clock .lc-dot{width:5px;height:5px;border-radius:50%;background:var(--ng);box-shadow:0 0 8px var(--ng);animation:pls 2s ease infinite}
+.live-clock .lc-time{color:var(--t1);font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.live-clock .lc-sec{color:var(--ng)}
+
+/* ── Tech marquee ticker ── */
+.marquee{position:relative;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(8,12,18,.5);padding:14px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;width:max-content;animation:mq 46s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-item{display:inline-flex;align-items:center;gap:10px;padding:0 28px;font-family:var(--mono);font-size:12px;color:var(--t2);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.marquee-item::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--ng);opacity:.7;flex-shrink:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ── Bento stats (about) ── */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.bento-cell{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-height:118px;transition:transform .3s var(--ease),border-color .3s var(--ease);overflow:hidden;position:relative}
+.bento-cell:hover{transform:translateY(-3px);border-color:rgba(0,255,136,.2)}
+.bento-cell.wide{grid-column:span 2}
+.bento-k{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.14em;text-transform:uppercase}
+.bento-v{font-family:var(--mono);font-size:clamp(26px,3vw,38px);font-weight:800;line-height:1;letter-spacing:-.02em}
+.bento-d{font-size:12px;color:var(--t2);line-height:1.5}
+@media(max-width:640px){.bento{grid-template-columns:repeat(2,1fr)}}
+
+/* ── Magnetic CTAs ── */
+.mag{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .25s var(--ease),color .25s var(--ease),background .25s var(--ease),border-color .25s var(--ease);will-change:transform}
+
+/* ── ⌘K hint (nav) ── */
+.nav-kbd{display:inline-flex;align-items:center;gap:6px;margin-right:14px;padding:5px 10px;border:1px solid var(--border);border-radius:6px;background:rgba(255,255,255,.03);font-family:var(--mono);font-size:10px;color:var(--t3);cursor:pointer;transition:all .2s var(--ease);letter-spacing:.06em}
+.nav-kbd:hover{border-color:rgba(0,255,136,.3);color:var(--t1)}
+.nav-kbd kbd{font-family:inherit;color:var(--ng);font-size:10px}
+@media(max-width:768px){.nav-kbd{display:none}}
+
+/* ── ⌘K command palette ── */
+.ck{position:fixed;inset:0;z-index:99995;display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
+.ck.open{display:flex;animation:ckFade .18s var(--ease)}
+@keyframes ckFade{from{opacity:0}to{opacity:1}}
+.ck-bd{position:absolute;inset:0;background:rgba(0,2,5,.72);backdrop-filter:blur(14px)}
+.ck-panel{position:relative;width:100%;max-width:600px;background:rgba(8,12,18,.97);border:1px solid rgba(0,255,136,.18);border-radius:14px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.65),0 0 48px rgba(0,255,136,.06);animation:ckIn .22s var(--ease)}
+@keyframes ckIn{from{opacity:0;transform:scale(.97) translateY(-8px)}to{opacity:1;transform:none}}
+.ck-in{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border)}
+.ck-in .ck-pr{color:var(--ng);font-family:var(--mono);font-size:14px}
+.ck-in input{flex:1;background:transparent;border:none;outline:none;color:var(--t1);font-family:var(--mono);font-size:14px;caret-color:var(--ng);min-width:0}
+.ck-in input::placeholder{color:var(--t3)}
+.ck-in kbd{font-family:var(--mono);font-size:10px;color:var(--t3);border:1px solid var(--border);border-radius:4px;padding:2px 7px}
+.ck-list{max-height:min(52vh,420px);overflow-y:auto;padding:8px}
+.ck-list::-webkit-scrollbar{width:5px}.ck-list::-webkit-scrollbar-thumb{background:rgba(0,255,136,.15);border-radius:3px}
+.ck-grp{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.16em;text-transform:uppercase;padding:10px 12px 6px}
+.ck-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;color:var(--t2);font-size:13px;transition:background .15s,color .15s}
+.ck-item .ck-ic{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.03);border:1px solid var(--border);font-family:var(--mono);font-size:11px;color:var(--t3);flex-shrink:0}
+.ck-item .ck-lb{flex:1;min-width:0}
+.ck-item .ck-lb b{color:var(--t1);font-weight:500}
+.ck-item kbd{font-family:var(--mono);font-size:10px;color:var(--t3);border:1px solid var(--border);border-radius:4px;padding:2px 6px}
+.ck-item.sel{background:rgba(0,255,136,.07);color:var(--t1)}
+.ck-item.sel .ck-ic{border-color:rgba(0,255,136,.3);color:var(--ng)}
+.ck-empty{padding:28px;text-align:center;font-family:var(--mono);font-size:12px;color:var(--t3)}
+.ck-ft{display:flex;gap:16px;padding:10px 16px;border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--t3)}
+.ck-ft kbd{border:1px solid var(--border);border-radius:3px;padding:1px 5px;margin-right:5px}
+body.ck-open{overflow:hidden}
+.ck-toast{position:fixed;bottom:130px;left:50%;transform:translate(-50%,10px);z-index:99996;background:rgba(8,12,18,.96);border:1px solid rgba(0,255,136,.3);color:var(--ng);font-family:var(--mono);font-size:12px;padding:8px 16px;border-radius:8px;opacity:0;pointer-events:none;transition:all .25s var(--ease)}
+.ck-toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* ── Respect reduced motion for all new effects ── */
+@media(prefers-reduced-motion:reduce){
+  .aurora i,.marquee-track,.hero-grid,.live-clock .lc-dot{animation:none!important}
+  .spot-ring,.mag,.bento-cell{transition:none!important}
+}
+
+/* =====================================================
    GLOW BLOBS
 ===================================================== */
 .blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.09}
@@ -772,6 +865,7 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
     <li><a href="#education" data-i18n="nav.education">Education</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
+  <button class="nav-kbd" type="button" onclick="ckOpen()" aria-label="Open command palette"><kbd id="nav-kbd-mod">⌘</kbd>K <span data-i18n="nav.cmdk">Search</span></button>
   <div class="lang-toggle" role="group" aria-label="Language">
     <button class="lang-btn active" data-lang="en" onclick="setLang('en')" type="button">EN</button>
     <button class="lang-btn"        data-lang="pt" onclick="setLang('pt')" type="button">PT</button>
@@ -802,11 +896,20 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
   <canvas id="hero-canvas"></canvas>
   <div class="hero-grid"></div>
   <div class="hero-radial"></div>
+  <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
 
   <div class="hero-inner">
     <div class="hero-pill"><div class="dot"></div><span data-i18n="hero.pill">Open to new opportunities</span></div>
     <h1 class="hero-name glitch" data-text="Chike">Chike</h1>
     <p class="hero-sub">Chike Oguh &nbsp;·&nbsp; Portugal &nbsp;·&nbsp; hello@chike.ng</p>
+    <div class="live-clock" id="live-clock" aria-label="Current local time in Lisbon">
+      <span class="lc-dot" aria-hidden="true"></span>
+      <span class="lc-time"><span id="lc-hm">--:--</span><span class="lc-sec" id="lc-s">:--</span></span>
+      <span aria-hidden="true">·</span>
+      <span data-i18n="hero.clock">Lisbon</span>
+      <span aria-hidden="true">·</span>
+      <span id="lc-off">UTC</span>
+    </div>
     <div class="hero-typed-row">
       <span class="hero-typed" id="typed"></span><span class="tcursor"></span>
     </div>
@@ -858,6 +961,20 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
   <div class="hero-scroll"><div class="hero-scroll-line"></div><span data-i18n="hero.scroll">Scroll</span></div>
 </section>
 
+<!-- TECH TICKER — decorative, duplicated by JS for a seamless loop -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mq-track">
+    <span class="marquee-item">Windows Server</span><span class="marquee-item">Linux</span><span class="marquee-item">macOS</span>
+    <span class="marquee-item">Active Directory</span><span class="marquee-item">Intune</span><span class="marquee-item">Autopilot</span>
+    <span class="marquee-item">Office 365</span><span class="marquee-item">Azure</span><span class="marquee-item">Windows 365</span>
+    <span class="marquee-item">WordPress</span><span class="marquee-item">WP-CLI</span><span class="marquee-item">TCP/IP</span>
+    <span class="marquee-item">DNS</span><span class="marquee-item">DHCP</span><span class="marquee-item">VPN</span>
+    <span class="marquee-item">SSH</span><span class="marquee-item">SFTP</span><span class="marquee-item">ServiceNow</span>
+    <span class="marquee-item">ITIL</span><span class="marquee-item">MDM</span><span class="marquee-item">Cloudflare</span>
+    <span class="marquee-item">Vercel</span><span class="marquee-item">CCNA</span>
+  </div>
+</div>
+
 <div class="divider"></div>
 
 <!-- =========================================
@@ -897,11 +1014,37 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
 
       <!-- Right: stats + terminal -->
       <div>
-        <div class="stat-grid rv-r">
-          <div class="stat-card"><div class="stat-n" style="color:var(--ng)" data-counter="6" data-suffix="+">0</div><div class="stat-d">Years enterprise-grade technical support</div></div>
-          <div class="stat-card"><div class="stat-n" style="color:var(--nc)" data-counter="5">0</div><div class="stat-d">Roles across 4 countries</div></div>
-          <div class="stat-card"><div class="stat-n" style="color:#a78bfa;font-size:28px">EN/PT</div><div class="stat-d">English &amp; Portuguese fluency</div></div>
-          <div class="stat-card"><div class="stat-n" style="color:var(--na);font-size:24px">CCNA</div><div class="stat-d">Cisco Certified Network Associate</div></div>
+        <div class="bento rv-r">
+          <div class="bento-cell wide">
+            <span class="bento-k" data-i18n="bento.k.years">Experience</span>
+            <span class="bento-v" style="color:var(--ng)" data-counter="6" data-suffix="+">0</span>
+            <span class="bento-d" data-i18n="bento.d.years">Years of enterprise-grade technical support</span>
+          </div>
+          <div class="bento-cell">
+            <span class="bento-k" data-i18n="bento.k.roles">Roles</span>
+            <span class="bento-v" style="color:var(--nc)" data-counter="5">0</span>
+            <span class="bento-d" data-i18n="bento.d.roles">Support & infra positions</span>
+          </div>
+          <div class="bento-cell">
+            <span class="bento-k" data-i18n="bento.k.countries">Countries</span>
+            <span class="bento-v" style="color:#a78bfa" data-counter="4">0</span>
+            <span class="bento-d" data-i18n="bento.d.countries">PT · AU · CA · NG</span>
+          </div>
+          <div class="bento-cell wide">
+            <span class="bento-k" data-i18n="bento.k.lang">Languages</span>
+            <span class="bento-v" style="color:var(--t1);font-size:clamp(22px,2.6vw,30px)">EN <span style="color:var(--t3)">·</span> PT</span>
+            <span class="bento-d" data-i18n="bento.d.lang">Fluent English &amp; Portuguese — remote-first, on-call ready</span>
+          </div>
+          <div class="bento-cell">
+            <span class="bento-k" data-i18n="bento.k.ccna">Network</span>
+            <span class="bento-v" style="color:var(--na);font-size:clamp(20px,2.4vw,26px)">CCNA</span>
+            <span class="bento-d" data-i18n="bento.d.ccna">Cisco certified</span>
+          </div>
+          <div class="bento-cell">
+            <span class="bento-k" data-i18n="bento.k.msc">Degree</span>
+            <span class="bento-v" style="color:var(--nc);font-size:clamp(20px,2.4vw,26px)">MSc</span>
+            <span class="bento-d" data-i18n="bento.d.msc">Informatics Engineering</span>
+          </div>
         </div>
 
         <div class="term rv-r">
@@ -1649,6 +1792,26 @@ body.cm-open{overflow:hidden}
 <!-- =========================================
      INTERACTIVE TERMINAL EASTER EGG
 ========================================= -->
+<!-- =========================================
+     ⌘K COMMAND PALETTE
+========================================= -->
+<div id="ck" class="ck" role="dialog" aria-modal="true" aria-label="Command palette" aria-hidden="true">
+  <div class="ck-bd" onclick="ckClose()"></div>
+  <div class="ck-panel">
+    <div class="ck-in">
+      <span class="ck-pr" aria-hidden="true">›</span>
+      <input id="ck-input" type="text" autocomplete="off" spellcheck="false" placeholder="Type a command or search…" aria-label="Command input" aria-controls="ck-list">
+      <kbd aria-hidden="true">ESC</kbd>
+    </div>
+    <div class="ck-list" id="ck-list" role="listbox" aria-label="Commands"></div>
+    <div class="ck-ft" aria-hidden="true">
+      <span><kbd>↑↓</kbd><span data-i18n="cmdk.nav">navigate</span></span>
+      <span><kbd>↵</kbd><span data-i18n="cmdk.run">run</span></span>
+      <span><kbd>esc</kbd><span data-i18n="cmdk.close">close</span></span>
+    </div>
+  </div>
+</div>
+
 <button class="snd-toggle" id="snd-toggle" onclick="sndToggle()" aria-label="Toggle sound effects" type="button" title="Sound effects">
   <svg viewBox="0 0 24 24" id="snd-icon-off"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
 </button>
@@ -1697,6 +1860,23 @@ const I18N = {
     'hero.send':    'Send Message',
     'hero.cv':      'Download CV',
     'hero.scroll':  'Scroll',
+    'hero.clock':   'Lisbon',
+    'nav.cmdk':     'Search',
+    'cmdk.nav':     'navigate',
+    'cmdk.run':     'run',
+    'cmdk.close':   'close',
+    'bento.k.years':    'Experience',
+    'bento.d.years':    'Years of enterprise-grade technical support',
+    'bento.k.roles':    'Roles',
+    'bento.d.roles':    'Support & infra positions',
+    'bento.k.countries':'Countries',
+    'bento.d.countries':'PT · AU · CA · NG',
+    'bento.k.lang':     'Languages',
+    'bento.d.lang':     'Fluent English & Portuguese — remote-first, on-call ready',
+    'bento.k.ccna':     'Network',
+    'bento.d.ccna':     'Cisco certified',
+    'bento.k.msc':      'Degree',
+    'bento.d.msc':      'Informatics Engineering',
     'about.label':  'Profile',
     'about.title':  'Support Engineer.<br>Infrastructure Specialist.',
     'about.sub':    '6+ years owning technical issues end-to-end — from first response to root cause resolution.',
@@ -1739,6 +1919,23 @@ const I18N = {
     'hero.send':    'Enviar Mensagem',
     'hero.cv':      'Descarregar CV',
     'hero.scroll':  'Deslizar',
+    'hero.clock':   'Lisboa',
+    'nav.cmdk':     'Pesquisar',
+    'cmdk.nav':     'navegar',
+    'cmdk.run':     'executar',
+    'cmdk.close':   'fechar',
+    'bento.k.years':    'Experiência',
+    'bento.d.years':    'Anos de suporte técnico de nível empresarial',
+    'bento.k.roles':    'Funções',
+    'bento.d.roles':    'Cargos de suporte e infraestrutura',
+    'bento.k.countries':'Países',
+    'bento.d.countries':'PT · AU · CA · NG',
+    'bento.k.lang':     'Idiomas',
+    'bento.d.lang':     'Inglês e Português fluentes — remote-first, disponível on-call',
+    'bento.k.ccna':     'Rede',
+    'bento.d.ccna':     'Certificação Cisco',
+    'bento.k.msc':      'Grau',
+    'bento.d.msc':      'Engenharia Informática',
     'about.label':  'Perfil',
     'about.title':  'Engenheiro de Suporte.<br>Especialista em Infraestrutura.',
     'about.sub':    '6+ anos a resolver problemas técnicos de ponta a ponta — do primeiro contacto à resolução da causa raiz.',
@@ -2466,6 +2663,207 @@ window.addEventListener('load', ()=>{
       ttToggle();
     }
   });
+})();
+
+/* ============================================================
+   v2 REFRESH — spotlight · scramble · clock · magnetic ·
+   marquee · ⌘K command palette
+============================================================ */
+const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ── SPOTLIGHT: cursor-tracking border glow, ring injected lazily on first hover ── */
+(function(){
+  if(matchMedia('(pointer:coarse)').matches) return; // no hover on touch
+  const SEL = '.stat-card,.sk-cat,.proj-card,.work-card,.edu-card,.cert-card,.bento-cell';
+  document.addEventListener('pointerover', e=>{
+    const card = e.target.closest?.(SEL);
+    if(!card || card.querySelector(':scope > .spot-ring')) return;
+    card.classList.add('spot');
+    const ring = document.createElement('i');
+    ring.className = 'spot-ring';
+    ring.setAttribute('aria-hidden','true');
+    card.appendChild(ring);
+  }, { passive:true });
+  document.addEventListener('pointermove', e=>{
+    const card = e.target.closest?.(SEL);
+    if(!card) return;
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - r.top)  + 'px');
+  }, { passive:true });
+})();
+
+/* ── SCRAMBLE: section titles decode from noise on first reveal ── */
+(function(){
+  if(REDUCED_MOTION) return;
+  const CH = '!<>-_\\/[]{}—=+*^?#01';
+  const els = [...document.querySelectorAll('.s-title, .s-label')]
+    .filter(el => !el.hasAttribute('data-i18n-html') && el.children.length === 0);
+  if(!els.length) return;
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(!en.isIntersecting) return; io.unobserve(en.target); run(en.target); });
+  }, { threshold: .5 });
+  els.forEach(el => io.observe(el));
+  function finalText(el){
+    const key = el.dataset.i18n;
+    const dict = (typeof I18N !== 'undefined') && I18N[document.documentElement.lang];
+    return (key && dict && dict[key]) ? dict[key] : el.textContent;
+  }
+  function run(el){
+    const target = finalText(el);
+    const len = target.length, dur = 680, t0 = performance.now();
+    const rev = Array.from({length:len}, (_,i) => (i/len)*dur*.72 + Math.random()*dur*.28);
+    function tick(now){
+      const t = now - t0; let out = '';
+      for(let i=0;i<len;i++){
+        const c = target[i];
+        out += (c === ' ' || t >= rev[i]) ? c : CH[Math.floor(Math.random()*CH.length)];
+      }
+      el.textContent = out;
+      if(t < dur) requestAnimationFrame(tick); else el.textContent = finalText(el);
+    }
+    requestAnimationFrame(tick);
+  }
+})();
+
+/* ── LIVE CLOCK: Europe/Lisbon, ticks every second ── */
+(function(){
+  const hm = document.getElementById('lc-hm'), s = document.getElementById('lc-s'), off = document.getElementById('lc-off');
+  if(!hm || !s || !off) return;
+  let fHM, fS, fOff;
+  try {
+    fHM  = new Intl.DateTimeFormat('en-GB', { timeZone:'Europe/Lisbon', hour:'2-digit', minute:'2-digit', hour12:false });
+    fS   = new Intl.DateTimeFormat('en-GB', { timeZone:'Europe/Lisbon', second:'2-digit' });
+    fOff = new Intl.DateTimeFormat('en-GB', { timeZone:'Europe/Lisbon', timeZoneName:'shortOffset' });
+  } catch(e){ return; }
+  function tick(){
+    const d = new Date();
+    hm.textContent = fHM.format(d);
+    s.textContent  = ':' + String(fS.format(d)).padStart(2,'0');
+    try {
+      const p = fOff.formatToParts(d).find(x => x.type === 'timeZoneName');
+      off.textContent = p ? p.value.replace('GMT','UTC') : 'UTC';
+    } catch(e){ off.textContent = 'UTC'; }
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* ── MAGNETIC CTAs: buttons drift toward the cursor ── */
+(function(){
+  if(REDUCED_MOTION || matchMedia('(pointer:coarse)').matches) return;
+  document.querySelectorAll('.btn-p,.btn-s,.nav-btn').forEach(b=>{
+    b.classList.add('mag');
+    b.addEventListener('pointermove', e=>{
+      const r = b.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width/2)  * .18;
+      const y = (e.clientY - r.top  - r.height/2) * .28;
+      b.style.transform = `translate(${x.toFixed(1)}px,${(y - 2).toFixed(1)}px)`;
+    });
+    b.addEventListener('pointerleave', ()=>{ b.style.transform = ''; });
+  });
+})();
+
+/* ── MARQUEE: duplicate track once for a seamless -50% loop ── */
+(function(){ const t = document.getElementById('mq-track'); if(t) t.innerHTML += t.innerHTML; })();
+
+/* ── ⌘K COMMAND PALETTE ── */
+(function(){
+  const ck = document.getElementById('ck'), input = document.getElementById('ck-input'), list = document.getElementById('ck-list');
+  if(!ck || !input || !list) return;
+  const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent);
+  const modEl = document.getElementById('nav-kbd-mod'); if(modEl) modEl.textContent = isMac ? '⌘' : 'Ctrl';
+
+  const L = {
+    en:{ ph:'Type a command or search…', nav:'Navigate', act:'Actions', pref:'Preferences', links:'Links', none:'No results',
+         about:'About', skills:'Skills', projects:'Projects & Labs', work:'Work', education:'Education', contact:'Contact',
+         book:'Book a 15-min call', send:'Send a message', cv:'Download CV', term:'Open terminal',
+         lang:'Switch to Português', snd:'Toggle sound effects', email:'Copy email address', li:'Open LinkedIn', copied:'Copied hello@chike.ng' },
+    pt:{ ph:'Escreve um comando ou pesquisa…', nav:'Navegar', act:'Ações', pref:'Preferências', links:'Ligações', none:'Sem resultados',
+         about:'Sobre', skills:'Competências', projects:'Projetos e Laboratórios', work:'Trabalho', education:'Formação', contact:'Contacto',
+         book:'Agendar chamada de 15 min', send:'Enviar mensagem', cv:'Descarregar CV', term:'Abrir terminal',
+         lang:'Switch to English', snd:'Alternar efeitos sonoros', email:'Copiar email', li:'Abrir LinkedIn', copied:'Copiado hello@chike.ng' },
+  };
+  const lang = () => document.documentElement.lang === 'pt' ? 'pt' : 'en';
+  const go = id => { ckClose(); document.getElementById(id)?.scrollIntoView({ behavior:'smooth', block:'start' }); };
+
+  const items = () => { const t = L[lang()]; return [
+    { g:t.nav,  ic:'01', lb:t.about,     kw:'about profile sobre perfil',            run:()=>go('about') },
+    { g:t.nav,  ic:'02', lb:t.skills,    kw:'skills competencias stack',             run:()=>go('skills') },
+    { g:t.nav,  ic:'03', lb:t.projects,  kw:'projects labs projetos',                run:()=>go('projects') },
+    { g:t.nav,  ic:'04', lb:t.work,      kw:'work sites tools trabalho portfolio',   run:()=>go('work') },
+    { g:t.nav,  ic:'05', lb:t.education, kw:'education certs formacao ccna msc',     run:()=>go('education') },
+    { g:t.nav,  ic:'06', lb:t.contact,   kw:'contact contacto email form',           run:()=>go('contact') },
+    { g:t.act,  ic:'⏱',  lb:t.book,      kw:'book call cal meeting agendar chamada', k:'B', run:()=>{ ckClose(); document.querySelector('[data-cal-link]')?.click(); } },
+    { g:t.act,  ic:'✉',  lb:t.send,      kw:'send message form mensagem',            k:'M', run:()=>{ ckClose(); window.openContactModal?.(); } },
+    { g:t.act,  ic:'↓',  lb:t.cv,        kw:'cv resume download pdf descarregar',    k:'D', run:()=>{ ckClose(); const a=document.createElement('a'); a.href='/cv.pdf'; a.download='Chike_Oguh_CV.pdf'; document.body.appendChild(a); a.click(); a.remove(); } },
+    { g:t.act,  ic:'>_', lb:t.term,      kw:'terminal shell console',                k:'~', run:()=>{ ckClose(); window.ttOpen?.(); } },
+    { g:t.pref, ic:'文', lb:t.lang,      kw:'language idioma portugues english pt en',      run:()=>{ window.setLang?.(lang()==='pt' ? 'en' : 'pt'); render(); } },
+    { g:t.pref, ic:'♪',  lb:t.snd,       kw:'sound audio mute som',                         run:()=>{ window.sndToggle?.(); ckClose(); } },
+    { g:t.links,ic:'@',  lb:t.email,     kw:'email copy hello@chike.ng',                    run:async()=>{ try{ await navigator.clipboard.writeText('hello@chike.ng'); toast(t.copied); }catch(e){} ckClose(); } },
+    { g:t.links,ic:'in', lb:t.li,        kw:'linkedin profile',                             run:()=>{ ckClose(); window.open('https://www.linkedin.com/in/chike-oguh/','_blank','noopener'); } },
+  ]; };
+
+  let cur = [], sel = 0, prevFocus = null;
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  function render(){
+    const q = input.value.trim().toLowerCase();
+    const all = items();
+    cur = q ? all.filter(i => (i.lb + ' ' + i.kw).toLowerCase().includes(q)) : all;
+    sel = Math.min(sel, Math.max(cur.length - 1, 0));
+    input.placeholder = L[lang()].ph;
+    if(!cur.length){ list.innerHTML = `<div class="ck-empty">${esc(L[lang()].none)}</div>`; return; }
+    let html = '', lastG = '';
+    cur.forEach((it,i)=>{
+      if(it.g !== lastG){ html += `<div class="ck-grp">${esc(it.g)}</div>`; lastG = it.g; }
+      html += `<div class="ck-item${i===sel?' sel':''}" role="option" aria-selected="${i===sel}" data-i="${i}">
+        <span class="ck-ic" aria-hidden="true">${esc(it.ic)}</span>
+        <span class="ck-lb"><b>${esc(it.lb)}</b></span>${it.k ? `<kbd aria-hidden="true">${esc(it.k)}</kbd>` : ''}
+      </div>`;
+    });
+    list.innerHTML = html;
+    list.querySelector('.sel')?.scrollIntoView({ block:'nearest' });
+  }
+
+  list.addEventListener('click', e=>{ const it = e.target.closest('.ck-item'); if(it) cur[+it.dataset.i]?.run(); });
+  list.addEventListener('pointermove', e=>{ const it = e.target.closest('.ck-item'); if(!it) return; const i = +it.dataset.i; if(i !== sel){ sel = i; render(); } });
+  input.addEventListener('input', ()=>{ sel = 0; render(); });
+  input.addEventListener('keydown', e=>{
+    const n = Math.max(cur.length, 1);
+    if(e.key === 'ArrowDown'){ e.preventDefault(); sel = (sel + 1) % n; render(); }
+    else if(e.key === 'ArrowUp'){ e.preventDefault(); sel = (sel - 1 + n) % n; render(); }
+    else if(e.key === 'Enter'){ e.preventDefault(); cur[sel]?.run(); }
+    else if(e.key === 'Escape'){ e.preventDefault(); ckClose(); }
+  });
+
+  window.ckOpen = () => {
+    if(ck.classList.contains('open')) return;
+    prevFocus = document.activeElement;
+    ck.classList.add('open'); ck.setAttribute('aria-hidden','false');
+    document.body.classList.add('ck-open');
+    input.value = ''; sel = 0; render();
+    setTimeout(()=> input.focus(), 30);
+    window.snd?.beep?.();
+  };
+  window.ckClose = () => {
+    if(!ck.classList.contains('open')) return;
+    ck.classList.remove('open'); ck.setAttribute('aria-hidden','true');
+    document.body.classList.remove('ck-open');
+    if(prevFocus && typeof prevFocus.focus === 'function') prevFocus.focus();
+  };
+  window.ckToggle = () => ck.classList.contains('open') ? ckClose() : ckOpen();
+
+  document.addEventListener('keydown', e=>{
+    if((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'k'){ e.preventDefault(); ckToggle(); }
+  });
+
+  let toastTimer;
+  function toast(msg){
+    let el = document.getElementById('ck-toast');
+    if(!el){ el = document.createElement('div'); el.id = 'ck-toast'; el.className = 'ck-toast'; el.setAttribute('role','status'); document.body.appendChild(el); }
+    el.textContent = msg; el.classList.add('on');
+    clearTimeout(toastTimer); toastTimer = setTimeout(()=> el.classList.remove('on'), 1700);
+  }
 })();
 
 /* ============================================================
