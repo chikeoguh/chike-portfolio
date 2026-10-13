@@ -380,10 +380,6 @@ body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:52px;height:5
 .btn-s{padding:13px 30px;background:transparent;color:var(--t1);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;border:1px solid var(--border);transition:all .25s var(--ease)}
 .btn-s:hover{border-color:var(--nc);color:var(--nc);box-shadow:var(--gnc);transform:translateY(-2px)}
 .hero-float-left{position:absolute;bottom:72px;left:clamp(20px,4vw,60px);animation:fdL 1s var(--ease) 1.3s both}
-.hero-float-right{position:absolute;bottom:72px;right:clamp(20px,4vw,60px);display:flex;flex-direction:column;gap:10px;animation:fdR 1s var(--ease) 1.3s both}
-.h-stat{display:flex;align-items:center;gap:14px;padding:12px 18px;background:rgba(8,12,18,.9);border:1px solid var(--border);border-radius:9px;backdrop-filter:blur(20px)}
-.h-stat-val{font-family:var(--mono);font-size:22px;font-weight:800;line-height:1}
-.h-stat-lbl{font-family:var(--mono);font-size:10px;color:var(--t3);line-height:1.5}
 .hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fdU .8s var(--ease) 1.6s both}
 .hero-scroll span{font-family:var(--mono);font-size:9px;color:var(--t3);letter-spacing:.2em;text-transform:uppercase}
 .hero-scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,transparent,var(--ng));animation:sLine 2.2s ease infinite}
@@ -629,7 +625,7 @@ footer{border-top:1px solid var(--border);padding:36px clamp(16px,5vw,72px);disp
 .nav-kbd{display:inline-flex;align-items:center;gap:6px;margin-right:14px;padding:5px 10px;border:1px solid var(--border);border-radius:6px;background:rgba(255,255,255,.03);font-family:var(--mono);font-size:10px;color:var(--t3);cursor:pointer;transition:all .2s var(--ease);letter-spacing:.06em}
 .nav-kbd:hover{border-color:rgba(0,255,136,.3);color:var(--t1)}
 .nav-kbd kbd{font-family:inherit;color:var(--ng);font-size:10px}
-@media(max-width:768px){.nav-kbd{display:none}}
+@media(max-width:1180px){.nav-kbd{display:none}}
 
 /* ── ⌘K command palette ── */
 .ck{position:fixed;inset:0;z-index:99995;display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px}
@@ -667,6 +663,121 @@ body.ck-open{overflow:hidden}
 }
 
 /* =====================================================
+   APPS — iOS & Android design concepts, pure-CSS devices.
+   Phones are decorative (aria-hidden); the figcaption + info column carry the meaning.
+===================================================== */
+.app-switch{display:inline-flex;gap:4px;padding:4px;margin-top:36px;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.03)}
+.app-switch button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--t2);background:none;border:0;border-radius:7px;padding:9px 18px;cursor:pointer;transition:background .2s,color .2s}
+.app-switch button:hover{color:var(--t1)}
+.app-switch button[aria-pressed="true"]{background:rgba(0,255,136,.1);color:var(--ng)}
+.app-panel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(32px,5vw,72px);align-items:center;margin-top:48px}
+.app-panel[hidden]{display:none}
+.app-info h3{font-family:'Space Grotesk',var(--sans);font-size:clamp(28px,3.6vw,42px);letter-spacing:-.025em;line-height:1.08;margin:16px 0 14px}
+.app-info p{color:var(--t2);font-size:15px;line-height:1.7;max-width:46ch}
+.app-badges{display:flex;flex-wrap:wrap;gap:8px}
+.app-badge{font-family:var(--mono);font-size:11px;padding:5px 12px;border:1px solid var(--border);border-radius:99px;color:var(--t2)}
+.app-badge.live{color:var(--ng);border-color:rgba(0,255,136,.25);background:rgba(0,255,136,.05)}
+.app-badge.soon{color:var(--na);border-color:rgba(245,158,11,.28);background:rgba(245,158,11,.05)}
+.app-feats{list-style:none;display:grid;gap:10px;margin:24px 0 28px}
+.app-feats li{display:flex;gap:10px;color:var(--t1);font-size:14px;line-height:1.5}
+.app-feats li::before{content:'›';color:var(--ng);font-family:var(--mono)}
+.app-links{display:flex;flex-wrap:wrap;gap:12px}
+.app-links a{display:inline-block}
+.phones{display:flex;gap:28px;justify-content:center;flex-wrap:wrap}
+.phone-col{display:flex;flex-direction:column;align-items:center;gap:16px}
+.phone-col:nth-child(2){margin-top:44px}
+.phone-col figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t2)}
+.phone{position:relative;flex:none;width:252px;height:526px;padding:8px;border-radius:44px;background:linear-gradient(150deg,#2b303b,#0a0c10);box-shadow:0 32px 64px -12px rgba(0,0,0,.65),inset 0 0 0 1px rgba(255,255,255,.1);animation:phoneFloat 7s ease-in-out infinite alternate}
+.phone-col:nth-child(2) .phone{animation-delay:-3.5s}
+@keyframes phoneFloat{to{transform:translateY(-10px)}}
+.phone.and{border-radius:34px}
+.isl{position:absolute;z-index:3;top:16px;left:50%;width:70px;height:20px;margin-left:-35px;border-radius:12px;background:#000}
+.pch{position:absolute;z-index:3;top:18px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#000}
+/* screen + per-theme tokens (bt = brand colour safe for small text on this surface) */
+.scr{--bg:#fff;--fg:#111318;--mut:#5f6673;--card:#f3f4f6;--line:#e5e7eb;--ok:#0b6b34;--okbg:rgba(15,122,61,.12);--wn:#8a5300;--wnbg:rgba(138,83,0,.12);position:relative;display:flex;flex-direction:column;height:100%;border-radius:36px;overflow:hidden;background:var(--bg);color:var(--fg);font:500 10.5px/1.35 var(--sans)}
+.and .scr{border-radius:26px}
+.scr.dk{--bg:#0f1115;--fg:#f4f5f7;--mut:#9aa1ad;--card:#1a1d24;--line:#272b34;--ok:#4ade80;--okbg:rgba(74,222,128,.14);--wn:#fbbf24;--wnbg:rgba(251,191,36,.14)}
+.scr[data-b="buk"]{--brand:#d63f12;--tint:rgba(240,78,37,.12);--bt:#b93410}
+.scr[data-b="buk"].dk{--bt:#ff7a45;--tint:rgba(240,78,37,.22)}
+.scr[data-b="fnt"]{--brand:#c42619;--tint:rgba(213,43,30,.1);--bt:#b3241a}
+.scr[data-b="fnt"].dk{--bt:#ff6b5e;--tint:rgba(213,43,30,.22)}
+.sb{display:flex;justify-content:space-between;align-items:center;flex:none;height:36px;padding:8px 20px 0;font-weight:700;font-size:10.5px}
+.hi{position:absolute;bottom:7px;left:50%;width:84px;height:4px;margin-left:-42px;border-radius:2px;background:var(--fg);opacity:.85}
+.and .hi{width:64px;margin-left:-32px;height:3px}
+.i{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hd{display:flex;justify-content:space-between;align-items:flex-end;padding:6px 16px 10px}
+.hd small{display:flex;align-items:center;gap:3px;margin-bottom:3px;color:var(--mut);font-size:10px;font-weight:600}
+.hd small .i{width:11px;height:11px}
+.lt{font-size:23px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.av{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;font-size:10px;font-weight:700}
+.bd{display:flex;flex-direction:column;flex:1;gap:9px;padding:0 14px;overflow:hidden}
+.stats{display:grid;grid-template-columns:1fr 1.5fr;gap:8px}
+.st{padding:10px 11px;border-radius:14px;background:var(--card)}
+.st span{color:var(--mut);font-size:9.5px;font-weight:600}
+.st b{display:block;margin-top:2px;font-size:18px;font-weight:800;letter-spacing:-.02em}
+.st.br{background:var(--tint)}
+.st.br b{color:var(--bt)}
+.sec{display:flex;justify-content:space-between;font-size:11px;font-weight:700}
+.sec i{color:var(--bt);font-style:normal;font-weight:600}
+.row{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:12px;background:var(--card)}
+.row time{flex:none;width:30px;color:var(--mut);font-size:10px;font-weight:700}
+.row .tx{flex:1;min-width:0}
+.row .tx b{display:block;font-weight:700}
+.row small{color:var(--mut);font-size:9.5px}
+.chip{padding:3px 7px;border-radius:99px;font-size:8.5px;font-weight:700;white-space:nowrap}
+.chip.ok{color:var(--ok);background:var(--okbg)}
+.chip.wn{color:var(--wn);background:var(--wnbg)}
+.tabs{display:flex;justify-content:space-around;flex:none;margin-top:auto;padding:8px 6px 22px;border-top:1px solid var(--line);background:var(--bg)}
+.tabs div{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--mut);font-size:8.5px;font-weight:600}
+.tabs .on{color:var(--bt)}
+.srch{display:flex;align-items:center;gap:7px;padding:9px 11px;border-radius:12px;background:var(--card);color:var(--mut)}
+.srch .i{width:13px;height:13px}
+.chs{display:flex;gap:6px;overflow:hidden}
+.chs span{padding:6px 11px;border-radius:99px;background:var(--card);font-weight:600;white-space:nowrap}
+.chs .on{background:var(--brand);color:#fff}
+.tl2{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;background:var(--card)}
+.tl2 .ph{display:grid;flex:none;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--tint);color:var(--bt);font-size:13px;font-weight:800}
+.tl2 .tx{flex:1;min-width:0}
+.tl2 b{display:block;font-weight:700}
+.tl2 small{display:flex;align-items:center;gap:3px;color:var(--mut);font-size:9.5px}
+.tl2 small .i{width:10px;height:10px;fill:currentColor}
+.tl2 .vf{width:11px;height:11px;margin-left:4px;vertical-align:-1px;color:var(--ok);stroke-width:2.6}
+.cta{display:grid;place-items:center;padding:12px;border-radius:14px;background:var(--brand);color:#fff;font-size:12px;font-weight:700}
+/* android / material 3 */
+.tb{display:flex;align-items:center;gap:12px;padding:6px 14px 8px}
+.tb b{flex:1;font-size:15px;font-weight:600}
+.days{display:flex;justify-content:space-between;padding:0 12px 8px}
+.days div{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--mut);font-size:9px;font-weight:600}
+.days b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;color:var(--fg);font-size:11px}
+.days .on b{background:var(--brand);color:#fff}
+.tl{position:relative;flex:1;margin:0 12px;overflow:hidden}
+.hr{position:absolute;left:0;right:0;padding-top:1px;border-top:1px solid var(--line);color:var(--mut);font-size:8.5px}
+.ev{position:absolute;padding:6px 8px;border-left:3px solid var(--brand);border-radius:8px;background:var(--tint);font-size:10px}
+.ev b{display:block;color:var(--fg)}
+.ev span{color:var(--mut)}
+.fab{position:absolute;right:14px;bottom:80px;display:flex;align-items:center;gap:6px;padding:11px 15px;border-radius:16px;background:var(--brand);color:#fff;font-size:11px;font-weight:700;box-shadow:0 6px 14px rgba(0,0,0,.4)}
+.fab .i{width:14px;height:14px}
+.nb{display:flex;justify-content:space-around;flex:none;padding:10px 4px 22px;background:var(--card)}
+.nb div{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--mut);font-size:9px;font-weight:600}
+.nb u{display:grid;place-items:center;width:42px;height:22px;border-radius:12px;text-decoration:none}
+.nb .on{color:var(--fg)}
+.nb .on u{background:var(--tint)}
+.pg{height:4px;border-radius:2px;background:var(--line)}
+.pg i{display:block;width:66%;height:100%;border-radius:2px;background:var(--brand)}
+.opt{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:12px}
+.opt .ic{display:grid;flex:none;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--card)}
+.opt .ic .i{width:13px;height:13px}
+.opt .tx{flex:1;font-weight:600}
+.opt.on{border-color:var(--brand);background:var(--tint)}
+.opt.on .ic{background:var(--brand);color:#fff}
+.qt{padding:11px 12px;border-radius:14px;background:var(--card)}
+.qt span{color:var(--mut);font-size:9.5px;font-weight:600}
+.qt b{display:block;margin:1px 0;font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--bt)}
+@media(max-width:1100px){.app-panel{grid-template-columns:1fr}.app-info p{max-width:none}}
+@media(max-width:560px){.phone-col:nth-child(2){margin-top:0}}
+@media(prefers-reduced-motion:reduce){.phone{animation:none}}
+
+/* =====================================================
    GLOW BLOBS
 ===================================================== */
 .blob{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.09}
@@ -699,7 +810,7 @@ body.ck-open{overflow:hidden}
 @media(max-width:768px){
   .nav-links,.nav-btn{display:none}
   .nav-burger{display:flex}
-  .hero-float-left,.hero-float-right{display:none}
+  .hero-float-left{display:none}
   .proj-grid{grid-template-columns:1fr}
   .cert-grid{grid-template-columns:1fr}
   .stat-grid{grid-template-columns:1fr 1fr}
@@ -862,6 +973,7 @@ body.ck-open{overflow:hidden}
     <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
     <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
     <li><a href="#work" data-i18n="nav.work">Work</a></li>
+    <li><a href="#apps" data-i18n="nav.apps">Apps</a></li>
     <li><a href="#education" data-i18n="nav.education">Education</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
@@ -880,13 +992,9 @@ body.ck-open{overflow:hidden}
   <a href="#skills"    onclick="closeMM()" data-i18n="nav.skills">Skills</a>
   <a href="#projects"  onclick="closeMM()" data-i18n="nav.projects">Projects</a>
   <a href="#work"      onclick="closeMM()" data-i18n="nav.work">Work</a>
+  <a href="#apps"      onclick="closeMM()" data-i18n="nav.apps">Apps</a>
   <a href="#education" onclick="closeMM()" data-i18n="nav.education">Education</a>
   <a href="#contact"   onclick="closeMM()" data-i18n="nav.contact">Contact</a>
-</div>
-
-<!-- SEO: keyword-rich hidden text block — visible to crawlers, not users -->
-<div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap" aria-hidden="true">
-  Chike Oguh Technical Support Engineer IT Support Engineer Portugal Infrastructure Support Network Support Engineer WordPress Support Specialist Hosting Support DNS Troubleshooting Office 365 Administrator Active Directory Support Intune MDM Endpoint Management CCNA Certified ServiceNow ITSM Remote IT Support Cloud Support Engineer SaaS Support VPN Troubleshooting Linux Support Engineer End User Support Help Desk Engineer IT Support Specialist WP-CLI FTP SFTP SSH Autopilot MDM Azure Virtual Desktop Windows 365 IT Support Portugal Support Engineer Lisbon Technical Support Braga IT Contractor Portugal Remote Support Specialist Europe MSc Informatics Engineering University of Minho Technical Support Concentrix Portugal Tech Domain Pty Ltd
 </div>
 
 <!-- =========================================
@@ -949,13 +1057,6 @@ body.ck-open{overflow:hidden}
         <div class="t-row"><span style="color:var(--ng);padding-left:14px">PONG — available ✓</span></div>
       </div>
     </div>
-  </div>
-
-  <!-- Floating stats (desktop) -->
-  <div class="hero-float-right">
-    <div class="h-stat"><div><div class="h-stat-val" style="color:var(--ng)" data-counter="6" data-suffix="+">0</div><div class="h-stat-lbl">Years<br>Experience</div></div></div>
-    <div class="h-stat"><div><div class="h-stat-val" style="color:var(--nc)" data-counter="5">0</div><div class="h-stat-lbl">Roles<br>Worldwide</div></div></div>
-    <div class="h-stat"><div><div class="h-stat-val" style="color:#a78bfa;font-size:18px">MSc</div><div class="h-stat-lbl">Informatics<br>Engineering</div></div></div>
   </div>
 
   <div class="hero-scroll"><div class="hero-scroll-line"></div><span data-i18n="hero.scroll">Scroll</span></div>
@@ -1424,6 +1525,184 @@ body.ck-open{overflow:hidden}
 <div class="divider"></div>
 
 <!-- =========================================
+     APPS — iOS & Android concepts for Buk.ng + FixNTread
+========================================= -->
+<section id="apps" aria-label="Mobile app designs" style="position:relative;overflow:hidden">
+  <div class="blob blob-g" style="top:10%;right:-250px;opacity:.06"></div>
+  <div class="wrap">
+    <div class="s-label rv" data-i18n="apps.label">Mobile Apps</div>
+    <h2 class="s-title rv" data-i18n="apps.title">iOS &amp; Android Designs</h2>
+    <p class="s-sub rv" data-i18n="apps.sub">Interface concepts for two platforms I work on — native patterns on each OS, not one layout stretched across both.</p>
+
+    <div class="app-switch" role="group" aria-label="Choose a product">
+      <button type="button" data-app="buk" aria-pressed="true">Buk.ng</button>
+      <button type="button" data-app="fnt" aria-pressed="false">FixNTread</button>
+    </div>
+
+    <!-- icon sprite: stroke/colour inherited from .i -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 20a6.5 6.5 0 0 0-3-5.5"/></symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h13v4"/><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="16.5" cy="13.5" r="1"/></symbol>
+      <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8l-5.8 3.1 1.1-6.5L2.6 9.8l6.5-.9z"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.7 7L3 20l1.2-4.8A8 8 0 1 1 21 12z"/></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+      <symbol id="i-shirt" viewBox="0 0 24 24"><path d="M20.4 3.5 16 2a4 4 0 0 1-8 0L3.6 3.5a2 2 0 0 0-1.3 2.2l.6 3.5a1 1 0 0 0 1 .8H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.2a1 1 0 0 0 1-.8l.6-3.5a2 2 0 0 0-1.4-2.2z"/></symbol>
+      <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></symbol>
+    </svg>
+
+    <!-- ───────────── BUK.NG ───────────── -->
+    <div class="app-panel" id="app-buk">
+      <div class="app-info">
+        <div class="app-badges"><span class="app-badge live">Live on App Store &amp; Google Play</span><span class="app-badge">UI concept</span></div>
+        <h3>Buk Business</h3>
+        <p>Run bookings from your pocket. Today's appointments, deposit confirmations and customer replies in one thumb-friendly app for Nigerian service businesses.</p>
+        <ul class="app-feats">
+          <li>Today view with appointments and deposit status at a glance</li>
+          <li>Confirm Naira deposits and manual transfers in two taps</li>
+          <li>Day and week calendar with walk-ins and staff columns</li>
+          <li>WhatsApp-forward reminders and customer replies</li>
+        </ul>
+        <div class="app-links">
+          <a class="btn-p" href="https://buk.ng/get-app" target="_blank" rel="noopener">Get the app</a>
+          <a class="btn-s" href="https://buk.ng" target="_blank" rel="noopener">Visit buk.ng</a>
+        </div>
+      </div>
+      <div class="phones">
+        <figure class="phone-col">
+          <div class="phone" aria-hidden="true"><i class="isl"></i>
+            <div class="scr" data-b="buk">
+              <div class="sb"><span>9:41</span><span>5G ▮</span></div>
+              <div class="hd"><div><small>Tue 13 Oct</small><div class="lt">Today</div></div><div class="av">KS</div></div>
+              <div class="bd">
+                <div class="stats"><div class="st"><span>Bookings</span><b>12</b></div><div class="st br"><span>Deposits today</span><b>₦186,000</b></div></div>
+                <div class="sec">Up next<i>See calendar</i></div>
+                <div class="row"><time>10:00</time><div class="tx"><b>Amaka O.</b><small>Box braids · 2h</small></div><span class="chip ok">Deposit paid</span></div>
+                <div class="row"><time>11:30</time><div class="tx"><b>Tunde B.</b><small>Fade + beard · 45m</small></div><span class="chip wn">Pending</span></div>
+                <div class="row"><time>13:00</time><div class="tx"><b>Ngozi E.</b><small>Facial · 1h</small></div><span class="chip ok">Deposit paid</span></div>
+                <div class="row"><time>14:30</time><div class="tx"><b>Chidi A.</b><small>Haircut · 30m</small></div><span class="chip wn">Pending</span></div>
+              </div>
+              <div class="tabs">
+                <div class="on"><svg class="i"><use href="#i-clock"/></svg>Today</div>
+                <div><svg class="i"><use href="#i-cal"/></svg>Calendar</div>
+                <div><svg class="i"><use href="#i-users"/></svg>Customers</div>
+                <div><svg class="i"><use href="#i-wallet"/></svg>Money</div>
+                <div><svg class="i"><use href="#i-dots"/></svg>More</div>
+              </div>
+              <i class="hi"></i>
+            </div>
+          </div>
+          <figcaption>iOS · Today</figcaption>
+        </figure>
+        <figure class="phone-col">
+          <div class="phone and" aria-hidden="true"><i class="pch"></i>
+            <div class="scr dk" data-b="buk">
+              <div class="sb"><span>9:41</span><span>5G ▮</span></div>
+              <div class="tb"><svg class="i"><use href="#i-menu"/></svg><b>Calendar</b><svg class="i"><use href="#i-bell"/></svg></div>
+              <div class="days">
+                <div><span>Mon</span><b>12</b></div><div class="on"><span>Tue</span><b>13</b></div><div><span>Wed</span><b>14</b></div><div><span>Thu</span><b>15</b></div><div><span>Fri</span><b>16</b></div>
+              </div>
+              <div class="tl">
+                <div class="hr" style="top:0">9 AM</div><div class="hr" style="top:64px">10</div><div class="hr" style="top:128px">11</div><div class="hr" style="top:192px">12</div><div class="hr" style="top:256px">1 PM</div>
+                <div class="ev" style="top:66px;height:120px;left:34px;right:50%"><b>Amaka O.</b><span>Box braids</span></div>
+                <div class="ev" style="top:162px;height:56px;left:calc(50% + 4px);right:0"><b>Tunde B.</b><span>Fade + beard</span></div>
+                <div class="ev" style="top:258px;height:48px;left:34px;right:112px"><b>Ngozi E.</b><span>Facial</span></div>
+              </div>
+              <div class="fab"><svg class="i"><use href="#i-plus"/></svg>New booking</div>
+              <div class="nb">
+                <div><u><svg class="i"><use href="#i-clock"/></svg></u>Today</div>
+                <div class="on"><u><svg class="i"><use href="#i-cal"/></svg></u>Calendar</div>
+                <div><u><svg class="i"><use href="#i-users"/></svg></u>Customers</div>
+                <div><u><svg class="i"><use href="#i-wallet"/></svg></u>Money</div>
+              </div>
+              <i class="hi"></i>
+            </div>
+          </div>
+          <figcaption>Android · Calendar</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ───────────── FIXNTREAD ───────────── -->
+    <div class="app-panel" id="app-fnt" hidden>
+      <div class="app-info">
+        <div class="app-badges"><span class="app-badge soon">App coming soon</span><span class="app-badge">UI concept</span><span class="app-badge">EN · FR</span></div>
+        <h3>FixNTread</h3>
+        <p>Canada's verified tailor marketplace, designed for the phone: describe the garment, get matched in your city, and review a quote before you commit.</p>
+        <ul class="app-feats">
+          <li>Browse verified tailors by city and specialty</li>
+          <li>Three-step request: describe, get matched, receive a quote</li>
+          <li>AI Design Studio — describe a garment, get sketch concepts</li>
+          <li>Bilingual English and French</li>
+        </ul>
+        <div class="app-links">
+          <a class="btn-s" href="https://fixntread.online" target="_blank" rel="noopener">Visit fixntread.online</a>
+        </div>
+      </div>
+      <div class="phones">
+        <figure class="phone-col">
+          <div class="phone" aria-hidden="true"><i class="isl"></i>
+            <div class="scr" data-b="fnt">
+              <div class="sb"><span>9:41</span><span>5G ▮</span></div>
+              <div class="hd"><div><small><svg class="i"><use href="#i-pin"/></svg>Toronto, ON</small><div class="lt">Find a tailor</div></div><div class="av">A</div></div>
+              <div class="bd">
+                <div class="srch"><svg class="i"><use href="#i-search"/></svg>Alterations, suits, wedding…</div>
+                <div class="chs"><span class="on">Alterations</span><span>Custom</span><span>Wedding</span><span>Suits</span></div>
+                <div class="sec">Verified near you<i>See all</i></div>
+                <div class="tl2"><div class="ph">A</div><div class="tx"><b>Adaeze M.<svg class="i vf"><use href="#i-check"/></svg></b><small>Alterations · Repairs</small><small><svg class="i"><use href="#i-star"/></svg>4.9 · 8 yrs · Toronto</small></div></div>
+                <div class="tl2"><div class="ph">M</div><div class="tx"><b>Marc L.<svg class="i vf"><use href="#i-check"/></svg></b><small>Suits &amp; formal wear</small><small><svg class="i"><use href="#i-star"/></svg>4.8 · 6 yrs · Mississauga</small></div></div>
+                <div class="cta">Get a free estimate</div>
+              </div>
+              <div class="tabs">
+                <div class="on"><svg class="i"><use href="#i-search"/></svg>Discover</div>
+                <div><svg class="i"><use href="#i-list"/></svg>Requests</div>
+                <div><svg class="i"><use href="#i-sparkle"/></svg>Studio</div>
+                <div><svg class="i"><use href="#i-chat"/></svg>Chat</div>
+                <div><svg class="i"><use href="#i-users"/></svg>Profile</div>
+              </div>
+              <i class="hi"></i>
+            </div>
+          </div>
+          <figcaption>iOS · Discover</figcaption>
+        </figure>
+        <figure class="phone-col">
+          <div class="phone and" aria-hidden="true"><i class="pch"></i>
+            <div class="scr dk" data-b="fnt">
+              <div class="sb"><span>9:41</span><span>5G ▮</span></div>
+              <div class="tb"><svg class="i"><use href="#i-back"/></svg><b>Get a free estimate</b></div>
+              <div class="bd">
+                <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;color:var(--mut)"><span>Step 2 of 3</span><span>Service</span></div><div class="pg"><i></i></div></div>
+                <div class="lt" style="font-size:17px">What do you need?</div>
+                <div class="opt on"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span><span class="tx">Alterations</span></div>
+                <div class="opt"><span class="ic"><svg class="i"><use href="#i-shirt"/></svg></span><span class="tx">Custom clothing</span></div>
+                <div class="opt"><span class="ic"><svg class="i"><use href="#i-sparkle"/></svg></span><span class="tx">Wedding dress</span></div>
+                <div class="opt"><span class="ic"><svg class="i"><use href="#i-scissors"/></svg></span><span class="tx">Suit tailoring</span></div>
+                <div class="qt"><span>Instant quote · example</span><b>CA$ 25–40</b><span>Hem trousers · 2–3 days</span></div>
+                <div class="cta" style="margin:auto 0 22px">Get matched</div>
+              </div>
+              <i class="hi"></i>
+            </div>
+          </div>
+          <figcaption>Android · Request flow</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- =========================================
      EDUCATION & CERTS
 ========================================= -->
 <section id="education" aria-label="Education and Certifications" style="position:relative;overflow:hidden">
@@ -1852,6 +2131,10 @@ const I18N = {
     'nav.skills':   'Skills',
     'nav.projects': 'Projects',
     'nav.work':     'Work',
+    'nav.apps':     'Apps',
+    'apps.label':   'Mobile Apps',
+    'apps.title':   'iOS & Android Designs',
+    'apps.sub':     'Interface concepts for two platforms I work on — native patterns on each OS, not one layout stretched across both.',
     'nav.education':'Education',
     'nav.contact':  'Contact',
     'nav.hire':     'Hire Me',
@@ -1911,6 +2194,10 @@ const I18N = {
     'nav.skills':   'Competências',
     'nav.projects': 'Projetos',
     'nav.work':     'Trabalho',
+    'nav.apps':     'Apps',
+    'apps.label':   'Apps Móveis',
+    'apps.title':   'Designs para iOS e Android',
+    'apps.sub':     'Conceitos de interface para duas plataformas em que trabalho — padrões nativos em cada sistema, não um único layout esticado.',
     'nav.education':'Formação',
     'nav.contact':  'Contacto',
     'nav.hire':     'Contratar',
@@ -2522,6 +2809,7 @@ window.addEventListener('load', ()=>{
         ['about/',      'Professional summary & skills cloud'],
         ['skills/',     'Full technical arsenal — 6 categories'],
         ['projects/',   'Enterprise ops, labs, WP, endpoint deploy'],
+        ['apps/',       'iOS & Android design concepts — Buk.ng, FixNTread'],
         ['education/',  'MSc Informatics, CCNA, MCDST, Google IT'],
         ['contact/',    'Terminal-style contact form'],
       ];
@@ -2763,6 +3051,15 @@ const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
   });
 })();
 
+/* ── APPS: product switch (Buk.ng / FixNTread) ── */
+(function(){
+  const btns = document.querySelectorAll('.app-switch button'), panels = document.querySelectorAll('.app-panel');
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.setAttribute('aria-pressed', x === b));
+    panels.forEach(p => { p.hidden = p.id !== 'app-' + b.dataset.app; });
+  }));
+})();
+
 /* ── MARQUEE: duplicate track once for a seamless -50% loop ── */
 (function(){ const t = document.getElementById('mq-track'); if(t) t.innerHTML += t.innerHTML; })();
 
@@ -2775,11 +3072,11 @@ const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const L = {
     en:{ ph:'Type a command or search…', nav:'Navigate', act:'Actions', pref:'Preferences', links:'Links', none:'No results',
-         about:'About', skills:'Skills', projects:'Projects & Labs', work:'Work', education:'Education', contact:'Contact',
+         about:'About', skills:'Skills', projects:'Projects & Labs', work:'Work', apps:'Mobile apps', education:'Education', contact:'Contact',
          book:'Book a 15-min call', send:'Send a message', cv:'Download CV', term:'Open terminal',
          lang:'Switch to Português', snd:'Toggle sound effects', email:'Copy email address', li:'Open LinkedIn', copied:'Copied hello@chike.ng' },
     pt:{ ph:'Escreve um comando ou pesquisa…', nav:'Navegar', act:'Ações', pref:'Preferências', links:'Ligações', none:'Sem resultados',
-         about:'Sobre', skills:'Competências', projects:'Projetos e Laboratórios', work:'Trabalho', education:'Formação', contact:'Contacto',
+         about:'Sobre', skills:'Competências', projects:'Projetos e Laboratórios', work:'Trabalho', apps:'Apps móveis', education:'Formação', contact:'Contacto',
          book:'Agendar chamada de 15 min', send:'Enviar mensagem', cv:'Descarregar CV', term:'Abrir terminal',
          lang:'Switch to English', snd:'Alternar efeitos sonoros', email:'Copiar email', li:'Abrir LinkedIn', copied:'Copiado hello@chike.ng' },
   };
@@ -2791,8 +3088,9 @@ const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
     { g:t.nav,  ic:'02', lb:t.skills,    kw:'skills competencias stack',             run:()=>go('skills') },
     { g:t.nav,  ic:'03', lb:t.projects,  kw:'projects labs projetos',                run:()=>go('projects') },
     { g:t.nav,  ic:'04', lb:t.work,      kw:'work sites tools trabalho portfolio',   run:()=>go('work') },
-    { g:t.nav,  ic:'05', lb:t.education, kw:'education certs formacao ccna msc',     run:()=>go('education') },
-    { g:t.nav,  ic:'06', lb:t.contact,   kw:'contact contacto email form',           run:()=>go('contact') },
+    { g:t.nav,  ic:'05', lb:t.apps,      kw:'apps mobile ios android iphone buk fixntread design', run:()=>go('apps') },
+    { g:t.nav,  ic:'06', lb:t.education, kw:'education certs formacao ccna msc',     run:()=>go('education') },
+    { g:t.nav,  ic:'07', lb:t.contact,   kw:'contact contacto email form',           run:()=>go('contact') },
     { g:t.act,  ic:'⏱',  lb:t.book,      kw:'book call cal meeting agendar chamada', k:'B', run:()=>{ ckClose(); document.querySelector('[data-cal-link]')?.click(); } },
     { g:t.act,  ic:'✉',  lb:t.send,      kw:'send message form mensagem',            k:'M', run:()=>{ ckClose(); window.openContactModal?.(); } },
     { g:t.act,  ic:'↓',  lb:t.cv,        kw:'cv resume download pdf descarregar',    k:'D', run:()=>{ ckClose(); const a=document.createElement('a'); a.href='/cv.pdf'; a.download='Chike_Oguh_CV.pdf'; document.body.appendChild(a); a.click(); a.remove(); } },

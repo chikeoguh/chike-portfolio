@@ -40,6 +40,13 @@
   </url>
 
   <url>
+    <loc>https://chike.ng/#apps</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://chike.ng/#education</loc>
     <lastmod>2025-05-21</lastmod>
     <changefreq>monthly</changefreq>
