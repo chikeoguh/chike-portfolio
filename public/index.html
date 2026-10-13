@@ -773,9 +773,46 @@ body.ck-open{overflow:hidden}
 .qt{padding:11px 12px;border-radius:14px;background:var(--card)}
 .qt span{color:var(--mut);font-size:9.5px;font-weight:600}
 .qt b{display:block;margin:1px 0;font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--bt)}
+/* live iPhone: real app screens, realistic hardware, auto-cycling */
+.tilt{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.phone.real{padding:10px;border-radius:52px;background:linear-gradient(135deg,#d7dae0 0%,#8b9099 14%,#2c2f36 38%,#16181d 55%,#6e737c 82%,#c3c6cc 100%);box-shadow:0 40px 70px -14px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.16),0 0 0 1px rgba(0,0,0,.6)}
+.phone.real .scr{--bg:#f6f4f0;border-radius:42px;box-shadow:0 0 0 5px #07080a}
+.phone.real .isl{top:21px;width:76px;height:23px;margin-left:-38px;z-index:4}
+.hw{position:absolute;width:3px;border-radius:2px;background:linear-gradient(90deg,#3a3d44,#9ea3ab)}
+.hw-a{left:-3px;top:92px;height:24px}
+.hw-u{left:-3px;top:136px;height:44px}
+.hw-d{left:-3px;top:190px;height:44px}
+.hw-p{right:-3px;top:150px;height:70px;background:linear-gradient(270deg,#3a3d44,#9ea3ab)}
+.rscr .sb{padding:12px 18px 0 28px;background:var(--bg);font-size:12px}
+.rscr .sbi{display:flex;align-items:center;gap:4px}
+.rscr .sbi svg{height:10px;width:auto;fill:currentColor}
+.slides{position:relative;flex:1;overflow:hidden;background:var(--bg)}
+.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transform:translateY(14px) scale(1.02);filter:blur(4px);transition:opacity .5s ease,transform .75s cubic-bezier(.2,.8,.2,1),filter .5s ease}
+.slide.on{opacity:1;transform:none;filter:none}
+.slide.out{opacity:0;transform:translateY(-10px) scale(.985);filter:blur(3px)}
+.tap{position:absolute;left:0;top:0;z-index:5;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:radial-gradient(circle,rgba(20,22,28,.24),rgba(20,22,28,.08) 65%,transparent 70%);box-shadow:0 0 0 1px rgba(20,22,28,.16);opacity:0;pointer-events:none}
+.tap.go{animation:tapGo .65s ease-out}
+@keyframes tapGo{0%{opacity:0;transform:scale(1.6)}30%{opacity:1;transform:scale(.9)}60%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.35)}}
+.glare{position:absolute;inset:0;z-index:6;border-radius:inherit;pointer-events:none;background:linear-gradient(112deg,transparent 38%,rgba(255,255,255,.16) 47%,rgba(255,255,255,.04) 53%,transparent 60%);background-size:260% 100%;background-position:160% 0;animation:glare 7s ease-in-out infinite}
+@keyframes glare{0%,55%{background-position:160% 0}100%{background-position:-60% 0}}
+.rp-ctl{display:flex;align-items:center;gap:10px}
+.rp-dots{display:flex;gap:3px}
+.rp-dots button{position:relative;width:26px;height:24px;padding:0;border:0;background:none;cursor:pointer}
+.rp-dots button::before,.rp-dots button::after{content:'';position:absolute;left:0;right:0;top:10px;height:4px;border-radius:2px}
+.rp-dots button::before{background:rgba(255,255,255,.16);transition:background .2s}
+.rp-dots button:hover::before{background:rgba(255,255,255,.32)}
+.rp-dots button::after{background:var(--ng);transform:scaleX(0);transform-origin:left}
+.rp-dots button.on::after{animation:rpFill var(--p,3800ms) linear forwards}
+.rp-dots.still button.on::after{animation:none;transform:none}
+@keyframes rpFill{to{transform:scaleX(1)}}
+.rp-pause{display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--border);border-radius:50%;background:rgba(255,255,255,.03);color:var(--t2);cursor:pointer;transition:color .2s,border-color .2s}
+.rp-pause:hover{color:var(--ng);border-color:rgba(0,255,136,.3)}
+.rp-pause svg{width:12px;height:12px;fill:currentColor}
+.rp-pause .pl,.rp-pause[aria-pressed="true"] .pa{display:none}
+.rp-pause[aria-pressed="true"] .pl{display:block}
 @media(max-width:1100px){.app-panel{grid-template-columns:1fr}.app-info p{max-width:none}}
 @media(max-width:560px){.phone-col:nth-child(2){margin-top:0}}
-@media(prefers-reduced-motion:reduce){.phone{animation:none}}
+@media(prefers-reduced-motion:reduce){.phone,.glare{animation:none}.tilt,.slide{transition:none}}
 
 /* =====================================================
    GLOW BLOBS
@@ -1564,7 +1601,7 @@ body.ck-open{overflow:hidden}
     <!-- ───────────── BUK.NG ───────────── -->
     <div class="app-panel" id="app-buk">
       <div class="app-info">
-        <div class="app-badges"><span class="app-badge live">Live on App Store &amp; Google Play</span><span class="app-badge">UI concept</span></div>
+        <div class="app-badges"><span class="app-badge live">Live on App Store &amp; Google Play</span><span class="app-badge">iOS · real app screens</span><span class="app-badge">Android · concept</span></div>
         <h3>Buk Business</h3>
         <p>Run bookings from your pocket. Today's appointments, deposit confirmations and customer replies in one thumb-friendly app for Nigerian service businesses.</p>
         <ul class="app-feats">
@@ -1579,30 +1616,47 @@ body.ck-open{overflow:hidden}
         </div>
       </div>
       <div class="phones">
-        <figure class="phone-col">
-          <div class="phone" aria-hidden="true"><i class="isl"></i>
-            <div class="scr" data-b="buk">
-              <div class="sb"><span>9:41</span><span>5G ▮</span></div>
-              <div class="hd"><div><small>Tue 13 Oct</small><div class="lt">Today</div></div><div class="av">KS</div></div>
-              <div class="bd">
-                <div class="stats"><div class="st"><span>Bookings</span><b>12</b></div><div class="st br"><span>Deposits today</span><b>₦186,000</b></div></div>
-                <div class="sec">Up next<i>See calendar</i></div>
-                <div class="row"><time>10:00</time><div class="tx"><b>Amaka O.</b><small>Box braids · 2h</small></div><span class="chip ok">Deposit paid</span></div>
-                <div class="row"><time>11:30</time><div class="tx"><b>Tunde B.</b><small>Fade + beard · 45m</small></div><span class="chip wn">Pending</span></div>
-                <div class="row"><time>13:00</time><div class="tx"><b>Ngozi E.</b><small>Facial · 1h</small></div><span class="chip ok">Deposit paid</span></div>
-                <div class="row"><time>14:30</time><div class="tx"><b>Chidi A.</b><small>Haircut · 30m</small></div><span class="chip wn">Pending</span></div>
+        <figure class="phone-col" style="--p:3800ms">
+          <div class="tilt">
+            <div class="phone real" id="rp" role="group" aria-label="Buk Business iOS app screens">
+              <i class="hw hw-a"></i><i class="hw hw-u"></i><i class="hw hw-d"></i><i class="hw hw-p"></i>
+              <i class="isl"></i>
+              <div class="scr rscr" data-b="buk">
+                <div class="sb" aria-hidden="true"><span>9:41</span><span class="sbi">
+                  <svg viewBox="0 0 17 11"><rect y="7" width="3" height="4" rx=".8"/><rect x="4.7" y="5" width="3" height="6" rx=".8"/><rect x="9.4" y="2.5" width="3" height="8.5" rx=".8"/><rect x="14" width="3" height="11" rx=".8"/></svg>
+                  <svg viewBox="0 0 15 11"><path d="M7.5 2.2c2.1 0 4 .8 5.4 2.2l1-1A9.3 9.3 0 0 0 7.5.8 9.3 9.3 0 0 0 1.1 3.4l1 1a7.9 7.9 0 0 1 5.4-2.2zm0 3.4c1.2 0 2.3.5 3.1 1.2l1-1a6.3 6.3 0 0 0-8.2 0l1 1c.8-.7 1.9-1.2 3.1-1.2zm0 3.2L9.3 7a2.6 2.6 0 0 0-3.6 0z"/></svg>
+                  <svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2"/><path d="M23 4v4c.8-.3 1.4-1 1.4-2S23.8 4.3 23 4z" opacity=".5"/></svg>
+                </span></div>
+                <div class="slides">
+          <img class="slide on" src="/apps/buk-bookings.webp" width="640" height="1294" alt="Buk Business iOS app: Bookings list with completed and cancelled appointments and Naira amounts" data-label="Bookings" data-tap="33.5,92.4">
+          <img class="slide" src="/apps/buk-calendar.webp" width="640" height="1294" alt="Buk Business iOS app: Day calendar with team members, booked and open slots" data-label="Calendar" data-tap="15.7,92.4" loading="lazy" decoding="async" aria-hidden="true">
+          <img class="slide" src="/apps/buk-revenue.webp" width="640" height="1294" alt="Buk Business iOS app: Revenue chart for the last 30 days with upcoming confirmed appointments" data-label="Revenue" data-tap="30.2,40.6" loading="lazy" decoding="async" aria-hidden="true">
+          <img class="slide" src="/apps/buk-payments.webp" width="640" height="1294" alt="Buk Business iOS app: Payments overview with money collected, net after fees and a settlement ledger" data-label="Payments" data-tap="16,9.6" loading="lazy" decoding="async" aria-hidden="true">
+          <img class="slide" src="/apps/buk-invoices.webp" width="640" height="1294" alt="Buk Business iOS app: Invoices list with sent, overdue and paid statuses" data-label="Invoices" data-tap="88,92.4" loading="lazy" decoding="async" aria-hidden="true">
+          <img class="slide" src="/apps/buk-growth.webp" width="640" height="1294" alt="Buk Business iOS app: Growth campaigns: win-back, no-show recovery and review requests" data-label="Growth" data-tap="88,92.4" loading="lazy" decoding="async" aria-hidden="true">
+          <img class="slide" src="/apps/buk-reviews.webp" width="640" height="1294" alt="Buk Business iOS app: Customer reviews with star ratings and reply actions" data-label="Reviews" data-tap="51,92.4" loading="lazy" decoding="async" aria-hidden="true">
+                </div>
+                <i class="tap" aria-hidden="true"></i>
+                <i class="glare" aria-hidden="true"></i>
               </div>
-              <div class="tabs">
-                <div class="on"><svg class="i"><use href="#i-clock"/></svg>Today</div>
-                <div><svg class="i"><use href="#i-cal"/></svg>Calendar</div>
-                <div><svg class="i"><use href="#i-users"/></svg>Customers</div>
-                <div><svg class="i"><use href="#i-wallet"/></svg>Money</div>
-                <div><svg class="i"><use href="#i-dots"/></svg>More</div>
-              </div>
-              <i class="hi"></i>
             </div>
           </div>
-          <figcaption>iOS · Today</figcaption>
+          <div class="rp-ctl">
+            <div class="rp-dots" role="group" aria-label="Choose screen">
+              <button type="button" aria-label="Show Bookings screen"></button>
+              <button type="button" aria-label="Show Calendar screen"></button>
+              <button type="button" aria-label="Show Revenue screen"></button>
+              <button type="button" aria-label="Show Payments screen"></button>
+              <button type="button" aria-label="Show Invoices screen"></button>
+              <button type="button" aria-label="Show Growth screen"></button>
+              <button type="button" aria-label="Show Reviews screen"></button>
+            </div>
+            <button class="rp-pause" id="rp-pause" type="button" aria-pressed="false" aria-label="Pause animation">
+              <svg class="pa" viewBox="0 0 12 12"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg>
+              <svg class="pl" viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z"/></svg>
+            </button>
+          </div>
+          <figcaption id="rp-cap">iOS · Bookings</figcaption>
         </figure>
         <figure class="phone-col">
           <div class="phone and" aria-hidden="true"><i class="pch"></i>
@@ -1628,7 +1682,7 @@ body.ck-open{overflow:hidden}
               <i class="hi"></i>
             </div>
           </div>
-          <figcaption>Android · Calendar</figcaption>
+          <figcaption>Android · Calendar concept</figcaption>
         </figure>
       </div>
     </div>
@@ -3049,6 +3103,55 @@ const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
     });
     b.addEventListener('pointerleave', ()=>{ b.style.transform = ''; });
   });
+})();
+
+/* ── LIVE PHONE: real Buk iOS screens, auto-cycling with "tap" hints ── */
+(function(){
+  const rp = document.getElementById('rp'); if(!rp) return;
+  const fig = rp.closest('figure'), slides = [...rp.querySelectorAll('.slide')], dots = [...fig.querySelectorAll('.rp-dots button')],
+        tap = rp.querySelector('.tap'), area = rp.querySelector('.slides'), cap = document.getElementById('rp-cap'),
+        pb = document.getElementById('rp-pause'), ctl = fig.querySelector('.rp-dots'), tilt = fig.querySelector('.tilt');
+  const P = 3800, N = slides.length, RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let cur = 0, paused = RM, seen = false, tA, tB;
+  const playing = () => !paused && seen && !document.hidden;
+
+  function mark(){
+    slides.forEach((s,k) => { s.classList.toggle('on', k === cur); s.setAttribute('aria-hidden', k !== cur); });
+    dots.forEach((d,k) => { d.classList.toggle('on', k === cur); d.setAttribute('aria-current', k === cur ? 'true' : 'false'); });
+    cap.textContent = 'iOS · ' + slides[cur].dataset.label;
+  }
+  function hint(){ // ripple on the control that would lead to the next screen
+    const [x,y] = slides[cur].dataset.tap.split(',').map(Number);
+    tap.style.left = x + '%'; tap.style.top = (area.offsetTop + y / 100 * area.offsetHeight) + 'px';
+    tap.classList.remove('go'); void tap.offsetWidth; tap.classList.add('go');
+  }
+  function arm(){
+    clearTimeout(tA); clearTimeout(tB);
+    ctl.classList.toggle('still', !playing());
+    dots[cur].classList.remove('on'); void dots[cur].offsetWidth; dots[cur].classList.add('on'); // restart progress fill
+    if(!playing()) return;
+    tA = setTimeout(hint, P - 700);
+    tB = setTimeout(() => go((cur + 1) % N), P);
+  }
+  function go(n){
+    const prev = slides[cur]; prev.classList.add('out'); setTimeout(() => prev.classList.remove('out'), 800);
+    cur = n; mark(); arm();
+  }
+  dots.forEach((d,k) => d.addEventListener('click', () => go(k)));
+  pb.setAttribute('aria-pressed', paused); pb.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
+  pb.addEventListener('click', () => {
+    paused = !paused; pb.setAttribute('aria-pressed', paused); pb.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation'); arm();
+  });
+  new IntersectionObserver(([e]) => { seen = e.isIntersecting; arm(); }, { threshold: .35 }).observe(rp); // idle when off-screen or panel hidden
+  document.addEventListener('visibilitychange', arm);
+  if(!RM && !matchMedia('(pointer:coarse)').matches){ // cursor-driven 3D tilt
+    fig.addEventListener('pointermove', e => {
+      const r = fig.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      tilt.style.setProperty('--ry', (x * 12).toFixed(2) + 'deg'); tilt.style.setProperty('--rx', (-y * 9).toFixed(2) + 'deg');
+    });
+    fig.addEventListener('pointerleave', () => { tilt.style.removeProperty('--ry'); tilt.style.removeProperty('--rx'); });
+  }
+  mark();
 })();
 
 /* ── APPS: product switch (Buk.ng / FixNTread) ── */
