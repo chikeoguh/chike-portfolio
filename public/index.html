@@ -1064,10 +1064,6 @@ body.ck-open{overflow:hidden}
         <span data-i18n="hero.book">Book a Call</span>
       </button>
       <a href="#" onclick="openContactModal();return false" class="btn-s" data-i18n="hero.send">Send Message</a>
-      <a href="/cv.pdf" download="Chike_Oguh_CV.pdf" class="btn-s">
-        <svg style="width:14px;height:14px;vertical-align:-2px;margin-right:6px;display:inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span data-i18n="hero.cv">Download CV</span>
-      </a>
     </div>
 
     <!-- LIVE STATUS WIDGET — fetched from /status.json -->
@@ -2195,7 +2191,6 @@ const I18N = {
     'hero.pill':    'Open to new opportunities',
     'hero.book':    'Book a Call',
     'hero.send':    'Send Message',
-    'hero.cv':      'Download CV',
     'hero.scroll':  'Scroll',
     'hero.clock':   'Lisbon',
     'nav.cmdk':     'Search',
@@ -2258,7 +2253,6 @@ const I18N = {
     'hero.pill':    'Aberto a novas oportunidades',
     'hero.book':    'Agendar Chamada',
     'hero.send':    'Enviar Mensagem',
-    'hero.cv':      'Descarregar CV',
     'hero.scroll':  'Deslizar',
     'hero.clock':   'Lisboa',
     'nav.cmdk':     'Pesquisar',
@@ -2835,7 +2829,6 @@ window.addEventListener('load', ()=>{
         ['cat &lt;section&gt;','read a section (about, skills, projects)'],
         ['open &lt;section&gt;','scroll to a section'],
         ['contact',     'open contact form'],
-        ['cv',          'download CV'],
         ['stack',       'show tech stack'],
         ['location',    'where I am'],
         ['social',      'links'],
@@ -2890,13 +2883,6 @@ window.addEventListener('load', ()=>{
     contact(){
       print('<span class="s">→</span> opening contact form...');
       setTimeout(()=>{ ttClose(); if(typeof openContactModal==='function') openContactModal(); }, 400);
-    },
-    cv(){
-      print('<span class="s">→</span> downloading CV...');
-      const a = document.createElement('a');
-      a.href = '/cv.pdf';
-      a.download = 'Chike_Oguh_CV.pdf';
-      document.body.appendChild(a); a.click(); a.remove();
     },
     stack(){
       print('');
@@ -3176,11 +3162,11 @@ const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const L = {
     en:{ ph:'Type a command or search…', nav:'Navigate', act:'Actions', pref:'Preferences', links:'Links', none:'No results',
          about:'About', skills:'Skills', projects:'Projects & Labs', work:'Work', apps:'Mobile apps', education:'Education', contact:'Contact',
-         book:'Book a 15-min call', send:'Send a message', cv:'Download CV', term:'Open terminal',
+         book:'Book a 15-min call', send:'Send a message', term:'Open terminal',
          lang:'Switch to Português', snd:'Toggle sound effects', email:'Copy email address', li:'Open LinkedIn', copied:'Copied hello@chike.ng' },
     pt:{ ph:'Escreve um comando ou pesquisa…', nav:'Navegar', act:'Ações', pref:'Preferências', links:'Ligações', none:'Sem resultados',
          about:'Sobre', skills:'Competências', projects:'Projetos e Laboratórios', work:'Trabalho', apps:'Apps móveis', education:'Formação', contact:'Contacto',
-         book:'Agendar chamada de 15 min', send:'Enviar mensagem', cv:'Descarregar CV', term:'Abrir terminal',
+         book:'Agendar chamada de 15 min', send:'Enviar mensagem', term:'Abrir terminal',
          lang:'Switch to English', snd:'Alternar efeitos sonoros', email:'Copiar email', li:'Abrir LinkedIn', copied:'Copiado hello@chike.ng' },
   };
   const lang = () => document.documentElement.lang === 'pt' ? 'pt' : 'en';
@@ -3196,7 +3182,6 @@ const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
     { g:t.nav,  ic:'07', lb:t.contact,   kw:'contact contacto email form',           run:()=>go('contact') },
     { g:t.act,  ic:'⏱',  lb:t.book,      kw:'book call cal meeting agendar chamada', k:'B', run:()=>{ ckClose(); document.querySelector('[data-cal-link]')?.click(); } },
     { g:t.act,  ic:'✉',  lb:t.send,      kw:'send message form mensagem',            k:'M', run:()=>{ ckClose(); window.openContactModal?.(); } },
-    { g:t.act,  ic:'↓',  lb:t.cv,        kw:'cv resume download pdf descarregar',    k:'D', run:()=>{ ckClose(); const a=document.createElement('a'); a.href='/cv.pdf'; a.download='Chike_Oguh_CV.pdf'; document.body.appendChild(a); a.click(); a.remove(); } },
     { g:t.act,  ic:'>_', lb:t.term,      kw:'terminal shell console',                k:'~', run:()=>{ ckClose(); window.ttOpen?.(); } },
     { g:t.pref, ic:'文', lb:t.lang,      kw:'language idioma portugues english pt en',      run:()=>{ window.setLang?.(lang()==='pt' ? 'en' : 'pt'); render(); } },
     { g:t.pref, ic:'♪',  lb:t.snd,       kw:'sound audio mute som',                         run:()=>{ window.sndToggle?.(); ckClose(); } },
