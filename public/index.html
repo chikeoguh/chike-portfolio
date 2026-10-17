@@ -228,13 +228,37 @@ Cal.ns["15min"]("ui", {
      VISITOR TRACKING BEACON — pings /api/track once per page-load
 ═══════════════════════════════════════════ -->
 <script>
+/* Client details for the visitor ping + contact form. Read-only; sent to our own /api only. */
+window.__ci = function(){
+  var n = navigator, c = n.connection || {}, mm = function(q){ try { return matchMedia(q).matches; } catch(e){ return false; } };
+  var st = {}; try { st = { v: +localStorage.getItem('bk_v') || 0, s: localStorage.getItem('bk_since') || '', r: localStorage.getItem('bk_ref0') || '' }; } catch(e){ st = { v: 0, s: '', r: '' }; }
+  var q = new URLSearchParams(location.search), u = [];
+  ['source','medium','campaign','term','content'].forEach(function(k){ var x = q.get('utm_' + k); if(x) u.push(k + '=' + x.slice(0, 30)); });
+  var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(e){}
+  return {
+    path: (location.pathname + location.search).slice(0, 100), referrer: document.referrer || '', screen: screen.width + 'x' + screen.height,
+    vp: innerWidth + 'x' + innerHeight, dpr: devicePixelRatio, tz: tz, langs: (n.languages || [n.language]).slice(0, 3).join(','),
+    cores: n.hardwareConcurrency || null, mem: n.deviceMemory || null, touch: n.maxTouchPoints || 0,
+    net: (c.effectiveType || '') + (c.saveData ? ' save-data' : ''), scheme: mm('(prefers-color-scheme: dark)') ? 'dark' : 'light',
+    rm: mm('(prefers-reduced-motion: reduce)'), wd: !!n.webdriver, utm: u.join(' '),
+    visits: st.v, since: st.s, ref0: st.r, load: Math.round(performance.now()),
+  };
+};
+/* Returning-visitor counter + first-touch source. Skipped when the browser sends DNT / Global Privacy Control. */
+(function(){
+  try {
+    if (navigator.doNotTrack === '1' || navigator.globalPrivacyControl) return;
+    var v = (+localStorage.getItem('bk_v') || 0) + 1; localStorage.setItem('bk_v', v);
+    if (!localStorage.getItem('bk_since')) localStorage.setItem('bk_since', new Date().toISOString().slice(0, 10));
+    if (localStorage.getItem('bk_ref0') === null) {
+      var h = '-'; try { if (document.referrer) { var u = new URL(document.referrer); if (u.hostname !== location.hostname) h = u.protocol === 'android-app:' ? document.referrer : u.hostname; } } catch(e){}
+      localStorage.setItem('bk_ref0', h);
+    }
+  } catch(e){}
+})();
 window.addEventListener('load', function(){
   try {
-    const payload = JSON.stringify({
-      path: location.pathname + location.search,
-      referrer: document.referrer || '',
-      screen: screen.width + 'x' + screen.height,
-    });
+    const payload = JSON.stringify(window.__ci());
     if (navigator.sendBeacon) {
       navigator.sendBeacon('/api/track', new Blob([payload], {type:'application/json'}));
     } else {
@@ -2548,7 +2572,7 @@ async function submitForm(e, p=''){
     const res = await fetch('/api/contact',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({name,email,type,subject,message,_hp_name,_hp_email,_t})
+      body: JSON.stringify({name,email,type,subject,message,_hp_name,_hp_email,_t,client:(window.__ci?window.__ci():{})})
     });
     const data = await res.json();
     if(!res.ok) throw new Error(data.error||'Transmission failed. Try again.');

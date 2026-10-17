@@ -1,4 +1,5 @@
 const { notifyDiscord } = require('./_discord');
+const { buildCtx } = require('./_intel');
 
 /* ────────────────────────────────────────────────
    In-memory rate limit — one ping per IP per hour
@@ -27,20 +28,17 @@ module.exports = async function handler(req, res) {
   // Ignore anything that isn't a POST beacon
   if (req.method !== 'POST') return res.status(405).end();
 
-  const ip      = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
-  const ua      = req.headers['user-agent'] || '';
-  const country = req.headers['x-vercel-ip-country'] || 'XX';
-  const city    = req.headers['x-vercel-ip-city']    || '';
+  const ctx = buildCtx(req, req.body); // gathers headers + client details; IP lookup happens only if we report
 
-  // Silent success for bots and repeat visitors
-  if (BOT_UA.test(ua))  return res.status(204).end();
-  if (isRecent(ip))     return res.status(204).end();
+  // Silent success for bots and repeat visitors (checked before spending an IP lookup)
+  if (BOT_UA.test(ctx.ua)) return res.status(204).end();
+  if (isRecent(ctx.ip))    return res.status(204).end();
 
-  const { path = '/', referrer = '', screen = '' } = req.body || {};
+  const { path = '/', referrer = '' } = req.body || {};
 
   // AWAIT — Vercel serverless terminates the container on `return`, killing
   // any in-flight fetch. sendBeacon on the client already means UX isn't blocked.
-  await notifyDiscord.visit({ path, referrer, country, city, ua, screen, ip });
+  await notifyDiscord.visit(ctx, { path: String(path).slice(0, 100), referrer: String(referrer).slice(0, 300) });
 
   return res.status(204).end();
 };
