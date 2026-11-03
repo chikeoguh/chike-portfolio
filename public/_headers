@@ -1,3 +1,0 @@
-# Keep the /asa section out of search results (replaces the vercel.json X-Robots-Tag header).
-/asa/*
-  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
