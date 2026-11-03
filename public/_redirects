@@ -1,3 +1,1 @@
-# Cloudflare Pages routing (replaces the vercel.json redirect).
-# /asa/ and /asa/* are served by functions/asa/[[path]].js (proxy to asa-surprise.vercel.app).
-/asa        /asa/        302
+# Cloudflare Pages routing. (No redirect rules: /asa is out of scope for this migration.)

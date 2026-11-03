@@ -8,13 +8,10 @@ Vanilla HTML/CSS/JS for the site, Pages Functions for the API, Resend for email,
 ```
 public/                  static site (Pages publish directory)
   index.html             the whole portfolio
-  _redirects             /asa → /asa/ (302)
-  _headers               cache and robots headers for static files
   robots.txt, sitemap.xml, favicon.svg, og-image.png, apps/, work.json, status.json
 functions/
   api/contact.js         POST /api/contact  — contact form: anti-spam, Resend emails, Discord report
   api/track.js           POST /api/track    — visit beacon → Discord visit report
-  asa/[[path]].js        /asa, /asa/*       — proxy to the asa-surprise.vercel.app deployment
 lib/
   intel.js               visitor context (Cloudflare geo + IP type via ip-api.com), risk score
   discord.js             Discord embeds (visit / enquiry / spam)
