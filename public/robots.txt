@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /asa/
 Allow: /
 
 Sitemap: https://chike.ng/sitemap.xml

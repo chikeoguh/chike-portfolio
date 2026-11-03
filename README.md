@@ -1,95 +1,64 @@
 # chike.oguh — Portfolio
 
-Personal portfolio & CV site for Chike Oguh.  
-Built with vanilla HTML/CSS/JS + Vercel serverless functions + Resend for email.
+Personal portfolio and CV for Chike Oguh, hosted on **Cloudflare Pages**.
+Vanilla HTML/CSS/JS for the site, Pages Functions for the API, Resend for email, Discord for visit and enquiry alerts.
 
----
+## Layout
 
-## Deploy in 4 steps
-
-### 1. Push to GitHub
-
-```bash
-cd chike-portfolio
-git init
-git add .
-git commit -m "init"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/chike-portfolio.git
-git push -u origin main
+```
+public/                  static site (Pages publish directory)
+  index.html             the whole portfolio
+  _redirects             /asa → /asa/ (302)
+  _headers               cache and robots headers for static files
+  robots.txt, sitemap.xml, favicon.svg, og-image.png, apps/, work.json, status.json
+functions/
+  api/contact.js         POST /api/contact  — contact form: anti-spam, Resend emails, Discord report
+  api/track.js           POST /api/track    — visit beacon → Discord visit report
+  asa/[[path]].js        /asa, /asa/*       — proxy to the asa-surprise.vercel.app deployment
+lib/
+  intel.js               visitor context (Cloudflare geo + IP type via ip-api.com), risk score
+  discord.js             Discord embeds (visit / enquiry / spam)
+  spam.js                spam patterns and content filter
+  email-templates.js     HTML receipt and notification emails
+  intel.test.js          unit tests
+wrangler.toml            Pages project name and output directory
 ```
 
----
+## Deploy (Cloudflare Pages, from GitHub)
 
-### 2. Connect to Vercel
+1. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → pick `chikeoguh/chike-portfolio`.
+2. Build settings: **Framework preset** None, **Build command** *(empty)*, **Build output directory** `public`.
+3. **Environment variables** (Production, and Preview if you want previews to send mail):
+   - `RESEND_API_KEY` — encrypted
+   - `DISCORD_WEBHOOK` — encrypted
+4. Save and deploy. Every push to `main` deploys to production.
+5. Custom domain: Pages project → **Custom domains** → add `chike.ng`. Email records (Zoho MX, SPF, Resend DKIM) stay as they are.
 
-1. Go to [vercel.com](https://vercel.com) → **Add New Project**
-2. Import your `chike-portfolio` GitHub repo
-3. Leave all build settings as default — Vercel auto-detects the setup
-4. Click **Deploy** (it will fail on the first run — that's expected until step 3)
+From the CLI instead of Git:
 
----
+```bash
+npx wrangler login
+npx wrangler pages secret put RESEND_API_KEY --project-name chike-portfolio
+npx wrangler pages secret put DISCORD_WEBHOOK --project-name chike-portfolio
+npm run deploy
+```
 
-### 3. Add your Resend API key
-
-1. Go to [resend.com](https://resend.com) → **API Keys** → create a key
-2. Go to [resend.com/domains](https://resend.com/domains) → **Add Domain** → enter `chike.ng`
-3. Add the DNS records Resend gives you to your domain registrar
-4. In Vercel → your project → **Settings** → **Environment Variables**:
-
-| Name | Value |
-|------|-------|
-| `RESEND_API_KEY` | `re_xxxxxxxxxxxx` |
-
-5. Go to **Deployments** → click **Redeploy**
-
----
-
-### 4. Done
-
-Your site is live at `https://chike-portfolio.vercel.app`  
-Point your custom domain in Vercel → **Settings** → **Domains** → add `chike.ng`
-
----
-
-## Run locally
+## Local development
 
 ```bash
 npm install
-npx vercel dev
-# → http://localhost:3000
+npm run dev        # wrangler pages dev public → http://127.0.0.1:8788
+npm test           # unit tests for lib/
 ```
 
-Add a `.env` file first:
-
-```bash
-cp .env.example .env
-# paste your RESEND_API_KEY into .env
-```
-
----
-
-## Project structure
+Secrets for local runs go in `.dev.vars` (gitignored):
 
 ```
-chike-portfolio/
-├── api/
-│   └── contact.js      # Vercel serverless function — handles form + sends emails
-├── public/
-│   └── index.html      # The full portfolio site
-├── .env.example        # Copy to .env for local dev
-├── .gitignore
-├── package.json
-├── vercel.json         # Vercel routing config
-└── README.md
+RESEND_API_KEY=re_...
+DISCORD_WEBHOOK=https://discord.com/api/webhooks/...
 ```
 
----
+## Notes
 
-## How the contact form works
-
-1. Visitor fills the terminal-style form and hits **Execute**
-2. `POST /api/contact` fires to the serverless function
-3. Resend sends two emails:
-   - **Notification** → `hello@chike.ng` with full message details + one-click reply button
-   - **Confirmation** → visitor's inbox with a techy dark-mode receipt
+- The contact form's rate limit and visit throttle are per isolate, so they are soft limits. Durable Objects or KV would make them global.
+- Visitor location comes from Cloudflare's `request.cf`. IP type (residential, datacenter, VPN, Tor) comes from ip-api.com, whose free tier is HTTP-only and non-commercial.

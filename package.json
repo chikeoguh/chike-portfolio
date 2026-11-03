@@ -1,15 +1,15 @@
 {
   "name": "chike-portfolio",
-  "version": "1.0.0",
-  "description": "Chike Oguh — Portfolio & CV",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Chike Oguh — Portfolio & CV (Cloudflare Pages + Pages Functions)",
   "scripts": {
-    "dev": "vercel dev",
-    "deploy": "vercel --prod"
-  },
-  "dependencies": {
-    "resend": "^3.2.0"
+    "dev": "wrangler pages dev public",
+    "deploy": "wrangler pages deploy public --project-name chike-portfolio --branch main",
+    "test": "node --test lib/intel.test.js"
   },
   "devDependencies": {
-    "vercel": "^34.0.0"
+    "wrangler": "^4.157.0"
   }
 }
