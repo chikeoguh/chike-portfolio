@@ -1,41 +1,84 @@
 {
-  "_note": "Edit this file to add or remove sites/tools. The site fetches this JSON — no re-deploy needed for content updates. Format per item: {name, url, role, description, tags, period, status}. status: 'live' (green) | 'active' (blue) | 'archived' (grey).",
+  "_note": "Edit this file to add or remove sites and tools; the site reads it on every visit, no deploy needed. Per item: name, url, role, description, image (a 1440x900 screenshot under /work/, plus a -720 copy), tagline (after the name in the card title), and role_pt / description_pt / tagline_pt for the Portuguese page. tags, period and status are kept for your records; the page does not show them.",
   "items": [
-    {
-      "name": "FixNTread",
-      "url": "https://fixntread.online",
-      "role": "Webmaster & Technical Support",
-      "description": "Canada's tailoring marketplace connecting customers with verified tailors for alterations, repairs, custom outfits, and made-to-measure designs.",
-      "tags": ["Web Platform", "Hosting", "DNS", "Marketplace"],
-      "period": "2025 — Present",
-      "status": "live"
-    },
     {
       "name": "Buk.ng",
       "url": "https://buk.ng",
-      "role": "Webmaster & Technical Support",
-      "description": "Bookings, deposits, and reminders platform for Nigerian salons, barbers, spas, clinics, and consultants — reducing no-shows and driving repeat customers.",
-      "tags": ["SaaS", "Web Platform", "Hosting", "DNS"],
+      "image": "/work/buk.webp",
+      "role": "Webmaster and technical support",
+      "role_pt": "Webmaster e suporte técnico",
+      "description": "Bookings, deposits and reminders for salons, barbers, spas and clinics in Nigeria, so fewer clients miss their slot.",
+      "description_pt": "Marcações, sinais e lembretes para salões, barbearias, spas e clínicas na Nigéria, para que menos clientes faltem.",
+      "tags": [
+        "SaaS",
+        "Web Platform",
+        "Hosting",
+        "DNS"
+      ],
       "period": "2025 — Present",
-      "status": "live"
+      "status": "live",
+      "tagline": "bookings for salons",
+      "tagline_pt": "marcações para salões"
+    },
+    {
+      "name": "FixNTread",
+      "url": "https://fixntread.online",
+      "image": "/work/fixntread.webp",
+      "role": "Webmaster and technical support",
+      "role_pt": "Webmaster e suporte técnico",
+      "description": "Canada's marketplace for verified tailors: alterations, repairs, custom outfits and made-to-measure designs.",
+      "description_pt": "O mercado de alfaiates verificados do Canadá: ajustes, reparações, roupa por medida e designs feitos à mão.",
+      "tags": [
+        "Web Platform",
+        "Hosting",
+        "DNS",
+        "Marketplace"
+      ],
+      "period": "2025 — Present",
+      "status": "live",
+      "tagline": "a tailoring marketplace",
+      "tagline_pt": "um mercado de alfaiates"
     },
     {
       "name": "MyAfromania",
       "url": "https://myafromania.com",
-      "role": "Webmaster & IT Support",
-      "description": "WordPress site management — hosting operations, plugin lifecycle, migrations, WP-CLI automation, backups, and end-user support.",
-      "tags": ["WordPress", "WP-CLI", "SSH", "VPS", "Cloudflare"],
+      "image": "/work/myafromania.webp",
+      "role": "Webmaster and IT support",
+      "role_pt": "Webmaster e suporte de TI",
+      "description": "An African fashion shop on WordPress and WooCommerce: hosting, plugins, migrations, WP-CLI automation and backups.",
+      "description_pt": "Uma loja de moda africana em WordPress e WooCommerce: alojamento, plugins, migrações, automação com WP-CLI e cópias de segurança.",
+      "tags": [
+        "WordPress",
+        "WP-CLI",
+        "SSH",
+        "VPS",
+        "Cloudflare"
+      ],
       "period": "2023 — 2025",
-      "status": "live"
+      "status": "live",
+      "tagline": "an African fashion shop",
+      "tagline_pt": "uma loja de moda africana"
     },
     {
       "name": "chike.ng",
       "url": "https://chike.ng",
-      "role": "Owner & Engineer",
-      "description": "This portfolio — vanilla HTML/CSS/JS + Vercel serverless functions. Contact form via Resend, real-time visitor pings via Discord webhooks, Cal.com booking, EN/PT i18n.",
-      "tags": ["Vercel", "Serverless", "Resend", "Discord API", "Cal.com"],
+      "image": "/work/chike.webp",
+      "role": "Owner and engineer",
+      "role_pt": "Dono e engenheiro",
+      "description": "This site: HTML, CSS and JavaScript on Cloudflare Pages, with a Resend contact form, Discord alerts, Cal.com booking and a 3D hero.",
+      "description_pt": "Este site: HTML, CSS e JavaScript no Cloudflare Pages, com formulário via Resend, alertas no Discord, marcações Cal.com e uma abertura em 3D.",
+      "tags": [
+        "Cloudflare Pages",
+        "Functions",
+        "Resend",
+        "Discord API",
+        "Cal.com",
+        "three.js"
+      ],
       "period": "2026",
-      "status": "live"
+      "status": "live",
+      "tagline": "this site",
+      "tagline_pt": "este site"
     }
   ]
 }

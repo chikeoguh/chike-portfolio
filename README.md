@@ -7,8 +7,17 @@ Vanilla HTML/CSS/JS for the site, Pages Functions for the API, Resend for email,
 
 ```
 public/                  static site (Pages publish directory)
-  index.html             the whole portfolio
-  robots.txt, sitemap.xml, favicon.svg, og-image.png, apps/, work.json, status.json
+  index.html             the whole portfolio (EN, with PT swapped in by site.js)
+  assets/site.css        page styles (the 3D stage, work cards, phone frame, dialogs)
+  assets/site.js         language, Cal.com, message form, ⌘K palette, terminal, status, work cards, 3D mount
+  assets/hero3d.js       the 3D hero, BUILT from src/hero3d.js (npm run build:3d); do not edit by hand
+  assets/hero-poster*.webp  stills of the 3D scene, shown before it loads and when WebGL is off
+  assets/{system,ui,motion,layout,icons,moments,diagrams}/  the design system (tasteskill kit)
+  work/                  site screenshots for the work cards and the 3D laptop screen
+  apps/                  Buk Business screenshots and app concepts
+  robots.txt, sitemap.xml, favicon.svg, og-image.png, work.json, status.json, 404.html
+src/
+  hero3d.js              three.js scene: a laptop with the sites, a phone with the app (source of assets/hero3d.js)
 functions/
   api/contact.js         POST /api/contact  — contact form: anti-spam, Resend emails, Discord report
   api/track.js           POST /api/track    — visit beacon → Discord visit report
@@ -45,8 +54,15 @@ npm run deploy
 ```bash
 npm install
 npm run dev        # wrangler pages dev public → http://127.0.0.1:8788
+npm run build:3d   # rebuild public/assets/hero3d.js after editing src/hero3d.js
 npm test           # unit tests for lib/
 ```
+
+Content you can edit without touching code:
+
+- `public/work.json`: the work cards (name, url, role, description, image, and `_pt` fields for Portuguese).
+  Screenshots go in `public/work/` as `<name>.webp` (1440×900) and `<name>-720.webp`.
+- `public/status.json`: the status line in the close and the `profile.sh` terminal (`state`, `message`, `focus`).
 
 Secrets for local runs go in `.dev.vars` (gitignored):
 

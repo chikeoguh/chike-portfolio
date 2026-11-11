@@ -6,10 +6,13 @@
   "description": "Chike Oguh — Portfolio & CV (Cloudflare Pages + Pages Functions)",
   "scripts": {
     "dev": "wrangler pages dev public",
+    "build:3d": "esbuild src/hero3d.js --bundle --format=esm --minify --target=es2020 --legal-comments=none --outfile=public/assets/hero3d.js",
     "deploy": "wrangler pages deploy public --project-name chike-portfolio --branch main",
     "test": "node --test lib/intel.test.js"
   },
   "devDependencies": {
+    "esbuild": "^0.28.2",
+    "three": "^0.187.0",
     "wrangler": "^4.157.0"
   }
 }

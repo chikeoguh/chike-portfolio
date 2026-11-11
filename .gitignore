@@ -7,3 +7,7 @@ node_modules/
 # Cloudflare Pages / Wrangler
 .wrangler/
 .dev.vars
+
+# design-check output (screenshots, reports); never deployed
+.taste-skill/
+.claude/launch.json
