@@ -79,6 +79,21 @@
       "knowsAbout": [
         "Software Development",
         "Web Development",
+        "Mobile App Development",
+        "iOS Development",
+        "Android Development",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "React Native",
+        "Expo",
+        "Swift",
+        "PostgreSQL",
+        "Prisma",
+        "Supabase",
+        "Stripe",
+        "PHP",
+        "WooCommerce",
         "Technical Support Engineering",
         "IT Infrastructure",
         "Network Support",
@@ -369,11 +384,11 @@ body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:52px;height:5
 /* =====================================================
    REVEAL ANIMATION
 ===================================================== */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv{opacity:0;transform:perspective(1100px) translateY(34px) rotateX(14deg);transform-origin:50% 100%;transition:opacity .8s var(--ease),transform .9s cubic-bezier(.2,.7,.2,1)}
 .rv.on{opacity:1;transform:none}
-.rv-l{opacity:0;transform:translateX(-28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv-l{opacity:0;transform:perspective(1100px) translateX(-34px) rotateY(12deg);transition:opacity .8s var(--ease),transform .9s cubic-bezier(.2,.7,.2,1)}
 .rv-l.on{opacity:1;transform:none}
-.rv-r{opacity:0;transform:translateX(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv-r{opacity:0;transform:perspective(1100px) translateX(34px) rotateY(-12deg);transition:opacity .8s var(--ease),transform .9s cubic-bezier(.2,.7,.2,1)}
 .rv-r.on{opacity:1;transform:none}
 
 /* =====================================================
@@ -509,42 +524,6 @@ body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:52px;height:5
 .p-status.live{background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.2);color:var(--ng)}
 .p-status.act{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);color:var(--nc)}
 .p-sdot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:pls 2s infinite}
-
-/* =====================================================
-   WORK — sites/tools built or maintained
-===================================================== */
-.work-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;margin-top:60px}
-.work-loading{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:10px;padding:60px 20px;font-family:var(--mono);font-size:12px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase}
-.work-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;transition:all .35s var(--ease);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit}
-.work-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--ng),transparent);opacity:0;transition:opacity .3s}
-.work-card:hover{border-color:rgba(0,255,136,.2);transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.4),0 0 32px rgba(0,255,136,.04)}
-.work-card:hover::before{opacity:1}
-.wc-head{display:flex;align-items:flex-start;gap:14px}
-.wc-mono{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:800;font-size:18px;letter-spacing:-.02em;flex-shrink:0;text-transform:uppercase;position:relative}
-.wc-mono.c0{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.24);color:var(--ng)}
-.wc-mono.c1{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.24);color:var(--nc)}
-.wc-mono.c2{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.24);color:#a78bfa}
-.wc-mono.c3{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.24);color:var(--na)}
-.wc-title-wrap{flex:1;min-width:0}
-.wc-title{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:3px;display:flex;align-items:center;gap:6px;line-height:1.3}
-.wc-title .wc-ext{width:11px;height:11px;stroke:var(--t3);fill:none;stroke-width:2;flex-shrink:0;transition:stroke .2s}
-.work-card:hover .wc-title .wc-ext{stroke:var(--ng)}
-.wc-url{font-family:var(--mono);font-size:11px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
-.wc-status{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:99px;letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;align-self:flex-start;margin-top:2px}
-.wc-status.live{background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.22);color:var(--ng)}
-.wc-status.active{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.22);color:var(--nc)}
-.wc-status.archived{background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--t3)}
-.wc-status-dot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:pls 2.2s infinite}
-.wc-status.archived .wc-status-dot{animation:none}
-.wc-role{font-family:var(--mono);font-size:11px;color:var(--nc);letter-spacing:.03em}
-.wc-desc{font-size:13px;color:var(--t2);line-height:1.65}
-.wc-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap}
-.wc-tags{display:flex;flex-wrap:wrap;gap:5px;flex:1}
-.wc-tag{font-family:var(--mono);font-size:10px;padding:2px 8px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:4px;color:var(--t3);letter-spacing:.03em}
-.wc-period{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.05em;white-space:nowrap}
-.work-note{margin-top:36px;font-family:var(--mono);font-size:11px;color:var(--t3);text-align:center;padding:14px;border-top:1px dashed var(--border);opacity:.7}
-.work-note code{background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.16);color:var(--ng);padding:2px 8px;border-radius:4px;margin:0 4px}
-.wn-prompt{color:var(--ng);margin-right:6px}
 
 /* =====================================================
    EDUCATION
@@ -683,156 +662,199 @@ body.ck-open{overflow:hidden}
 }
 
 /* =====================================================
-   APPS — iOS & Android design concepts, pure-CSS devices.
-   Phones are decorative (aria-hidden); the figcaption + info column carry the meaning.
+   WORK — shipped products in 3D device scenes with real screens.
+   Each stage sizes everything in cqw, so a scene scales with its column.
+   --p  0→1  set from scroll: the lid opens, phone, watch and cards slide in (CSS default 1: open)
+   --mx/--my -1→1  set from the pointer: the whole scene leans toward it
+   .case.live  the case is on screen: screens scroll and cycle
 ===================================================== */
-.app-switch{display:inline-flex;gap:4px;padding:4px;margin-top:36px;border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.03)}
-.app-switch button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--t2);background:none;border:0;border-radius:7px;padding:9px 18px;cursor:pointer;transition:background .2s,color .2s}
-.app-switch button:hover{color:var(--t1)}
-.app-switch button[aria-pressed="true"]{background:rgba(0,255,136,.1);color:var(--ng)}
-.app-panel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(32px,5vw,72px);align-items:center;margin-top:48px}
-.app-panel[hidden]{display:none}
-.app-info h3{font-family:'Space Grotesk',var(--sans);font-size:clamp(28px,3.6vw,42px);letter-spacing:-.025em;line-height:1.08;margin:16px 0 14px}
-.app-info p{color:var(--t2);font-size:15px;line-height:1.7;max-width:46ch}
-.app-badges{display:flex;flex-wrap:wrap;gap:8px}
-.app-badge{font-family:var(--mono);font-size:11px;padding:5px 12px;border:1px solid var(--border);border-radius:99px;color:var(--t2)}
-.app-badge.live{color:var(--ng);border-color:rgba(0,255,136,.25);background:rgba(0,255,136,.05)}
-.app-badge.soon{color:var(--na);border-color:rgba(245,158,11,.28);background:rgba(245,158,11,.05)}
-.app-feats{list-style:none;display:grid;gap:10px;margin:24px 0 28px}
-.app-feats li{display:flex;gap:10px;color:var(--t1);font-size:14px;line-height:1.5}
-.app-feats li::before{content:'›';color:var(--ng);font-family:var(--mono)}
-.app-links{display:flex;flex-wrap:wrap;gap:12px}
-.app-links a{display:inline-block}
-.phones{display:flex;gap:28px;justify-content:center;flex-wrap:wrap}
-.phone-col{display:flex;flex-direction:column;align-items:center;gap:16px}
-.phone-col:nth-child(2){margin-top:44px}
-.phone-col figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t2)}
-.phone{position:relative;flex:none;width:252px;height:526px;padding:8px;border-radius:44px;background:linear-gradient(150deg,#2b303b,#0a0c10);box-shadow:0 32px 64px -12px rgba(0,0,0,.65),inset 0 0 0 1px rgba(255,255,255,.1);animation:phoneFloat 7s ease-in-out infinite alternate}
-.phone-col:nth-child(2) .phone{animation-delay:-3.5s}
-@keyframes phoneFloat{to{transform:translateY(-10px)}}
-.phone.and{border-radius:34px}
-.isl{position:absolute;z-index:3;top:16px;left:50%;width:70px;height:20px;margin-left:-35px;border-radius:12px;background:#000}
-.pch{position:absolute;z-index:3;top:18px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:#000}
-/* screen + per-theme tokens (bt = brand colour safe for small text on this surface) */
-.scr{--bg:#fff;--fg:#111318;--mut:#5f6673;--card:#f3f4f6;--line:#e5e7eb;--ok:#0b6b34;--okbg:rgba(15,122,61,.12);--wn:#8a5300;--wnbg:rgba(138,83,0,.12);position:relative;display:flex;flex-direction:column;height:100%;border-radius:36px;overflow:hidden;background:var(--bg);color:var(--fg);font:500 10.5px/1.35 var(--sans)}
-.and .scr{border-radius:26px}
-.scr.dk{--bg:#0f1115;--fg:#f4f5f7;--mut:#9aa1ad;--card:#1a1d24;--line:#272b34;--ok:#4ade80;--okbg:rgba(74,222,128,.14);--wn:#fbbf24;--wnbg:rgba(251,191,36,.14)}
-.scr[data-b="buk"]{--brand:#d63f12;--tint:rgba(240,78,37,.12);--bt:#b93410}
-.scr[data-b="buk"].dk{--bt:#ff7a45;--tint:rgba(240,78,37,.22)}
-.scr[data-b="fnt"]{--brand:#c42619;--tint:rgba(213,43,30,.1);--bt:#b3241a}
-.scr[data-b="fnt"].dk{--bt:#ff6b5e;--tint:rgba(213,43,30,.22)}
-.sb{display:flex;justify-content:space-between;align-items:center;flex:none;height:36px;padding:8px 20px 0;font-weight:700;font-size:10.5px}
-.hi{position:absolute;bottom:7px;left:50%;width:84px;height:4px;margin-left:-42px;border-radius:2px;background:var(--fg);opacity:.85}
-.and .hi{width:64px;margin-left:-32px;height:3px}
-.i{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.hd{display:flex;justify-content:space-between;align-items:flex-end;padding:6px 16px 10px}
-.hd small{display:flex;align-items:center;gap:3px;margin-bottom:3px;color:var(--mut);font-size:10px;font-weight:600}
-.hd small .i{width:11px;height:11px}
-.lt{font-size:23px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
-.av{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;font-size:10px;font-weight:700}
-.bd{display:flex;flex-direction:column;flex:1;gap:9px;padding:0 14px;overflow:hidden}
-.stats{display:grid;grid-template-columns:1fr 1.5fr;gap:8px}
-.st{padding:10px 11px;border-radius:14px;background:var(--card)}
-.st span{color:var(--mut);font-size:9.5px;font-weight:600}
-.st b{display:block;margin-top:2px;font-size:18px;font-weight:800;letter-spacing:-.02em}
-.st.br{background:var(--tint)}
-.st.br b{color:var(--bt)}
-.sec{display:flex;justify-content:space-between;font-size:11px;font-weight:700}
-.sec i{color:var(--bt);font-style:normal;font-weight:600}
-.row{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:12px;background:var(--card)}
-.row time{flex:none;width:30px;color:var(--mut);font-size:10px;font-weight:700}
-.row .tx{flex:1;min-width:0}
-.row .tx b{display:block;font-weight:700}
-.row small{color:var(--mut);font-size:9.5px}
-.chip{padding:3px 7px;border-radius:99px;font-size:8.5px;font-weight:700;white-space:nowrap}
-.chip.ok{color:var(--ok);background:var(--okbg)}
-.chip.wn{color:var(--wn);background:var(--wnbg)}
-.tabs{display:flex;justify-content:space-around;flex:none;margin-top:auto;padding:8px 6px 22px;border-top:1px solid var(--line);background:var(--bg)}
-.tabs div{display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--mut);font-size:8.5px;font-weight:600}
-.tabs .on{color:var(--bt)}
-.srch{display:flex;align-items:center;gap:7px;padding:9px 11px;border-radius:12px;background:var(--card);color:var(--mut)}
-.srch .i{width:13px;height:13px}
-.chs{display:flex;gap:6px;overflow:hidden}
-.chs span{padding:6px 11px;border-radius:99px;background:var(--card);font-weight:600;white-space:nowrap}
-.chs .on{background:var(--brand);color:#fff}
-.tl2{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;background:var(--card)}
-.tl2 .ph{display:grid;flex:none;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--tint);color:var(--bt);font-size:13px;font-weight:800}
-.tl2 .tx{flex:1;min-width:0}
-.tl2 b{display:block;font-weight:700}
-.tl2 small{display:flex;align-items:center;gap:3px;color:var(--mut);font-size:9.5px}
-.tl2 small .i{width:10px;height:10px;fill:currentColor}
-.tl2 .vf{width:11px;height:11px;margin-left:4px;vertical-align:-1px;color:var(--ok);stroke-width:2.6}
-.cta{display:grid;place-items:center;padding:12px;border-radius:14px;background:var(--brand);color:#fff;font-size:12px;font-weight:700}
-/* android / material 3 */
-.tb{display:flex;align-items:center;gap:12px;padding:6px 14px 8px}
-.tb b{flex:1;font-size:15px;font-weight:600}
-.days{display:flex;justify-content:space-between;padding:0 12px 8px}
-.days div{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--mut);font-size:9px;font-weight:600}
-.days b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;color:var(--fg);font-size:11px}
-.days .on b{background:var(--brand);color:#fff}
-.tl{position:relative;flex:1;margin:0 12px;overflow:hidden}
-.hr{position:absolute;left:0;right:0;padding-top:1px;border-top:1px solid var(--line);color:var(--mut);font-size:8.5px}
-.ev{position:absolute;padding:6px 8px;border-left:3px solid var(--brand);border-radius:8px;background:var(--tint);font-size:10px}
-.ev b{display:block;color:var(--fg)}
-.ev span{color:var(--mut)}
-.fab{position:absolute;right:14px;bottom:80px;display:flex;align-items:center;gap:6px;padding:11px 15px;border-radius:16px;background:var(--brand);color:#fff;font-size:11px;font-weight:700;box-shadow:0 6px 14px rgba(0,0,0,.4)}
-.fab .i{width:14px;height:14px}
-.nb{display:flex;justify-content:space-around;flex:none;padding:10px 4px 22px;background:var(--card)}
-.nb div{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--mut);font-size:9px;font-weight:600}
-.nb u{display:grid;place-items:center;width:42px;height:22px;border-radius:12px;text-decoration:none}
-.nb .on{color:var(--fg)}
-.nb .on u{background:var(--tint)}
-.pg{height:4px;border-radius:2px;background:var(--line)}
-.pg i{display:block;width:66%;height:100%;border-radius:2px;background:var(--brand)}
-.opt{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:12px}
-.opt .ic{display:grid;flex:none;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--card)}
-.opt .ic .i{width:13px;height:13px}
-.opt .tx{flex:1;font-weight:600}
-.opt.on{border-color:var(--brand);background:var(--tint)}
-.opt.on .ic{background:var(--brand);color:#fff}
-.qt{padding:11px 12px;border-radius:14px;background:var(--card)}
-.qt span{color:var(--mut);font-size:9.5px;font-weight:600}
-.qt b{display:block;margin:1px 0;font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--bt)}
-/* live iPhone: real app screens, realistic hardware, auto-cycling */
-.tilt{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s cubic-bezier(.2,.8,.2,1)}
-.phone.real{padding:10px;border-radius:52px;background:linear-gradient(135deg,#d7dae0 0%,#8b9099 14%,#2c2f36 38%,#16181d 55%,#6e737c 82%,#c3c6cc 100%);box-shadow:0 40px 70px -14px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.16),0 0 0 1px rgba(0,0,0,.6)}
-.phone.real .scr{--bg:#f6f4f0;border-radius:42px;box-shadow:0 0 0 5px #07080a}
-.phone.real .isl{top:21px;width:76px;height:23px;margin-left:-38px;z-index:4}
-.hw{position:absolute;width:3px;border-radius:2px;background:linear-gradient(90deg,#3a3d44,#9ea3ab)}
-.hw-a{left:-3px;top:92px;height:24px}
-.hw-u{left:-3px;top:136px;height:44px}
-.hw-d{left:-3px;top:190px;height:44px}
-.hw-p{right:-3px;top:150px;height:70px;background:linear-gradient(270deg,#3a3d44,#9ea3ab)}
-.rscr .sb{padding:12px 18px 0 28px;background:var(--bg);font-size:12px}
-.rscr .sbi{display:flex;align-items:center;gap:4px}
-.rscr .sbi svg{height:10px;width:auto;fill:currentColor}
-.slides{position:relative;flex:1;overflow:hidden;background:var(--bg)}
-.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transform:translateY(14px) scale(1.02);filter:blur(4px);transition:opacity .5s ease,transform .75s cubic-bezier(.2,.8,.2,1),filter .5s ease}
-.slide.on{opacity:1;transform:none;filter:none}
-.slide.out{opacity:0;transform:translateY(-10px) scale(.985);filter:blur(3px)}
-.tap{position:absolute;left:0;top:0;z-index:5;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;background:radial-gradient(circle,rgba(20,22,28,.24),rgba(20,22,28,.08) 65%,transparent 70%);box-shadow:0 0 0 1px rgba(20,22,28,.16);opacity:0;pointer-events:none}
-.tap.go{animation:tapGo .65s ease-out}
-@keyframes tapGo{0%{opacity:0;transform:scale(1.6)}30%{opacity:1;transform:scale(.9)}60%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.35)}}
-.glare{position:absolute;inset:0;z-index:6;border-radius:inherit;pointer-events:none;background:linear-gradient(112deg,transparent 38%,rgba(255,255,255,.16) 47%,rgba(255,255,255,.04) 53%,transparent 60%);background-size:260% 100%;background-position:160% 0;animation:glare 7s ease-in-out infinite}
-@keyframes glare{0%,55%{background-position:160% 0}100%{background-position:-60% 0}}
-.rp-ctl{display:flex;align-items:center;gap:10px}
-.rp-dots{display:flex;gap:3px}
-.rp-dots button{position:relative;width:26px;height:24px;padding:0;border:0;background:none;cursor:pointer}
-.rp-dots button::before,.rp-dots button::after{content:'';position:absolute;left:0;right:0;top:10px;height:4px;border-radius:2px}
-.rp-dots button::before{background:rgba(255,255,255,.16);transition:background .2s}
-.rp-dots button:hover::before{background:rgba(255,255,255,.32)}
-.rp-dots button::after{background:var(--ng);transform:scaleX(0);transform-origin:left}
-.rp-dots button.on::after{animation:rpFill var(--p,3800ms) linear forwards}
-.rp-dots.still button.on::after{animation:none;transform:none}
-@keyframes rpFill{to{transform:scaleX(1)}}
-.rp-pause{display:grid;place-items:center;width:28px;height:28px;border:1px solid var(--border);border-radius:50%;background:rgba(255,255,255,.03);color:var(--t2);cursor:pointer;transition:color .2s,border-color .2s}
-.rp-pause:hover{color:var(--ng);border-color:rgba(0,255,136,.3)}
-.rp-pause svg{width:12px;height:12px;fill:currentColor}
-.rp-pause .pl,.rp-pause[aria-pressed="true"] .pa{display:none}
-.rp-pause[aria-pressed="true"] .pl{display:block}
-@media(max-width:1100px){.app-panel{grid-template-columns:1fr}.app-info p{max-width:none}}
-@media(max-width:560px){.phone-col:nth-child(2){margin-top:0}}
-@media(prefers-reduced-motion:reduce){.phone,.glare{animation:none}.tilt,.slide{transition:none}}
+.impact{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:56px 0 0;list-style:none}
+.im-cell{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 16px 16px;display:flex;flex-direction:column;gap:6px;transition:border-color .3s}
+.im-cell::after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(220px circle at var(--gx,50%) var(--gy,0%),rgba(0,255,136,.13),transparent 62%);opacity:0;transition:opacity .3s}
+.im-cell:hover{border-color:rgba(0,255,136,.22)}
+.im-cell:hover::after{opacity:1}
+.im-v{font-family:var(--mono);font-size:clamp(20px,2.1vw,30px);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--ng);white-space:nowrap}
+.im-cell:nth-child(3n+2) .im-v{color:var(--nc)}
+.im-cell:nth-child(3n) .im-v{color:#a78bfa}
+.im-k{font-size:13px;font-weight:600;color:var(--t1)}
+.im-d{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.05em}
+
+.cases{display:flex;flex-direction:column;gap:clamp(80px,11vw,150px);margin-top:clamp(64px,9vw,112px)}
+.case{--side:1;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(28px,4vw,64px);align-items:center}
+.case:nth-child(even){--side:-1;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+.case:nth-child(even) .case-stage{order:2}
+
+/* ── the stage ── */
+.case-stage{position:relative;container-type:inline-size;perspective:1600px;perspective-origin:50% 25%;padding-bottom:4cqw}
+.sc{position:relative;aspect-ratio:16/11.4;transform-style:preserve-3d;
+  transform:rotateX(calc(-15deg + var(--my,0) * 4deg)) rotateY(calc(var(--side) * (-8deg - (1 - var(--p,1)) * 16deg) + var(--mx,0) * 7deg));
+  transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.sc-glow{position:absolute;left:4%;right:4%;top:0;bottom:10%;border-radius:50%;background:radial-gradient(closest-side,var(--brand),transparent);opacity:.24;filter:blur(7cqw);transform:translateZ(-46cqw)}
+
+/* laptop: a 14-inch MacBook Pro. Lid hinged on its bottom edge over a base of the same width and depth;
+   notch, macOS menu bar, black keyboard well, speaker grilles, trackpad, front lip with the thumb scoop */
+.lt{position:absolute;left:5%;top:2%;width:70%;aspect-ratio:312.6/221;transform-style:preserve-3d;transform:translateZ(-22cqw)}
+.lt-lid{position:absolute;inset:0;transform-origin:50% 100%;transform-style:preserve-3d;transform:rotateX(calc(9deg - (1 - var(--p,1)) * 95deg));transition:transform .4s cubic-bezier(.2,.7,.2,1);z-index:1}
+.lt-front,.lt-back{position:absolute;inset:0;border-radius:2.2cqw 2.2cqw 1.2cqw 1.2cqw;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.lt-front{background:linear-gradient(180deg,#0b0b0d,#050506 30%);padding:1.05cqw .95cqw 1.9cqw;box-shadow:0 0 0 .14cqw #b4b8be,0 0 0 .28cqw #6b6f75,inset 0 0 0 .12cqw #18191b}
+.lt-front::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(116deg,rgba(255,255,255,.11) 0%,rgba(255,255,255,.035) 31%,transparent 32%,transparent 74%,rgba(255,255,255,.03) 100%)}
+.lt-notch{position:absolute;top:1.05cqw;left:50%;width:10.5%;height:1.45cqw;margin-left:-5.25%;background:#050506;border-radius:0 0 .7cqw .7cqw;z-index:3}
+.lt-notch::after{content:'';position:absolute;left:50%;top:32%;width:.52cqw;height:.52cqw;margin-left:-.26cqw;border-radius:50%;background:radial-gradient(circle at 35% 35%,#3a4d63,#0a0d12 60%)}
+.lt-back{transform:rotateY(180deg);background:linear-gradient(162deg,#dfe2e6 0%,#c3c7cc 40%,#a6abb1 100%);box-shadow:inset 0 0 0 .16cqw rgba(255,255,255,.55),inset 0 -.4cqw .8cqw rgba(0,0,0,.12)}
+.lt-logo{position:absolute;left:50%;top:50%;width:6.4cqw;height:6.4cqw;transform:translate(-50%,-56%);fill:#d6d9dd;filter:drop-shadow(0 0 .25cqw rgba(255,255,255,.7))}
+.lt-scr{position:relative;height:100%;border-radius:.95cqw .95cqw .25cqw .25cqw;overflow:hidden;background:#1d1d1f;display:flex;flex-direction:column}
+.mb{flex:0 0 auto;height:1.45cqw;display:flex;align-items:center;justify-content:space-between;padding:0 1.05cqw 0 1.25cqw;background:#1c1c1e;font:500 .7cqw/1 -apple-system,BlinkMacSystemFont,var(--sans);color:#ececf0;white-space:nowrap;overflow:hidden}
+.mb-l,.mb-r{display:flex;align-items:center;gap:1.05cqw}
+.mb-l i{font-style:normal;opacity:.88}
+.mb-l b{font-weight:700}
+.mb svg{height:.78cqw;width:auto;fill:#ececf0;color:#ececf0}
+.mb-r{gap:.75cqw}
+.br{flex:0 0 auto;height:2.45cqw;display:flex;align-items:center;gap:.9cqw;padding:0 1.1cqw;background:linear-gradient(#f2f2f4,#e6e6e9);border-bottom:1px solid #d0d0d4}
+.br-tl{display:flex;gap:.45cqw}
+.br-tl i{width:.74cqw;height:.74cqw;border-radius:50%;background:#ff5f57;box-shadow:inset 0 0 0 .05cqw rgba(0,0,0,.14)}
+.br-tl i:nth-child(2){background:#febc2e}
+.br-tl i:nth-child(3){background:#28c840}
+.br-nav{font:300 1.5cqw/1 -apple-system,BlinkMacSystemFont,var(--sans);color:#8e8e93;letter-spacing:.55cqw;margin-top:-.2cqw}
+.br-url{display:flex;align-items:center;justify-content:center;gap:.45cqw;margin:0 auto;min-width:40%;height:1.6cqw;padding:0 1.3cqw;border-radius:.55cqw;background:#e0e0e4;font:500 .95cqw/1 -apple-system,BlinkMacSystemFont,var(--sans);color:#3a3a3c;white-space:nowrap}
+.br-url svg{width:.62cqw;height:.75cqw;fill:#6e6e73}
+.br-tabs{display:flex;gap:.7cqw}
+.br-tabs i{width:.95cqw;height:.95cqw;border:.13cqw solid #8e8e93;border-radius:.2cqw;opacity:.8}
+.br-tabs i+i{border-radius:50%}
+.pg{position:relative;flex:1 1 auto;min-height:0;overflow:hidden;container-type:size;background:#fff}
+.pg img{width:100%;height:auto;will-change:transform}
+.lt-shadow{position:absolute;left:-9%;width:118%;top:100%;height:118%;transform-origin:50% 0;transform:rotateX(90deg) translateZ(-2.6cqw);background:radial-gradient(closest-side,rgba(0,0,0,.7),rgba(0,0,0,.35) 60%,transparent);filter:blur(1.8cqw)}
+.lt-base{position:absolute;left:0;width:100%;top:100%;height:100%;transform-origin:50% 0;transform:rotateX(90deg);transform-style:preserve-3d;border-radius:.7cqw .7cqw 2.6cqw 2.6cqw;
+  background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.16) 3.5%,rgba(0,0,0,0) 9%),linear-gradient(90deg,rgba(0,0,0,.07),transparent 14%,transparent 86%,rgba(0,0,0,.07)),linear-gradient(180deg,#b8bcc2 0%,#d6d9dd 32%,#ced2d6 70%,#c2c6cb 100%);
+  box-shadow:inset 0 0 0 .1cqw rgba(0,0,0,.14),inset 0 -.18cqw 0 rgba(255,255,255,.7)}
+.lt-hinge{position:absolute;left:11%;right:11%;top:0;height:2.6%;border-radius:0 0 .5cqw .5cqw;background:linear-gradient(180deg,#1d1e21,#3c3f44 70%,#55595f)}
+.lt-spk{position:absolute;top:6.5%;height:44%;width:5.2%;border-radius:.4cqw;background-image:radial-gradient(circle,rgba(20,22,25,.55) 30%,transparent 37%);background-size:.6cqw .6cqw}
+.lt-spk.l{left:3.3%}
+.lt-spk.r{right:3.3%}
+.lt-kb{position:absolute;left:10.2%;width:79.6%;top:6.5%;height:44%;padding:.35cqw;border-radius:.75cqw;background:#09090a;box-shadow:0 0 0 .1cqw rgba(0,0,0,.35),0 .1cqw 0 .06cqw rgba(255,255,255,.5);overflow:visible}
+.lt-tp{position:absolute;left:29.2%;width:41.6%;top:56.5%;height:36%;border-radius:1.2cqw;background:linear-gradient(180deg,#c6cacf,#d3d6da 60%,#cfd2d6);box-shadow:inset 0 0 0 .1cqw rgba(0,0,0,.16),inset 0 .14cqw .25cqw rgba(0,0,0,.07),0 .08cqw 0 rgba(255,255,255,.6)}
+.lt-lip{position:absolute;left:.8%;right:.8%;top:100%;height:2.6cqw;transform-origin:50% 0;transform:rotateX(-90deg);border-radius:0 0 2cqw 2cqw;
+  background:radial-gradient(ellipse 7% 60% at 50% 0,rgba(0,0,0,.42),transparent),linear-gradient(180deg,#f1f2f4 0%,#c1c5ca 30%,#8f949a 72%,#5f6368 100%)}
+
+/* phone: titanium frame, Dynamic Island, side buttons */
+.ph{position:absolute;right:3%;bottom:4%;width:19%;aspect-ratio:9/19.5;border-radius:3.7cqw;padding:.72cqw;
+  background:linear-gradient(145deg,#565b63 0%,#1d1f23 28%,#33373d 62%,#141518 100%);
+  box-shadow:inset 0 0 0 .15cqw #7a8089,inset 0 0 0 .4cqw #0b0c0e,0 2.6cqw 4.4cqw rgba(0,0,0,.6),0 .5cqw 1.1cqw rgba(0,0,0,.4);
+  transform:translate3d(calc((1 - var(--p,1)) * 24cqw),calc((1 - var(--p,1)) * 5cqw),30cqw) rotateY(calc((1 - var(--p,1)) * -40deg));
+  transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.ph::before,.ph::after{content:'';position:absolute;width:.3cqw;border-radius:.3cqw;background:#454a51}
+.ph::before{left:-.22cqw;top:17%;height:6%;box-shadow:0 2.4cqw 0 #454a51,0 4.8cqw 0 #454a51}
+.ph::after{right:-.22cqw;top:27%;height:11%}
+.ph-scr{position:relative;height:100%;border-radius:3cqw;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.ph-scr::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(120deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,0) 34%)}
+.ph-island{position:absolute;top:1cqw;left:50%;width:28%;height:2cqw;margin-left:-14%;border-radius:1.2cqw;background:#000;z-index:3}
+.ph-sb{flex:0 0 6.7%;display:flex;align-items:center;justify-content:space-between;padding:0 7.5% 0 10%;font:600 1.1cqw/1 -apple-system,BlinkMacSystemFont,var(--sans);color:#0b0b0c;background:#fff;z-index:2}
+.ph-sbi{display:flex;align-items:center;gap:.35cqw}
+.ph-sbi svg{height:.95cqw;width:auto;fill:currentColor}
+.ph-slides{position:relative;flex:1 1 auto}
+.ph-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0}
+.ph-slides img:first-child{opacity:1}
+.sf{flex:0 0 8.4%;display:flex;align-items:center;justify-content:center;background:rgba(247,247,249,.97);border-top:1px solid rgba(0,0,0,.07);z-index:2}
+.sf-url{display:flex;align-items:center;gap:.4cqw;max-width:84%;padding:.55cqw 1.5cqw;border-radius:1.3cqw;background:#e8e8ed;font:500 .98cqw/1 -apple-system,BlinkMacSystemFont,var(--sans);color:#222;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sf-url svg{width:.8cqw;height:.9cqw;fill:#666;flex:none}
+
+/* Apple Watch Ultra: titanium case, orange Action button, crown guard, Alpine band */
+.wt{position:absolute;left:1%;bottom:2%;width:11.5%;aspect-ratio:.84;
+  transform:translate3d(calc((1 - var(--p,1)) * -18cqw),calc((1 - var(--p,1)) * 9cqw),34cqw) rotateZ(calc(-7deg - (1 - var(--p,1)) * 12deg));
+  transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.wt-band{position:absolute;left:15%;right:15%;height:40%;background:repeating-linear-gradient(180deg,#ea580c 0 1.1cqw,#c2410c 1.1cqw 1.5cqw)}
+.wt-band.t{bottom:84%;border-radius:1.4cqw 1.4cqw .3cqw .3cqw}
+.wt-band.b{top:84%;border-radius:.3cqw .3cqw 1.4cqw 1.4cqw}
+.wt-case{position:absolute;inset:0;border-radius:2.9cqw;padding:1cqw;background:linear-gradient(145deg,#e2dfd8,#aca89f 42%,#d4d0c7 72%,#8d8981);box-shadow:inset 0 0 0 .18cqw rgba(255,255,255,.55),inset 0 0 0 .5cqw rgba(0,0,0,.12),0 1.6cqw 3cqw rgba(0,0,0,.6)}
+.wt-crown{position:absolute;right:-1cqw;top:28%;width:1.2cqw;height:24%;border-radius:.5cqw;background:linear-gradient(90deg,#8d8981,#e2dfd8 55%,#8d8981)}
+.wt-btn{position:absolute;left:-.6cqw;top:30%;width:.7cqw;height:26%;border-radius:.35cqw;background:#ea580c}
+.wt-scr{position:relative;height:100%;border-radius:2cqw;overflow:hidden;background:#000;box-shadow:inset 0 0 0 .3cqw #000}
+.wt-scr img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.wt-scr img+img{opacity:0}
+
+/* FixNTread: its real App Store screenshots, fanned */
+.case--fnt .lt{width:66%}
+.fan{position:absolute;right:0;bottom:2%;width:42%;height:80%;transform-style:preserve-3d}
+.fan-c{position:absolute;bottom:0;width:46%;height:auto;border-radius:2.4cqw;box-shadow:0 2.2cqw 4cqw rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.06);transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.fan-c.c1{left:2%;transform:translate3d(calc((1 - var(--p,1)) * 14cqw),.6cqw,30cqw) rotateY(calc(var(--p,1) * 18deg)) rotateZ(calc(var(--p,1) * -8deg))}
+.fan-c.c2{left:27%;transform:translate3d(0,calc(-3cqw + (1 - var(--p,1)) * 6cqw),36cqw)}
+.fan-c.c3{left:52%;transform:translate3d(calc((1 - var(--p,1)) * -14cqw),.6cqw,30cqw) rotateY(calc(var(--p,1) * -18deg)) rotateZ(calc(var(--p,1) * 8deg))}
+
+/* motion, only while the case is on screen */
+.case.live .pg img{animation:pgScroll 20s cubic-bezier(.45,0,.55,1) 1.2s infinite}
+.case.live .ph .pg img{animation-duration:16s;animation-delay:3s}
+.case.live .ph-slides img{animation:slideCycle 14s infinite both}
+.case.live .ph-slides img:nth-child(2){animation-delay:3.5s}
+.case.live .ph-slides img:nth-child(3){animation-delay:7s}
+.case.live .ph-slides img:nth-child(4){animation-delay:10.5s}
+.case.live .wt-scr img{animation:wtCycle 8s infinite both}
+.case.live .wt-scr img+img{animation-delay:4s}
+.case.live .fan-c{animation:bob 6s ease-in-out infinite}
+.case.live .fan-c.c2{animation-delay:-2s}
+.case.live .fan-c.c3{animation-delay:-4s}
+@keyframes pgScroll{0%,10%{transform:translateY(0)}46%,58%{transform:translateY(calc(-100% + 100cqh))}94%,100%{transform:translateY(0)}}
+@keyframes slideCycle{0%{opacity:0;transform:scale(1.04)}4%,25%{opacity:1;transform:none}29%,100%{opacity:0}}
+@keyframes wtCycle{0%{opacity:0}6%,50%{opacity:1}56%,100%{opacity:0}}
+@keyframes bob{50%{translate:0 -1.4cqw}}
+
+/* ── the text column ── */
+.case-head{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.case-ic{width:56px;height:56px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.08);flex:none}
+.case-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ng);margin-bottom:4px}
+.case-t{font-family:'Space Grotesk',var(--sans);font-size:clamp(28px,3.4vw,42px);font-weight:700;letter-spacing:-.03em;line-height:1.05}
+.case-plat{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.case-plat li{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;color:var(--nc);background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.22)}
+.case-lede{color:var(--t2);font-size:clamp(14px,1.4vw,16px);line-height:1.75;margin-bottom:22px;max-width:56ch}
+.case-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:20px}
+.case-facts:has(> div:nth-child(3):last-child){grid-template-columns:repeat(3,minmax(0,1fr))}
+.case-facts div{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:4px;padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.025);border:1px solid var(--border)}
+.case-facts dd{font-family:var(--mono);font-size:clamp(22px,2.4vw,30px);font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--t1)}
+.case-facts dt{font-size:12px;color:var(--t2);line-height:1.4}
+.case-hl{display:grid;gap:8px;margin-bottom:20px}
+.case-hl li{position:relative;padding-left:22px;font-size:14px;line-height:1.55;color:var(--t1)}
+.case-hl li::before{content:'›';position:absolute;left:4px;top:-1px;font-family:var(--mono);font-weight:700;color:var(--ng)}
+.case-stack{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:24px}
+.case-stack-k{width:100%;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);margin-bottom:2px}
+.case-links{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.case-links .btn-p{display:inline-flex;align-items:center;gap:6px}
+.store{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.03);font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--t1);transition:border-color .2s,color .2s,transform .2s}
+.store svg{width:16px;height:16px;fill:currentColor;flex:none}
+.store:hover{border-color:var(--nc);color:var(--nc);transform:translateY(-2px)}
+
+@media(max-width:1100px){
+  .impact{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .case,.case:nth-child(even){grid-template-columns:minmax(0,1fr)}
+  .case:nth-child(even) .case-stage{order:0}
+  .case-stage{max-width:760px;width:100%;margin:0 auto}
+}
+@media(max-width:560px){
+  .impact{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .case-links .btn-p,.store{flex:1 1 100%;justify-content:center}
+}
+@container (max-width:480px){
+  .ph{width:23%}
+  .wt{width:14%}
+  .fan{right:5%;width:38%}
+}
+
+/* =====================================================
+   HERO 3D — a grid floor running toward the viewer, and a
+   foreground that leans with the pointer (--hx/--hy from JS)
+===================================================== */
+.hero-floor{position:absolute;left:-40%;right:-40%;bottom:0;height:42%;perspective:420px;perspective-origin:50% 0;pointer-events:none;overflow:hidden;opacity:.8;
+  -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.5) 45%,transparent 78%);mask-image:linear-gradient(to top,rgba(0,0,0,.95) 0%,rgba(0,0,0,.5) 45%,transparent 78%)}
+.hero-floor::before{content:'';position:absolute;left:0;right:0;top:0;height:260%;transform-origin:50% 0;transform:rotateX(74deg);
+  background-image:linear-gradient(rgba(0,255,136,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.3) 1px,transparent 1px);background-size:40px 40px;animation:floorRun 1.2s linear infinite}
+@keyframes floorRun{to{background-position:0 40px}}
+.hero-inner{transform:perspective(1200px) rotateX(calc(var(--hy,0) * -4deg)) rotateY(calc(var(--hx,0) * 6deg));transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.hero-pill{translate:0 0 30px}
+.hero-name{translate:0 0 80px;filter:drop-shadow(0 1px 0 #11281e) drop-shadow(0 2px 0 #0e2219) drop-shadow(0 3px 0 #0b1c15) drop-shadow(0 4px 0 #091711) drop-shadow(0 16px 24px rgba(0,255,136,.16))}
+.hero-btns{translate:0 0 50px}
+@media(max-width:768px){.hero-floor{height:34%;opacity:.6}}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-floor::before,.case .pg img,.ph-slides img,.wt-scr img,.fan-c{animation:none!important}
+  .hero-inner,.sc,.lt-lid,.ph,.wt,.fan-c{transition:none!important}
+}
 
 /* =====================================================
    GLOW BLOBS
@@ -1027,10 +1049,9 @@ body.ck-open{overflow:hidden}
   <a href="#hero" class="nav-logo">chike<em>.oguh</em></a>
   <ul class="nav-links">
     <li><a href="#about" data-i18n="nav.about">About</a></li>
+    <li><a href="#work" data-i18n="nav.work">Projects</a></li>
     <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
-    <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
-    <li><a href="#work" data-i18n="nav.work">Work</a></li>
-    <li><a href="#apps" data-i18n="nav.apps">Apps</a></li>
+    <li><a href="#projects" data-i18n="nav.projects">Labs</a></li>
     <li><a href="#education" data-i18n="nav.education">Education</a></li>
     <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
@@ -1046,10 +1067,9 @@ body.ck-open{overflow:hidden}
 <!-- MOBILE MENU -->
 <div id="mmenu">
   <a href="#about"     onclick="closeMM()" data-i18n="nav.about">About</a>
+  <a href="#work"      onclick="closeMM()" data-i18n="nav.work">Projects</a>
   <a href="#skills"    onclick="closeMM()" data-i18n="nav.skills">Skills</a>
-  <a href="#projects"  onclick="closeMM()" data-i18n="nav.projects">Projects</a>
-  <a href="#work"      onclick="closeMM()" data-i18n="nav.work">Work</a>
-  <a href="#apps"      onclick="closeMM()" data-i18n="nav.apps">Apps</a>
+  <a href="#projects"  onclick="closeMM()" data-i18n="nav.projects">Labs</a>
   <a href="#education" onclick="closeMM()" data-i18n="nav.education">Education</a>
   <a href="#contact"   onclick="closeMM()" data-i18n="nav.contact">Contact</a>
 </div>
@@ -1061,6 +1081,7 @@ body.ck-open{overflow:hidden}
   <canvas id="hero-canvas"></canvas>
   <div class="hero-grid"></div>
   <div class="hero-radial"></div>
+  <div class="hero-floor" aria-hidden="true"></div>
   <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
 
   <div class="hero-inner">
@@ -1218,6 +1239,262 @@ body.ck-open{overflow:hidden}
     </div>
   </div>
 </section>
+
+<!-- =========================================
+     WORK — shipped products: iOS and Android apps, web apps, web stores.
+     Every screen is a real capture of the live site or app (public/projects/, public/apps/).
+     The device scenes are decorative (aria-hidden); the text column carries the meaning.
+========================================= -->
+<section id="work" aria-labelledby="work-title" style="position:relative;overflow:hidden">
+  <div class="blob blob-g" style="top:4%;left:-260px;opacity:.06"></div>
+  <div class="blob blob-c" style="bottom:8%;right:-260px;opacity:.05"></div>
+  <div class="wrap">
+    <div class="s-label rv" data-i18n="work.label">Projects</div>
+    <h2 class="s-title rv" id="work-title" data-i18n="work.title">Products I've built &amp; shipped</h2>
+    <p class="s-sub rv" data-i18n="work.sub">Native iOS and Android apps, web apps and online stores, live with real customers in Nigeria and Canada. Designed, built, shipped and supported end to end.</p>
+
+    <ul class="impact rv">
+      <li class="im-cell"><span class="im-v" data-counter="4">4</span><span class="im-k" data-i18n="im.products">Live products</span><span class="im-d" data-i18n="im.products.d">Nigeria · Canada</span></li>
+      <li class="im-cell"><span class="im-v" data-counter="3">3</span><span class="im-k" data-i18n="im.apps">Native apps</span><span class="im-d">iOS · Android · watchOS</span></li>
+      <li class="im-cell"><span class="im-v" data-counter="1" data-suffix="M+">1M+</span><span class="im-k" data-i18n="im.loc">Lines of TypeScript</span><span class="im-d">Buk.ng + FixNTread</span></li>
+      <li class="im-cell"><span class="im-v" data-counter="1200" data-suffix="+">1,200+</span><span class="im-k" data-i18n="im.api">API routes</span><span class="im-d" data-i18n="im.api.d">Next.js back ends</span></li>
+      <li class="im-cell"><span class="im-v" data-counter="1400" data-suffix="+">1,400+</span><span class="im-k" data-i18n="im.tests">Test suites</span><span class="im-d">Jest · Vitest · Playwright</span></li>
+      <li class="im-cell"><span class="im-v" data-counter="230" data-suffix="+">230+</span><span class="im-k" data-i18n="im.screens">App screens</span><span class="im-d">React Native · Expo</span></li>
+    </ul>
+
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="mbk-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2d31"/><stop offset=".55" stop-color="#1c1d20"/><stop offset="1" stop-color="#141517"/></linearGradient></defs><symbol id="mbk" viewBox="0 0 1500 588"><g fill="url(#mbk-g)" stroke="rgba(255,255,255,.07)" stroke-width="2"><rect x="0.0" y="0.0" width="150.1" height="88.0" rx="9"/><rect x="160.1" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="264.0" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="367.8" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="471.6" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="575.5" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="679.3" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="783.2" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="887.0" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="990.8" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="1094.7" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="1198.5" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="1302.3" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="1406.2" y="0.0" width="93.8" height="88.0" rx="9"/><rect x="0.0" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="103.8" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="207.7" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="311.5" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="415.3" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="519.2" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="623.0" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="726.8" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="830.7" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="934.5" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="1038.4" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="1142.2" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="1246.0" y="100.0" width="93.8" height="88.0" rx="9"/><rect x="1349.9" y="100.0" width="150.1" height="88.0" rx="9"/><rect x="0.0" y="200.0" width="150.1" height="88.0" rx="9"/><rect x="160.1" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="264.0" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="367.8" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="471.6" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="575.5" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="679.3" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="783.2" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="887.0" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="990.8" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="1094.7" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="1198.5" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="1302.3" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="1406.2" y="200.0" width="93.8" height="88.0" rx="9"/><rect x="0.0" y="300.0" width="177.2" height="88.0" rx="9"/><rect x="187.2" y="300.0" width="93.2" height="88.0" rx="9"/><rect x="290.4" y="300.0" width="93.2" height="88.0" rx="9"/><rect x="393.6" y="300.0" width="93.2" height="88.0" rx="9"/><rect x="496.9" y="300.0" width="93.2" height="88.0" rx="9"/><rect x="600.1" y="300.0" width="93.2" height="88.0" rx="9"/><rect x="703.4" y="300.0" width="93.2" height="88.0" rx="9"/><rect x="806.6" y="300.0" width="93.2" height="88.0" rx="9"/><rect x="909.9" y="300.0" width="93.2" height="88.0" rx="9"/><rect x="1013.1" y="300.0" width="93.2" height="88.0" rx="9"/><rect x="1116.4" y="300.0" width="93.2" height="88.0" rx="9"/><rect x="1219.6" y="300.0" width="93.2" height="88.0" rx="9"/><rect x="1322.8" y="300.0" width="177.2" height="88.0" rx="9"/><rect x="0.0" y="400.0" width="228.6" height="88.0" rx="9"/><rect x="238.6" y="400.0" width="93.3" height="88.0" rx="9"/><rect x="341.8" y="400.0" width="93.3" height="88.0" rx="9"/><rect x="445.1" y="400.0" width="93.3" height="88.0" rx="9"/><rect x="548.4" y="400.0" width="93.3" height="88.0" rx="9"/><rect x="651.7" y="400.0" width="93.3" height="88.0" rx="9"/><rect x="755.0" y="400.0" width="93.3" height="88.0" rx="9"/><rect x="858.3" y="400.0" width="93.3" height="88.0" rx="9"/><rect x="961.6" y="400.0" width="93.3" height="88.0" rx="9"/><rect x="1064.9" y="400.0" width="93.3" height="88.0" rx="9"/><rect x="1168.2" y="400.0" width="93.3" height="88.0" rx="9"/><rect x="1271.4" y="400.0" width="228.6" height="88.0" rx="9"/><rect x="0.0" y="500.0" width="96.6" height="88.0" rx="9"/><rect x="106.6" y="500.0" width="96.6" height="88.0" rx="9"/><rect x="213.2" y="500.0" width="96.6" height="88.0" rx="9"/><rect x="319.9" y="500.0" width="125.6" height="88.0" rx="9"/><rect x="455.5" y="500.0" width="502.4" height="88.0" rx="9"/><rect x="967.9" y="500.0" width="125.6" height="88.0" rx="9"/><rect x="1103.5" y="500.0" width="96.6" height="88.0" rx="9"/><rect x="1210.1" y="546.0" width="90.0" height="42.0" rx="9"/><rect x="1310.1" y="500.0" width="90.0" height="42.0" rx="9"/><rect x="1310.1" y="546.0" width="90.0" height="42.0" rx="9"/><rect x="1410.0" y="546.0" width="90.0" height="42.0" rx="9"/></g></symbol></svg>
+    <div class="cases">
+
+      <!-- ───────────── BUK.NG ───────────── -->
+      <article class="case case--buk" id="p-buk" style="--brand:#ff5a1f" aria-labelledby="p-buk-t">
+        <div class="case-stage" aria-hidden="true">
+          <div class="sc">
+            <i class="sc-glow"></i>
+            <div class="lt">
+              <div class="lt-lid">
+                <div class="lt-front">
+                  <div class="lt-scr">
+                    <div class="mb"><span class="mb-l"><svg viewBox="0 0 24 24"><path d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.99 3.94-.99 1.83 0 2.35.99 3.96.95 1.64-.03 2.68-1.48 3.68-2.95 1.16-1.69 1.64-3.33 1.66-3.42-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.09-3.62-2.32-4.39-2.38-2-.16-3.68 1.09-4.62 1.09zm3.38-3.07c.84-1.01 1.4-2.43 1.25-3.83-1.21.05-2.66.81-3.53 1.82-.78.9-1.45 2.34-1.27 3.71 1.34.1 2.71-.69 3.55-1.7"/></svg><b>Safari</b><i>File</i><i>Edit</i><i>View</i><i>History</i><i>Bookmarks</i><i>Window</i></span><span class="mb-r"><svg viewBox="0 0 15 11"><path d="M7.5 2.2c2.1 0 4 .8 5.4 2.2l1-1A9.3 9.3 0 0 0 7.5.8 9.3 9.3 0 0 0 1.1 3.4l1 1a7.9 7.9 0 0 1 5.4-2.2zm0 3.4c1.2 0 2.3.5 3.1 1.2l1-1a6.3 6.3 0 0 0-8.2 0l1 1c.8-.7 1.9-1.2 3.1-1.2zm0 3.2L9.3 7a2.6 2.6 0 0 0-3.6 0z"/></svg><svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="15" height="8" rx="2"/><path d="M23 4v4c.8-.3 1.4-1 1.4-2S23.8 4.3 23 4z" opacity=".5"/></svg><span>Mon 9:41</span></span></div>
+                    <div class="br"><span class="br-tl"><i></i><i></i><i></i></span><span class="br-nav">‹&#8202;›</span><span class="br-url"><svg viewBox="0 0 10 12"><path d="M2 5V3.5a3 3 0 0 1 6 0V5h.5A1.5 1.5 0 0 1 10 6.5v4A1.5 1.5 0 0 1 8.5 12h-7A1.5 1.5 0 0 1 0 10.5v-4A1.5 1.5 0 0 1 1.5 5H2zm1.5 0h3V3.5a1.5 1.5 0 0 0-3 0V5z"/></svg>buk.ng</span><span class="br-tabs"><i></i><i></i></span></div>
+                    <div class="pg"><img src="/projects/buk-web.webp" width="1200" height="3000" alt="" loading="lazy" decoding="async"></div>
+                  </div>
+                  <i class="lt-notch"></i>
+                </div>
+                <div class="lt-back"><svg class="lt-logo" viewBox="0 0 24 24"><path d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.99 3.94-.99 1.83 0 2.35.99 3.96.95 1.64-.03 2.68-1.48 3.68-2.95 1.16-1.69 1.64-3.33 1.66-3.42-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.09-3.62-2.32-4.39-2.38-2-.16-3.68 1.09-4.62 1.09zm3.38-3.07c.84-1.01 1.4-2.43 1.25-3.83-1.21.05-2.66.81-3.53 1.82-.78.9-1.45 2.34-1.27 3.71 1.34.1 2.71-.69 3.55-1.7"/></svg></div>
+              </div>
+              <i class="lt-shadow"></i>
+              <div class="lt-base"><i class="lt-hinge"></i><i class="lt-spk l"></i><i class="lt-spk r"></i><svg class="lt-kb" viewBox="0 0 1500 588" preserveAspectRatio="none"><use href="#mbk"/></svg><i class="lt-tp"></i><i class="lt-lip"></i></div>
+            </div>
+            <div class="ph">
+              <div class="ph-scr">
+                <div class="ph-sb"><span>9:41</span><span class="ph-sbi"><svg viewBox="0 0 17 11"><rect y="7" width="3" height="4" rx=".8"/><rect x="4.7" y="5" width="3" height="6" rx=".8"/><rect x="9.4" y="2.5" width="3" height="8.5" rx=".8"/><rect x="14" width="3" height="11" rx=".8"/></svg><svg viewBox="0 0 15 11"><path d="M7.5 2.2c2.1 0 4 .8 5.4 2.2l1-1A9.3 9.3 0 0 0 7.5.8 9.3 9.3 0 0 0 1.1 3.4l1 1a7.9 7.9 0 0 1 5.4-2.2zm0 3.4c1.2 0 2.3.5 3.1 1.2l1-1a6.3 6.3 0 0 0-8.2 0l1 1c.8-.7 1.9-1.2 3.1-1.2zm0 3.2L9.3 7a2.6 2.6 0 0 0-3.6 0z"/></svg><svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2"/><path d="M23 4v4c.8-.3 1.4-1 1.4-2S23.8 4.3 23 4z" opacity=".5"/></svg></span></div>
+                <div class="ph-slides">
+                  <img src="/apps/buk-bookings.webp" width="640" height="1294" alt="" loading="lazy" decoding="async">
+                  <img src="/apps/buk-calendar.webp" width="640" height="1294" alt="" loading="lazy" decoding="async">
+                  <img src="/apps/buk-revenue.webp" width="640" height="1294" alt="" loading="lazy" decoding="async">
+                  <img src="/apps/buk-payments.webp" width="640" height="1294" alt="" loading="lazy" decoding="async">
+                </div>
+                <i class="ph-island"></i>
+              </div>
+            </div>
+            <div class="wt"><i class="wt-band t"></i><i class="wt-band b"></i>
+              <div class="wt-case"><i class="wt-crown"></i><i class="wt-btn"></i>
+                <div class="wt-scr"><img src="/projects/buk-watch-1.webp" width="422" height="514" alt="" loading="lazy" decoding="async"><img src="/projects/buk-watch-2.webp" width="422" height="514" alt="" loading="lazy" decoding="async"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="case-info">
+          <div class="case-head">
+            <img class="case-ic" src="/projects/icon-buk.webp" width="56" height="56" alt="" loading="lazy">
+            <div><p class="case-kicker" data-i18n="p.buk.k">Booking &amp; payments platform · Nigeria</p><h3 class="case-t" id="p-buk-t">Buk.ng</h3></div>
+          </div>
+          <ul class="case-plat"><li>iOS</li><li>Android</li><li>watchOS</li><li data-i18n="plat.web">Web app</li></ul>
+          <p class="case-lede" data-i18n="p.buk.d">Appointment booking for Nigerian service businesses: online bookings, naira deposits, 24-hour reminders and payments in one place, with 0% commission. Owners run the day from the Buk for Business app, down to an Apple Watch.</p>
+          <dl class="case-facts">
+            <div><dt data-i18n="p.buk.f1">businesses listed on Buk Explore</dt><dd data-counter="1096">1,096</dd></div>
+            <div><dt data-i18n="p.buk.f2">API routes</dt><dd data-counter="1191">1,191</dd></div>
+            <div><dt data-i18n="p.buk.f3">database models</dt><dd data-counter="346">346</dd></div>
+            <div><dt data-i18n="p.buk.f4">screens across 2 apps</dt><dd data-counter="151">151</dd></div>
+          </dl>
+          <ul class="case-hl">
+            <li data-i18n="p.buk.h1">Apple Watch app, home-screen widgets and Siri shortcuts, written in Swift</li>
+            <li data-i18n="p.buk.h2">Customer app in English and Nigerian Pidgin</li>
+            <li data-i18n="p.buk.h3">9 staff roles, a multi-branch command centre and naira-first payments</li>
+          </ul>
+          <div class="case-stack"><span class="case-stack-k" data-i18n="case.stack">Languages &amp; stack</span><span class="et">TypeScript</span><span class="et">Swift</span><span class="et">SQL</span><span class="et">Next.js 16</span><span class="et">React 19</span><span class="et">React Native</span><span class="et">Expo</span><span class="et">Prisma</span><span class="et">PostgreSQL</span><span class="et">Turborepo</span><span class="et">Tailwind CSS</span><span class="et">Firebase</span></div>
+          <div class="case-links">
+            <a class="btn-p" href="https://buk.ng" target="_blank" rel="noopener"><span data-i18n="case.visit">Visit</span> buk.ng ↗</a>
+            <a class="store" href="https://apps.apple.com/app/buk-for-business/id6797554663" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.99 3.94-.99 1.83 0 2.35.99 3.96.95 1.64-.03 2.68-1.48 3.68-2.95 1.16-1.69 1.64-3.33 1.66-3.42-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.09-3.62-2.32-4.39-2.38-2-.16-3.68 1.09-4.62 1.09zm3.38-3.07c.84-1.01 1.4-2.43 1.25-3.83-1.21.05-2.66.81-3.53 1.82-.78.9-1.45 2.34-1.27 3.71 1.34.1 2.71-.69 3.55-1.7"/></svg> App Store</a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=ng.buk.business" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8 13.8 12 3.6 22.2c-.4-.2-.6-.6-.6-1.1V2.9c0-.5.2-.9.6-1.1zm11.3 11.3 2.7 2.7-12.5 7.1 9.8-9.8zm0-2.2L5.1 1.1l12.5 7.1-2.7 2.7zm3.9-2.1 3 1.7c.8.5.8 1.6 0 2.1l-3 1.7L15.9 12l2.9-2.9z"/></svg> Google Play</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ───────────── FIXNTREAD ───────────── -->
+      <article class="case case--fnt" id="p-fnt" style="--brand:#7c3aed" aria-labelledby="p-fnt-t">
+        <div class="case-stage" aria-hidden="true">
+          <div class="sc">
+            <i class="sc-glow"></i>
+            <div class="lt">
+              <div class="lt-lid">
+                <div class="lt-front">
+                  <div class="lt-scr">
+                    <div class="mb"><span class="mb-l"><svg viewBox="0 0 24 24"><path d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.99 3.94-.99 1.83 0 2.35.99 3.96.95 1.64-.03 2.68-1.48 3.68-2.95 1.16-1.69 1.64-3.33 1.66-3.42-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.09-3.62-2.32-4.39-2.38-2-.16-3.68 1.09-4.62 1.09zm3.38-3.07c.84-1.01 1.4-2.43 1.25-3.83-1.21.05-2.66.81-3.53 1.82-.78.9-1.45 2.34-1.27 3.71 1.34.1 2.71-.69 3.55-1.7"/></svg><b>Safari</b><i>File</i><i>Edit</i><i>View</i><i>History</i><i>Bookmarks</i><i>Window</i></span><span class="mb-r"><svg viewBox="0 0 15 11"><path d="M7.5 2.2c2.1 0 4 .8 5.4 2.2l1-1A9.3 9.3 0 0 0 7.5.8 9.3 9.3 0 0 0 1.1 3.4l1 1a7.9 7.9 0 0 1 5.4-2.2zm0 3.4c1.2 0 2.3.5 3.1 1.2l1-1a6.3 6.3 0 0 0-8.2 0l1 1c.8-.7 1.9-1.2 3.1-1.2zm0 3.2L9.3 7a2.6 2.6 0 0 0-3.6 0z"/></svg><svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="15" height="8" rx="2"/><path d="M23 4v4c.8-.3 1.4-1 1.4-2S23.8 4.3 23 4z" opacity=".5"/></svg><span>Mon 9:41</span></span></div>
+                    <div class="br"><span class="br-tl"><i></i><i></i><i></i></span><span class="br-nav">‹&#8202;›</span><span class="br-url"><svg viewBox="0 0 10 12"><path d="M2 5V3.5a3 3 0 0 1 6 0V5h.5A1.5 1.5 0 0 1 10 6.5v4A1.5 1.5 0 0 1 8.5 12h-7A1.5 1.5 0 0 1 0 10.5v-4A1.5 1.5 0 0 1 1.5 5H2zm1.5 0h3V3.5a1.5 1.5 0 0 0-3 0V5z"/></svg>fixntread.com</span><span class="br-tabs"><i></i><i></i></span></div>
+                    <div class="pg"><img src="/projects/fnt-web.webp" width="1200" height="2590" alt="" loading="lazy" decoding="async"></div>
+                  </div>
+                  <i class="lt-notch"></i>
+                </div>
+                <div class="lt-back"><svg class="lt-logo" viewBox="0 0 24 24"><path d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.99 3.94-.99 1.83 0 2.35.99 3.96.95 1.64-.03 2.68-1.48 3.68-2.95 1.16-1.69 1.64-3.33 1.66-3.42-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.09-3.62-2.32-4.39-2.38-2-.16-3.68 1.09-4.62 1.09zm3.38-3.07c.84-1.01 1.4-2.43 1.25-3.83-1.21.05-2.66.81-3.53 1.82-.78.9-1.45 2.34-1.27 3.71 1.34.1 2.71-.69 3.55-1.7"/></svg></div>
+              </div>
+              <i class="lt-shadow"></i>
+              <div class="lt-base"><i class="lt-hinge"></i><i class="lt-spk l"></i><i class="lt-spk r"></i><svg class="lt-kb" viewBox="0 0 1500 588" preserveAspectRatio="none"><use href="#mbk"/></svg><i class="lt-tp"></i><i class="lt-lip"></i></div>
+            </div>
+            <div class="fan">
+              <img class="fan-c c1" src="/projects/fnt-01-customer-home.webp" width="520" height="1131" alt="" loading="lazy" decoding="async">
+              <img class="fan-c c3" src="/projects/fnt-05-tailor-today.webp" width="520" height="1131" alt="" loading="lazy" decoding="async">
+              <img class="fan-c c2" src="/projects/fnt-03-customer-order-timeline.webp" width="520" height="1131" alt="" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+        <div class="case-info">
+          <div class="case-head">
+            <img class="case-ic" src="/projects/icon-fnt.webp" width="56" height="56" alt="" loading="lazy">
+            <div><p class="case-kicker" data-i18n="p.fnt.k">Tailoring marketplace · Canada</p><h3 class="case-t" id="p-fnt-t">FixNTread</h3></div>
+          </div>
+          <ul class="case-plat"><li>iOS</li><li>Android</li><li data-i18n="plat.web">Web app</li></ul>
+          <p class="case-lede" data-i18n="p.fnt.d">Canada's marketplace for verified tailors in Ottawa–Gatineau. Customers get a price in under a minute, pay in the app and follow every stage of the job with photos; tailors run jobs, fittings and earnings from the same app.</p>
+          <dl class="case-facts">
+            <div><dt data-i18n="p.fnt.f1">customers reached</dt><dd data-counter="1500" data-suffix="+">1,500+</dd></div>
+            <div><dt data-i18n="p.fnt.f2">tailoring requests</dt><dd data-counter="400" data-suffix="+">400+</dd></div>
+            <div><dt data-i18n="p.fnt.f3">verified tailors</dt><dd data-counter="10" data-suffix="+">10+</dd></div>
+            <div><dt data-i18n="p.fnt.f4">app screens</dt><dd data-counter="82">82</dd></div>
+          </dl>
+          <ul class="case-hl">
+            <li data-i18n="p.fnt.h1">In-app card payments with Stripe and Face ID sign-in</li>
+            <li data-i18n="p.fnt.h2">Order timeline with progress photos, chat and voice notes</li>
+            <li data-i18n="p.fnt.h3">Fully bilingual in English and French, with one-tap translation</li>
+          </ul>
+          <div class="case-stack"><span class="case-stack-k" data-i18n="case.stack">Languages &amp; stack</span><span class="et">TypeScript</span><span class="et">SQL</span><span class="et">Next.js</span><span class="et">React</span><span class="et">React Native</span><span class="et">Expo</span><span class="et">Supabase</span><span class="et">PostgreSQL</span><span class="et">Stripe</span><span class="et">Sentry</span><span class="et">Playwright</span><span class="et">Vitest</span></div>
+          <div class="case-links">
+            <a class="btn-p" href="https://www.fixntread.com" target="_blank" rel="noopener"><span data-i18n="case.visit">Visit</span> fixntread.com ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ───────────── MYAFROMANIA ───────────── -->
+      <article class="case case--mfa" id="p-mfa" style="--brand:#c2410c" aria-labelledby="p-mfa-t">
+        <div class="case-stage" aria-hidden="true">
+          <div class="sc">
+            <i class="sc-glow"></i>
+            <div class="lt">
+              <div class="lt-lid">
+                <div class="lt-front">
+                  <div class="lt-scr">
+                    <div class="mb"><span class="mb-l"><svg viewBox="0 0 24 24"><path d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.99 3.94-.99 1.83 0 2.35.99 3.96.95 1.64-.03 2.68-1.48 3.68-2.95 1.16-1.69 1.64-3.33 1.66-3.42-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.09-3.62-2.32-4.39-2.38-2-.16-3.68 1.09-4.62 1.09zm3.38-3.07c.84-1.01 1.4-2.43 1.25-3.83-1.21.05-2.66.81-3.53 1.82-.78.9-1.45 2.34-1.27 3.71 1.34.1 2.71-.69 3.55-1.7"/></svg><b>Safari</b><i>File</i><i>Edit</i><i>View</i><i>History</i><i>Bookmarks</i><i>Window</i></span><span class="mb-r"><svg viewBox="0 0 15 11"><path d="M7.5 2.2c2.1 0 4 .8 5.4 2.2l1-1A9.3 9.3 0 0 0 7.5.8 9.3 9.3 0 0 0 1.1 3.4l1 1a7.9 7.9 0 0 1 5.4-2.2zm0 3.4c1.2 0 2.3.5 3.1 1.2l1-1a6.3 6.3 0 0 0-8.2 0l1 1c.8-.7 1.9-1.2 3.1-1.2zm0 3.2L9.3 7a2.6 2.6 0 0 0-3.6 0z"/></svg><svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="15" height="8" rx="2"/><path d="M23 4v4c.8-.3 1.4-1 1.4-2S23.8 4.3 23 4z" opacity=".5"/></svg><span>Mon 9:41</span></span></div>
+                    <div class="br"><span class="br-tl"><i></i><i></i><i></i></span><span class="br-nav">‹&#8202;›</span><span class="br-url"><svg viewBox="0 0 10 12"><path d="M2 5V3.5a3 3 0 0 1 6 0V5h.5A1.5 1.5 0 0 1 10 6.5v4A1.5 1.5 0 0 1 8.5 12h-7A1.5 1.5 0 0 1 0 10.5v-4A1.5 1.5 0 0 1 1.5 5H2zm1.5 0h3V3.5a1.5 1.5 0 0 0-3 0V5z"/></svg>myafromania.com</span><span class="br-tabs"><i></i><i></i></span></div>
+                    <div class="pg"><img src="/projects/mfa-web.webp" width="1200" height="3000" alt="" loading="lazy" decoding="async"></div>
+                  </div>
+                  <i class="lt-notch"></i>
+                </div>
+                <div class="lt-back"><svg class="lt-logo" viewBox="0 0 24 24"><path d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.99 3.94-.99 1.83 0 2.35.99 3.96.95 1.64-.03 2.68-1.48 3.68-2.95 1.16-1.69 1.64-3.33 1.66-3.42-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.09-3.62-2.32-4.39-2.38-2-.16-3.68 1.09-4.62 1.09zm3.38-3.07c.84-1.01 1.4-2.43 1.25-3.83-1.21.05-2.66.81-3.53 1.82-.78.9-1.45 2.34-1.27 3.71 1.34.1 2.71-.69 3.55-1.7"/></svg></div>
+              </div>
+              <i class="lt-shadow"></i>
+              <div class="lt-base"><i class="lt-hinge"></i><i class="lt-spk l"></i><i class="lt-spk r"></i><svg class="lt-kb" viewBox="0 0 1500 588" preserveAspectRatio="none"><use href="#mbk"/></svg><i class="lt-tp"></i><i class="lt-lip"></i></div>
+            </div>
+            <div class="ph">
+              <div class="ph-scr ph-web">
+                <div class="ph-sb"><span>9:41</span><span class="ph-sbi"><svg viewBox="0 0 17 11"><rect y="7" width="3" height="4" rx=".8"/><rect x="4.7" y="5" width="3" height="6" rx=".8"/><rect x="9.4" y="2.5" width="3" height="8.5" rx=".8"/><rect x="14" width="3" height="11" rx=".8"/></svg><svg viewBox="0 0 15 11"><path d="M7.5 2.2c2.1 0 4 .8 5.4 2.2l1-1A9.3 9.3 0 0 0 7.5.8 9.3 9.3 0 0 0 1.1 3.4l1 1a7.9 7.9 0 0 1 5.4-2.2zm0 3.4c1.2 0 2.3.5 3.1 1.2l1-1a6.3 6.3 0 0 0-8.2 0l1 1c.8-.7 1.9-1.2 3.1-1.2zm0 3.2L9.3 7a2.6 2.6 0 0 0-3.6 0z"/></svg><svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2"/><path d="M23 4v4c.8-.3 1.4-1 1.4-2S23.8 4.3 23 4z" opacity=".5"/></svg></span></div>
+                <div class="pg"><img src="/projects/mfa-mobile.webp" width="600" height="4000" alt="" loading="lazy" decoding="async"></div>
+                <div class="sf"><span class="sf-url"><svg viewBox="0 0 10 12" aria-hidden="true"><path d="M2 5V3.5a3 3 0 0 1 6 0V5h.5A1.5 1.5 0 0 1 10 6.5v4A1.5 1.5 0 0 1 8.5 12h-7A1.5 1.5 0 0 1 0 10.5v-4A1.5 1.5 0 0 1 1.5 5H2zm1.5 0h3V3.5a1.5 1.5 0 0 0-3 0V5z"/></svg> myafromania.com</span></div>
+                <i class="ph-island"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="case-info">
+          <div class="case-head">
+            <img class="case-ic" src="/projects/icon-mfa.webp" width="56" height="56" alt="" loading="lazy">
+            <div><p class="case-kicker" data-i18n="p.mfa.k">African fashion store · Ottawa</p><h3 class="case-t" id="p-mfa-t">MyAfromania</h3></div>
+          </div>
+          <ul class="case-plat"><li data-i18n="plat.web">Web app</li><li data-i18n="plat.store">Web store</li></ul>
+          <p class="case-lede" data-i18n="p.mfa.d">An online store for African fashion and handcrafted accessories from Ottawa, from bold prints and kimono jackets to dashikis and beads, run as a multi-vendor marketplace.</p>
+          <dl class="case-facts">
+            <div><dt data-i18n="p.mfa.f1">products</dt><dd data-counter="75">75</dd></div>
+            <div><dt data-i18n="p.mfa.f2">categories</dt><dd data-counter="36">36</dd></div>
+          </dl>
+          <ul class="case-hl">
+            <li data-i18n="p.mfa.h1">Multi-vendor marketplace with Dokan vendor stores</li>
+            <li data-i18n="p.mfa.h2">Wishlists, quick view and sale pricing across the catalogue</li>
+            <li data-i18n="p.mfa.h3">Updates, backups and fixes automated with WP-CLI over SSH</li>
+          </ul>
+          <div class="case-stack"><span class="case-stack-k" data-i18n="case.stack">Languages &amp; stack</span><span class="et">PHP 8.3</span><span class="et">SQL</span><span class="et">WordPress</span><span class="et">WooCommerce</span><span class="et">Dokan</span><span class="et">Elementor</span><span class="et">MySQL</span><span class="et">Cloudflare</span><span class="et">WP-CLI</span></div>
+          <div class="case-links">
+            <a class="btn-p" href="https://myafromania.com" target="_blank" rel="noopener"><span data-i18n="case.visit">Visit</span> myafromania.com ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ───────────── FAIR ESSENTIAL GLOW ───────────── -->
+      <article class="case case--feg" id="p-feg" style="--brand:#15803d" aria-labelledby="p-feg-t">
+        <div class="case-stage" aria-hidden="true">
+          <div class="sc">
+            <i class="sc-glow"></i>
+            <div class="lt">
+              <div class="lt-lid">
+                <div class="lt-front">
+                  <div class="lt-scr">
+                    <div class="mb"><span class="mb-l"><svg viewBox="0 0 24 24"><path d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.99 3.94-.99 1.83 0 2.35.99 3.96.95 1.64-.03 2.68-1.48 3.68-2.95 1.16-1.69 1.64-3.33 1.66-3.42-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.09-3.62-2.32-4.39-2.38-2-.16-3.68 1.09-4.62 1.09zm3.38-3.07c.84-1.01 1.4-2.43 1.25-3.83-1.21.05-2.66.81-3.53 1.82-.78.9-1.45 2.34-1.27 3.71 1.34.1 2.71-.69 3.55-1.7"/></svg><b>Safari</b><i>File</i><i>Edit</i><i>View</i><i>History</i><i>Bookmarks</i><i>Window</i></span><span class="mb-r"><svg viewBox="0 0 15 11"><path d="M7.5 2.2c2.1 0 4 .8 5.4 2.2l1-1A9.3 9.3 0 0 0 7.5.8 9.3 9.3 0 0 0 1.1 3.4l1 1a7.9 7.9 0 0 1 5.4-2.2zm0 3.4c1.2 0 2.3.5 3.1 1.2l1-1a6.3 6.3 0 0 0-8.2 0l1 1c.8-.7 1.9-1.2 3.1-1.2zm0 3.2L9.3 7a2.6 2.6 0 0 0-3.6 0z"/></svg><svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="15" height="8" rx="2"/><path d="M23 4v4c.8-.3 1.4-1 1.4-2S23.8 4.3 23 4z" opacity=".5"/></svg><span>Mon 9:41</span></span></div>
+                    <div class="br"><span class="br-tl"><i></i><i></i><i></i></span><span class="br-nav">‹&#8202;›</span><span class="br-url"><svg viewBox="0 0 10 12"><path d="M2 5V3.5a3 3 0 0 1 6 0V5h.5A1.5 1.5 0 0 1 10 6.5v4A1.5 1.5 0 0 1 8.5 12h-7A1.5 1.5 0 0 1 0 10.5v-4A1.5 1.5 0 0 1 1.5 5H2zm1.5 0h3V3.5a1.5 1.5 0 0 0-3 0V5z"/></svg>fairessentialglow.com</span><span class="br-tabs"><i></i><i></i></span></div>
+                    <div class="pg"><img src="/projects/feg-web.webp" width="1200" height="3000" alt="" loading="lazy" decoding="async"></div>
+                  </div>
+                  <i class="lt-notch"></i>
+                </div>
+                <div class="lt-back"><svg class="lt-logo" viewBox="0 0 24 24"><path d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.99 3.94-.99 1.83 0 2.35.99 3.96.95 1.64-.03 2.68-1.48 3.68-2.95 1.16-1.69 1.64-3.33 1.66-3.42-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.09-3.62-2.32-4.39-2.38-2-.16-3.68 1.09-4.62 1.09zm3.38-3.07c.84-1.01 1.4-2.43 1.25-3.83-1.21.05-2.66.81-3.53 1.82-.78.9-1.45 2.34-1.27 3.71 1.34.1 2.71-.69 3.55-1.7"/></svg></div>
+              </div>
+              <i class="lt-shadow"></i>
+              <div class="lt-base"><i class="lt-hinge"></i><i class="lt-spk l"></i><i class="lt-spk r"></i><svg class="lt-kb" viewBox="0 0 1500 588" preserveAspectRatio="none"><use href="#mbk"/></svg><i class="lt-tp"></i><i class="lt-lip"></i></div>
+            </div>
+            <div class="ph">
+              <div class="ph-scr ph-web">
+                <div class="ph-sb"><span>9:41</span><span class="ph-sbi"><svg viewBox="0 0 17 11"><rect y="7" width="3" height="4" rx=".8"/><rect x="4.7" y="5" width="3" height="6" rx=".8"/><rect x="9.4" y="2.5" width="3" height="8.5" rx=".8"/><rect x="14" width="3" height="11" rx=".8"/></svg><svg viewBox="0 0 15 11"><path d="M7.5 2.2c2.1 0 4 .8 5.4 2.2l1-1A9.3 9.3 0 0 0 7.5.8 9.3 9.3 0 0 0 1.1 3.4l1 1a7.9 7.9 0 0 1 5.4-2.2zm0 3.4c1.2 0 2.3.5 3.1 1.2l1-1a6.3 6.3 0 0 0-8.2 0l1 1c.8-.7 1.9-1.2 3.1-1.2zm0 3.2L9.3 7a2.6 2.6 0 0 0-3.6 0z"/></svg><svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2"/><path d="M23 4v4c.8-.3 1.4-1 1.4-2S23.8 4.3 23 4z" opacity=".5"/></svg></span></div>
+                <div class="pg"><img src="/projects/feg-mobile.webp" width="600" height="4000" alt="" loading="lazy" decoding="async"></div>
+                <div class="sf"><span class="sf-url"><svg viewBox="0 0 10 12" aria-hidden="true"><path d="M2 5V3.5a3 3 0 0 1 6 0V5h.5A1.5 1.5 0 0 1 10 6.5v4A1.5 1.5 0 0 1 8.5 12h-7A1.5 1.5 0 0 1 0 10.5v-4A1.5 1.5 0 0 1 1.5 5H2zm1.5 0h3V3.5a1.5 1.5 0 0 0-3 0V5z"/></svg> fairessentialglow.com</span></div>
+                <i class="ph-island"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="case-info">
+          <div class="case-head">
+            <img class="case-ic" src="/projects/icon-feg.webp" width="56" height="56" alt="" loading="lazy">
+            <div><p class="case-kicker" data-i18n="p.feg.k">Aesthetic spa &amp; skincare · Lagos</p><h3 class="case-t" id="p-feg-t">Fair Essential Glow</h3></div>
+          </div>
+          <ul class="case-plat"><li data-i18n="plat.web">Web app</li><li data-i18n="plat.store">Web store</li><li data-i18n="plat.book">Online booking</li></ul>
+          <p class="case-lede" data-i18n="p.feg.d">Website and online shop for an aesthetic spa in Lekki, Lagos. Clients book treatments online and buy skincare made for women of colour, priced in naira.</p>
+          <dl class="case-facts">
+            <div><dt data-i18n="p.feg.f1">skincare products</dt><dd data-counter="56">56</dd></div>
+            <div><dt data-i18n="p.feg.f2">treatments to book</dt><dd data-counter="17">17</dd></div>
+            <div><dt data-i18n="p.feg.f3">product categories</dt><dd data-counter="22">22</dd></div>
+          </dl>
+          <ul class="case-hl">
+            <li data-i18n="p.feg.h1">Treatment menu with online booking and WhatsApp contact</li>
+            <li data-i18n="p.feg.h2">WooCommerce shop for sets, serums, scrubs and body care</li>
+            <li data-i18n="p.feg.h3">Mobile-first build on WordPress and Elementor</li>
+          </ul>
+          <div class="case-stack"><span class="case-stack-k" data-i18n="case.stack">Languages &amp; stack</span><span class="et">PHP</span><span class="et">SQL</span><span class="et">WordPress</span><span class="et">WooCommerce</span><span class="et">Elementor</span><span class="et">MySQL</span><span class="et">Cloudflare</span></div>
+          <div class="case-links">
+            <a class="btn-p" href="https://fairessentialglow.com" target="_blank" rel="noopener"><span data-i18n="case.visit">Visit</span> fairessentialglow.com ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
 
 <div class="divider" style="display:none"></div>
 
@@ -1433,7 +1710,7 @@ body.ck-open{overflow:hidden}
 <section id="projects" aria-label="Projects and Labs" style="position:relative;overflow:hidden">
   <div class="blob blob-g" style="top:0;right:-300px;opacity:.06"></div>
   <div class="wrap">
-    <div class="s-label rv" data-i18n="projects.label">Projects &amp; Labs</div>
+    <div class="s-label rv" data-i18n="projects.label">Labs &amp; Operations</div>
     <h2 class="s-title rv" data-i18n="projects.title">Technical Initiatives</h2>
     <p class="s-sub rv" data-i18n="projects.sub">Environments built, maintained, and operated — from enterprise ops to hands-on lab work.</p>
 
@@ -1547,225 +1824,6 @@ body.ck-open{overflow:hidden}
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- =========================================
-     WORK — sites/tools built or maintained
-     Content fetched from /work.json — edit that file to update.
-========================================= -->
-<section id="work" aria-label="Work — sites and tools" style="position:relative;overflow:hidden">
-  <div class="blob blob-c" style="top:20%;left:-250px;opacity:.06"></div>
-  <div class="wrap">
-    <div class="s-label rv" data-i18n="work.label">Work</div>
-    <h2 class="s-title rv" data-i18n="work.title">Sites &amp; Tools I've Built</h2>
-    <p class="s-sub rv" data-i18n="work.sub">Websites deployed, hosting environments managed, and tools built for real users.</p>
-
-    <!-- Populated by JS from /work.json -->
-    <div class="work-grid" id="work-grid" aria-live="polite">
-      <div class="work-loading">
-        <span class="cft-status-dot"></span>
-        <span data-i18n="work.loading">Loading portfolio…</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- =========================================
-     APPS — iOS & Android concepts for Buk.ng + FixNTread
-========================================= -->
-<section id="apps" aria-label="Mobile app designs" style="position:relative;overflow:hidden">
-  <div class="blob blob-g" style="top:10%;right:-250px;opacity:.06"></div>
-  <div class="wrap">
-    <div class="s-label rv" data-i18n="apps.label">Mobile Apps</div>
-    <h2 class="s-title rv" data-i18n="apps.title">iOS &amp; Android Designs</h2>
-    <p class="s-sub rv" data-i18n="apps.sub">Interface concepts for two platforms I work on — native patterns on each OS, not one layout stretched across both.</p>
-
-    <div class="app-switch" role="group" aria-label="Choose a product">
-      <button type="button" data-app="buk" aria-pressed="true">Buk.ng</button>
-      <button type="button" data-app="fnt" aria-pressed="false">FixNTread</button>
-    </div>
-
-    <!-- icon sprite: stroke/colour inherited from .i -->
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
-      <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
-      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 20a6.5 6.5 0 0 0-3-5.5"/></symbol>
-      <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h13v4"/><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="16.5" cy="13.5" r="1"/></symbol>
-      <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></symbol>
-      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
-      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
-      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></symbol>
-      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
-      <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
-      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
-      <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.8l-5.8 3.1 1.1-6.5L2.6 9.8l6.5-.9z"/></symbol>
-      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></symbol>
-      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.7 7L3 20l1.2-4.8A8 8 0 1 1 21 12z"/></symbol>
-      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
-      <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
-      <symbol id="i-shirt" viewBox="0 0 24 24"><path d="M20.4 3.5 16 2a4 4 0 0 1-8 0L3.6 3.5a2 2 0 0 0-1.3 2.2l.6 3.5a1 1 0 0 0 1 .8H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.2a1 1 0 0 0 1-.8l.6-3.5a2 2 0 0 0-1.4-2.2z"/></symbol>
-      <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></symbol>
-    </svg>
-
-    <!-- ───────────── BUK.NG ───────────── -->
-    <div class="app-panel" id="app-buk">
-      <div class="app-info">
-        <div class="app-badges"><span class="app-badge live">Live on App Store &amp; Google Play</span><span class="app-badge">iOS · real app screens</span><span class="app-badge">Android · concept</span></div>
-        <h3>Buk Business</h3>
-        <p>Run bookings from your pocket. Today's appointments, deposit confirmations and customer replies in one thumb-friendly app for Nigerian service businesses.</p>
-        <ul class="app-feats">
-          <li>Today view with appointments and deposit status at a glance</li>
-          <li>Confirm Naira deposits and manual transfers in two taps</li>
-          <li>Day and week calendar with walk-ins and staff columns</li>
-          <li>WhatsApp-forward reminders and customer replies</li>
-        </ul>
-        <div class="app-links">
-          <a class="btn-p" href="https://buk.ng/get-app" target="_blank" rel="noopener">Get the app</a>
-          <a class="btn-s" href="https://buk.ng" target="_blank" rel="noopener">Visit buk.ng</a>
-        </div>
-      </div>
-      <div class="phones">
-        <figure class="phone-col" style="--p:3800ms">
-          <div class="tilt">
-            <div class="phone real" id="rp" role="group" aria-label="Buk Business iOS app screens">
-              <i class="hw hw-a"></i><i class="hw hw-u"></i><i class="hw hw-d"></i><i class="hw hw-p"></i>
-              <i class="isl"></i>
-              <div class="scr rscr" data-b="buk">
-                <div class="sb" aria-hidden="true"><span>9:41</span><span class="sbi">
-                  <svg viewBox="0 0 17 11"><rect y="7" width="3" height="4" rx=".8"/><rect x="4.7" y="5" width="3" height="6" rx=".8"/><rect x="9.4" y="2.5" width="3" height="8.5" rx=".8"/><rect x="14" width="3" height="11" rx=".8"/></svg>
-                  <svg viewBox="0 0 15 11"><path d="M7.5 2.2c2.1 0 4 .8 5.4 2.2l1-1A9.3 9.3 0 0 0 7.5.8 9.3 9.3 0 0 0 1.1 3.4l1 1a7.9 7.9 0 0 1 5.4-2.2zm0 3.4c1.2 0 2.3.5 3.1 1.2l1-1a6.3 6.3 0 0 0-8.2 0l1 1c.8-.7 1.9-1.2 3.1-1.2zm0 3.2L9.3 7a2.6 2.6 0 0 0-3.6 0z"/></svg>
-                  <svg viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2"/><path d="M23 4v4c.8-.3 1.4-1 1.4-2S23.8 4.3 23 4z" opacity=".5"/></svg>
-                </span></div>
-                <div class="slides">
-          <img class="slide on" src="/apps/buk-bookings.webp" width="640" height="1294" alt="Buk Business iOS app: Bookings list with completed and cancelled appointments and Naira amounts" data-label="Bookings" data-tap="33.5,92.4">
-          <img class="slide" src="/apps/buk-calendar.webp" width="640" height="1294" alt="Buk Business iOS app: Day calendar with team members, booked and open slots" data-label="Calendar" data-tap="15.7,92.4" loading="lazy" decoding="async" aria-hidden="true">
-          <img class="slide" src="/apps/buk-revenue.webp" width="640" height="1294" alt="Buk Business iOS app: Revenue chart for the last 30 days with upcoming confirmed appointments" data-label="Revenue" data-tap="30.2,40.6" loading="lazy" decoding="async" aria-hidden="true">
-          <img class="slide" src="/apps/buk-payments.webp" width="640" height="1294" alt="Buk Business iOS app: Payments overview with money collected, net after fees and a settlement ledger" data-label="Payments" data-tap="16,9.6" loading="lazy" decoding="async" aria-hidden="true">
-          <img class="slide" src="/apps/buk-invoices.webp" width="640" height="1294" alt="Buk Business iOS app: Invoices list with sent, overdue and paid statuses" data-label="Invoices" data-tap="88,92.4" loading="lazy" decoding="async" aria-hidden="true">
-          <img class="slide" src="/apps/buk-growth.webp" width="640" height="1294" alt="Buk Business iOS app: Growth campaigns: win-back, no-show recovery and review requests" data-label="Growth" data-tap="88,92.4" loading="lazy" decoding="async" aria-hidden="true">
-          <img class="slide" src="/apps/buk-reviews.webp" width="640" height="1294" alt="Buk Business iOS app: Customer reviews with star ratings and reply actions" data-label="Reviews" data-tap="51,92.4" loading="lazy" decoding="async" aria-hidden="true">
-                </div>
-                <i class="tap" aria-hidden="true"></i>
-                <i class="glare" aria-hidden="true"></i>
-              </div>
-            </div>
-          </div>
-          <div class="rp-ctl">
-            <div class="rp-dots" role="group" aria-label="Choose screen">
-              <button type="button" aria-label="Show Bookings screen"></button>
-              <button type="button" aria-label="Show Calendar screen"></button>
-              <button type="button" aria-label="Show Revenue screen"></button>
-              <button type="button" aria-label="Show Payments screen"></button>
-              <button type="button" aria-label="Show Invoices screen"></button>
-              <button type="button" aria-label="Show Growth screen"></button>
-              <button type="button" aria-label="Show Reviews screen"></button>
-            </div>
-            <button class="rp-pause" id="rp-pause" type="button" aria-pressed="false" aria-label="Pause animation">
-              <svg class="pa" viewBox="0 0 12 12"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg>
-              <svg class="pl" viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z"/></svg>
-            </button>
-          </div>
-          <figcaption id="rp-cap">iOS · Bookings</figcaption>
-        </figure>
-        <figure class="phone-col">
-          <div class="phone and" aria-hidden="true"><i class="pch"></i>
-            <div class="scr dk" data-b="buk">
-              <div class="sb"><span>9:41</span><span>5G ▮</span></div>
-              <div class="tb"><svg class="i"><use href="#i-menu"/></svg><b>Calendar</b><svg class="i"><use href="#i-bell"/></svg></div>
-              <div class="days">
-                <div><span>Mon</span><b>12</b></div><div class="on"><span>Tue</span><b>13</b></div><div><span>Wed</span><b>14</b></div><div><span>Thu</span><b>15</b></div><div><span>Fri</span><b>16</b></div>
-              </div>
-              <div class="tl">
-                <div class="hr" style="top:0">9 AM</div><div class="hr" style="top:64px">10</div><div class="hr" style="top:128px">11</div><div class="hr" style="top:192px">12</div><div class="hr" style="top:256px">1 PM</div>
-                <div class="ev" style="top:66px;height:120px;left:34px;right:50%"><b>Amaka O.</b><span>Box braids</span></div>
-                <div class="ev" style="top:162px;height:56px;left:calc(50% + 4px);right:0"><b>Tunde B.</b><span>Fade + beard</span></div>
-                <div class="ev" style="top:258px;height:48px;left:34px;right:112px"><b>Ngozi E.</b><span>Facial</span></div>
-              </div>
-              <div class="fab"><svg class="i"><use href="#i-plus"/></svg>New booking</div>
-              <div class="nb">
-                <div><u><svg class="i"><use href="#i-clock"/></svg></u>Today</div>
-                <div class="on"><u><svg class="i"><use href="#i-cal"/></svg></u>Calendar</div>
-                <div><u><svg class="i"><use href="#i-users"/></svg></u>Customers</div>
-                <div><u><svg class="i"><use href="#i-wallet"/></svg></u>Money</div>
-              </div>
-              <i class="hi"></i>
-            </div>
-          </div>
-          <figcaption>Android · Calendar concept</figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <!-- ───────────── FIXNTREAD ───────────── -->
-    <div class="app-panel" id="app-fnt" hidden>
-      <div class="app-info">
-        <div class="app-badges"><span class="app-badge soon">App coming soon</span><span class="app-badge">UI concept</span><span class="app-badge">EN · FR</span></div>
-        <h3>FixNTread</h3>
-        <p>Canada's verified tailor marketplace, designed for the phone: describe the garment, get matched in your city, and review a quote before you commit.</p>
-        <ul class="app-feats">
-          <li>Browse verified tailors by city and specialty</li>
-          <li>Three-step request: describe, get matched, receive a quote</li>
-          <li>AI Design Studio — describe a garment, get sketch concepts</li>
-          <li>Bilingual English and French</li>
-        </ul>
-        <div class="app-links">
-          <a class="btn-s" href="https://fixntread.online" target="_blank" rel="noopener">Visit fixntread.online</a>
-        </div>
-      </div>
-      <div class="phones">
-        <figure class="phone-col">
-          <div class="phone" aria-hidden="true"><i class="isl"></i>
-            <div class="scr" data-b="fnt">
-              <div class="sb"><span>9:41</span><span>5G ▮</span></div>
-              <div class="hd"><div><small><svg class="i"><use href="#i-pin"/></svg>Toronto, ON</small><div class="lt">Find a tailor</div></div><div class="av">A</div></div>
-              <div class="bd">
-                <div class="srch"><svg class="i"><use href="#i-search"/></svg>Alterations, suits, wedding…</div>
-                <div class="chs"><span class="on">Alterations</span><span>Custom</span><span>Wedding</span><span>Suits</span></div>
-                <div class="sec">Verified near you<i>See all</i></div>
-                <div class="tl2"><div class="ph">A</div><div class="tx"><b>Adaeze M.<svg class="i vf"><use href="#i-check"/></svg></b><small>Alterations · Repairs</small><small><svg class="i"><use href="#i-star"/></svg>4.9 · 8 yrs · Toronto</small></div></div>
-                <div class="tl2"><div class="ph">M</div><div class="tx"><b>Marc L.<svg class="i vf"><use href="#i-check"/></svg></b><small>Suits &amp; formal wear</small><small><svg class="i"><use href="#i-star"/></svg>4.8 · 6 yrs · Mississauga</small></div></div>
-                <div class="cta">Get a free estimate</div>
-              </div>
-              <div class="tabs">
-                <div class="on"><svg class="i"><use href="#i-search"/></svg>Discover</div>
-                <div><svg class="i"><use href="#i-list"/></svg>Requests</div>
-                <div><svg class="i"><use href="#i-sparkle"/></svg>Studio</div>
-                <div><svg class="i"><use href="#i-chat"/></svg>Chat</div>
-                <div><svg class="i"><use href="#i-users"/></svg>Profile</div>
-              </div>
-              <i class="hi"></i>
-            </div>
-          </div>
-          <figcaption>iOS · Discover</figcaption>
-        </figure>
-        <figure class="phone-col">
-          <div class="phone and" aria-hidden="true"><i class="pch"></i>
-            <div class="scr dk" data-b="fnt">
-              <div class="sb"><span>9:41</span><span>5G ▮</span></div>
-              <div class="tb"><svg class="i"><use href="#i-back"/></svg><b>Get a free estimate</b></div>
-              <div class="bd">
-                <div><div style="display:flex;justify-content:space-between;margin-bottom:5px;color:var(--mut)"><span>Step 2 of 3</span><span>Service</span></div><div class="pg"><i></i></div></div>
-                <div class="lt" style="font-size:17px">What do you need?</div>
-                <div class="opt on"><span class="ic"><svg class="i"><use href="#i-check"/></svg></span><span class="tx">Alterations</span></div>
-                <div class="opt"><span class="ic"><svg class="i"><use href="#i-shirt"/></svg></span><span class="tx">Custom clothing</span></div>
-                <div class="opt"><span class="ic"><svg class="i"><use href="#i-sparkle"/></svg></span><span class="tx">Wedding dress</span></div>
-                <div class="opt"><span class="ic"><svg class="i"><use href="#i-scissors"/></svg></span><span class="tx">Suit tailoring</span></div>
-                <div class="qt"><span>Instant quote · example</span><b>CA$ 25–40</b><span>Hem trousers · 2–3 days</span></div>
-                <div class="cta" style="margin:auto 0 22px">Get matched</div>
-              </div>
-              <i class="hi"></i>
-            </div>
-          </div>
-          <figcaption>Android · Request flow</figcaption>
-        </figure>
-      </div>
     </div>
   </div>
 </section>
@@ -2199,12 +2257,8 @@ const I18N = {
   en: {
     'nav.about':    'About',
     'nav.skills':   'Skills',
-    'nav.projects': 'Projects',
-    'nav.work':     'Work',
-    'nav.apps':     'Apps',
-    'apps.label':   'Mobile Apps',
-    'apps.title':   'iOS & Android Designs',
-    'apps.sub':     'Interface concepts for two platforms I work on — native patterns on each OS, not one layout stretched across both.',
+    'nav.projects': 'Labs',
+    'nav.work':     'Projects',
     'nav.education':'Education',
     'nav.contact':  'Contact',
     'nav.hire':     'Hire Me',
@@ -2235,14 +2289,58 @@ const I18N = {
     'skills.label': 'Skills',
     'skills.title': 'Technical Arsenal',
     'skills.sub':   'A full-stack support toolkit built across 6+ years of enterprise, cloud, and infrastructure environments.',
-    'projects.label':'Projects & Labs',
+    'projects.label':'Labs & Operations',
     'projects.title':'Technical Initiatives',
     'projects.sub': 'Environments built, maintained, and operated — from enterprise ops to hands-on lab work.',
-    'work.label':   'Work',
-    'work.title':   "Sites & Tools I've Built",
-    'work.sub':     'Websites deployed, hosting environments managed, and tools built for real users.',
-    'work.loading': 'Loading portfolio…',
-    'work.note':    'Edit',
+    'work.label': 'Projects',
+    'work.title': 'Products I\'ve built & shipped',
+    'work.sub': 'Native iOS and Android apps, web apps and online stores, live with real customers in Nigeria and Canada. Designed, built, shipped and supported end to end.',
+    'im.products': 'Live products',
+    'im.products.d': 'Nigeria · Canada',
+    'im.apps': 'Native apps',
+    'im.loc': 'Lines of TypeScript',
+    'im.api': 'API routes',
+    'im.api.d': 'Next.js back ends',
+    'im.tests': 'Test suites',
+    'im.screens': 'App screens',
+    'case.stack': 'Languages & stack',
+    'case.visit': 'Visit',
+    'plat.web': 'Web app',
+    'plat.store': 'Web store',
+    'plat.book': 'Online booking',
+    'p.buk.k': 'Booking & payments platform · Nigeria',
+    'p.buk.d': 'Appointment booking for Nigerian service businesses: online bookings, naira deposits, 24-hour reminders and payments in one place, with 0% commission. Owners run the day from the Buk for Business app, down to an Apple Watch.',
+    'p.buk.f1': 'businesses listed on Buk Explore',
+    'p.buk.f2': 'API routes',
+    'p.buk.f3': 'database models',
+    'p.buk.f4': 'screens across 2 apps',
+    'p.buk.h1': 'Apple Watch app, home-screen widgets and Siri shortcuts, written in Swift',
+    'p.buk.h2': 'Customer app in English and Nigerian Pidgin',
+    'p.buk.h3': '9 staff roles, a multi-branch command centre and naira-first payments',
+    'p.fnt.k': 'Tailoring marketplace · Canada',
+    'p.fnt.d': 'Canada\'s marketplace for verified tailors in Ottawa–Gatineau. Customers get a price in under a minute, pay in the app and follow every stage of the job with photos; tailors run jobs, fittings and earnings from the same app.',
+    'p.fnt.f1': 'customers reached',
+    'p.fnt.f2': 'tailoring requests',
+    'p.fnt.f3': 'verified tailors',
+    'p.fnt.f4': 'app screens',
+    'p.fnt.h1': 'In-app card payments with Stripe and Face ID sign-in',
+    'p.fnt.h2': 'Order timeline with progress photos, chat and voice notes',
+    'p.fnt.h3': 'Fully bilingual in English and French, with one-tap translation',
+    'p.mfa.k': 'African fashion store · Ottawa',
+    'p.mfa.d': 'An online store for African fashion and handcrafted accessories from Ottawa, from bold prints and kimono jackets to dashikis and beads, run as a multi-vendor marketplace.',
+    'p.mfa.f1': 'products',
+    'p.mfa.f2': 'categories',
+    'p.mfa.h1': 'Multi-vendor marketplace with Dokan vendor stores',
+    'p.mfa.h2': 'Wishlists, quick view and sale pricing across the catalogue',
+    'p.mfa.h3': 'Updates, backups and fixes automated with WP-CLI over SSH',
+    'p.feg.k': 'Aesthetic spa & skincare · Lagos',
+    'p.feg.d': 'Website and online shop for an aesthetic spa in Lekki, Lagos. Clients book treatments online and buy skincare made for women of colour, priced in naira.',
+    'p.feg.f1': 'skincare products',
+    'p.feg.f2': 'treatments to book',
+    'p.feg.f3': 'product categories',
+    'p.feg.h1': 'Treatment menu with online booking and WhatsApp contact',
+    'p.feg.h2': 'WooCommerce shop for sets, serums, scrubs and body care',
+    'p.feg.h3': 'Mobile-first build on WordPress and Elementor',
     'work.note2':   'to add or update items — no re-deploy needed.',
     'edu.label':    'Education & Certifications',
     'edu.title':    'Credentials',
@@ -2261,12 +2359,8 @@ const I18N = {
   pt: {
     'nav.about':    'Sobre',
     'nav.skills':   'Competências',
-    'nav.projects': 'Projetos',
-    'nav.work':     'Trabalho',
-    'nav.apps':     'Apps',
-    'apps.label':   'Apps Móveis',
-    'apps.title':   'Designs para iOS e Android',
-    'apps.sub':     'Conceitos de interface para duas plataformas em que trabalho — padrões nativos em cada sistema, não um único layout esticado.',
+    'nav.projects': 'Laboratórios',
+    'nav.work':     'Projetos',
     'nav.education':'Formação',
     'nav.contact':  'Contacto',
     'nav.hire':     'Contratar',
@@ -2297,14 +2391,58 @@ const I18N = {
     'skills.label': 'Competências',
     'skills.title': 'Arsenal Técnico',
     'skills.sub':   'Um conjunto completo de competências de suporte, construído ao longo de 6+ anos em ambientes empresariais, cloud e de infraestrutura.',
-    'projects.label':'Projetos e Laboratórios',
+    'projects.label':'Laboratórios e Operações',
     'projects.title':'Iniciativas Técnicas',
     'projects.sub': 'Ambientes construídos, mantidos e operados — desde operações empresariais até trabalho prático em laboratório.',
-    'work.label':   'Trabalho',
-    'work.title':   'Sites e Ferramentas que Construí',
-    'work.sub':     'Websites publicados, ambientes de alojamento geridos e ferramentas construídas para utilizadores reais.',
-    'work.loading': 'A carregar portfólio…',
-    'work.note':    'Edita',
+    'work.label': 'Projetos',
+    'work.title': 'Produtos que construí e lancei',
+    'work.sub': 'Apps nativas para iOS e Android, aplicações web e lojas online, em produção com clientes reais na Nigéria e no Canadá. Desenhadas, construídas, lançadas e suportadas de ponta a ponta.',
+    'im.products': 'Produtos em produção',
+    'im.products.d': 'Nigéria · Canadá',
+    'im.apps': 'Apps nativas',
+    'im.loc': 'Linhas de TypeScript',
+    'im.api': 'Rotas de API',
+    'im.api.d': 'Back ends em Next.js',
+    'im.tests': 'Suites de testes',
+    'im.screens': 'Ecrãs de app',
+    'case.stack': 'Linguagens e stack',
+    'case.visit': 'Visitar',
+    'plat.web': 'Aplicação web',
+    'plat.store': 'Loja online',
+    'plat.book': 'Marcações online',
+    'p.buk.k': 'Plataforma de marcações e pagamentos · Nigéria',
+    'p.buk.d': 'Marcações para negócios de serviços na Nigéria: reservas online, depósitos em naira, lembretes 24 horas antes e pagamentos num só sítio, sem comissões. Os donos gerem o dia na app Buk for Business, até no Apple Watch.',
+    'p.buk.f1': 'negócios listados no Buk Explore',
+    'p.buk.f2': 'rotas de API',
+    'p.buk.f3': 'modelos de dados',
+    'p.buk.f4': 'ecrãs em 2 apps',
+    'p.buk.h1': 'App para Apple Watch, widgets e atalhos da Siri, escritos em Swift',
+    'p.buk.h2': 'App de clientes em inglês e pidgin nigeriano',
+    'p.buk.h3': '9 funções de equipa, um centro de comando multi-filial e pagamentos em naira',
+    'p.fnt.k': 'Mercado de alfaiates · Canadá',
+    'p.fnt.d': 'O mercado de alfaiates verificados do Canadá, em Ottawa–Gatineau. Os clientes recebem um preço em menos de um minuto, pagam na app e acompanham cada fase do trabalho com fotos; os alfaiates gerem trabalhos, provas e ganhos na mesma app.',
+    'p.fnt.f1': 'clientes alcançados',
+    'p.fnt.f2': 'pedidos de costura',
+    'p.fnt.f3': 'alfaiates verificados',
+    'p.fnt.f4': 'ecrãs na app',
+    'p.fnt.h1': 'Pagamentos por cartão na app com Stripe e entrada com Face ID',
+    'p.fnt.h2': 'Linha temporal do pedido com fotos, chat e notas de voz',
+    'p.fnt.h3': 'Totalmente bilingue, em inglês e francês, com tradução num toque',
+    'p.mfa.k': 'Loja de moda africana · Ottawa',
+    'p.mfa.d': 'Loja online de moda africana e acessórios artesanais em Ottawa, de estampados ousados e casacos quimono a dashikis e missangas, gerida como um marketplace multi-vendedor.',
+    'p.mfa.f1': 'produtos',
+    'p.mfa.f2': 'categorias',
+    'p.mfa.h1': 'Marketplace multi-vendedor com lojas Dokan',
+    'p.mfa.h2': 'Listas de desejos, vista rápida e preços de saldo em todo o catálogo',
+    'p.mfa.h3': 'Atualizações, cópias de segurança e correções automatizadas com WP-CLI por SSH',
+    'p.feg.k': 'Spa de estética e skincare · Lagos',
+    'p.feg.d': 'Site e loja online para um spa de estética em Lekki, Lagos. Os clientes marcam tratamentos online e compram cuidados de pele pensados para pele negra, com preços em naira.',
+    'p.feg.f1': 'produtos de skincare',
+    'p.feg.f2': 'tratamentos para marcar',
+    'p.feg.f3': 'categorias de produto',
+    'p.feg.h1': 'Menu de tratamentos com marcação online e contacto por WhatsApp',
+    'p.feg.h2': 'Loja WooCommerce de kits, séruns, esfoliantes e cuidados de corpo',
+    'p.feg.h3': 'Construção mobile-first em WordPress e Elementor',
     'work.note2':   'para adicionar ou atualizar itens — sem necessidade de nova publicação.',
     'edu.label':    'Formação e Certificações',
     'edu.title':    'Credenciais',
@@ -2640,13 +2778,15 @@ document.querySelectorAll('.cf-input,.cf-select').forEach(el=>{
       const el = e.target;
       const target = parseInt(el.dataset.counter, 10);
       const suffix = el.dataset.suffix || '';
+      const fmt = n => n.toLocaleString(document.documentElement.lang === 'pt' ? 'pt-PT' : 'en-US') + suffix;
+      if(matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent = fmt(target); io.unobserve(el); return; }
       const dur = 1400;
       const start = performance.now();
       function tick(now){
         const p = Math.min((now - start) / dur, 1);
         // easeOutQuint
         const eased = 1 - Math.pow(1 - p, 5);
-        el.textContent = Math.round(target * eased) + suffix;
+        el.textContent = fmt(Math.round(target * eased));
         if(p < 1) requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
@@ -2678,58 +2818,6 @@ document.querySelectorAll('.cf-input,.cf-select').forEach(el=>{
   }
   fetchStatus();
   setInterval(fetchStatus, 5 * 60 * 1000); // refresh every 5 min
-})();
-
-/* ============================================================
-   WORK GRID — renders /work.json into cards
-   Edit that file to add/remove entries. No re-deploy needed.
-============================================================ */
-(function(){
-  const grid = document.getElementById('work-grid');
-  if(!grid) return;
-  const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./,''); } catch(e){ return u; } };
-
-  fetch('/work.json?t=' + Date.now(), { cache: 'no-store' })
-    .then(r => r.ok ? r.json() : Promise.reject('fetch failed'))
-    .then(data => {
-      const items = Array.isArray(data.items) ? data.items : [];
-      if(!items.length){
-        grid.innerHTML = '<div class="work-loading">No entries yet. Edit /work.json to add.</div>';
-        return;
-      }
-      grid.innerHTML = items.map((it, i) => {
-        const initial = (it.name || '?').trim().charAt(0);
-        const colorClass = 'c' + (i % 4);
-        const status = ['live','active','archived'].includes(it.status) ? it.status : 'live';
-        const tags = Array.isArray(it.tags) ? it.tags.slice(0, 6).map(t => `<span class="wc-tag">${esc(t)}</span>`).join('') : '';
-        const url = it.url || '#';
-        const isExternal = /^https?:\/\//.test(url);
-        return `
-          <a class="work-card" href="${esc(url)}"${isExternal ? ' target="_blank" rel="noopener"' : ''}>
-            <div class="wc-head">
-              <div class="wc-mono ${colorClass}">${esc(initial)}</div>
-              <div class="wc-title-wrap">
-                <div class="wc-title">
-                  <span>${esc(it.name || 'Untitled')}</span>
-                  <svg class="wc-ext" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                </div>
-                <span class="wc-url">${esc(hostOf(url))}</span>
-              </div>
-              <span class="wc-status ${status}"><span class="wc-status-dot"></span>${esc(status)}</span>
-            </div>
-            <div class="wc-role">${esc(it.role || '')}</div>
-            <div class="wc-desc">${esc(it.description || '')}</div>
-            <div class="wc-foot">
-              <div class="wc-tags">${tags}</div>
-              ${it.period ? `<span class="wc-period">${esc(it.period)}</span>` : ''}
-            </div>
-          </a>`;
-      }).join('');
-    })
-    .catch(() => {
-      grid.innerHTML = '<div class="work-loading" style="color:#f87171">✗ Failed to load /work.json</div>';
-    });
 })();
 
 /* ============================================================
@@ -2875,9 +2963,9 @@ window.addEventListener('load', ()=>{
       print('');
       const sections = [
         ['about/',      'Professional summary & skills cloud'],
+        ['work/',       'Buk.ng, FixNTread, MyAfromania, Fair Essential Glow'],
         ['skills/',     'Full technical arsenal — 6 categories'],
         ['projects/',   'Enterprise ops, labs, WP, endpoint deploy'],
-        ['apps/',       'iOS & Android design concepts — Buk.ng, FixNTread'],
         ['education/',  'MSc Informatics, CCNA, MCDST, Google IT'],
         ['contact/',    'Terminal-style contact form'],
       ];
@@ -2888,6 +2976,7 @@ window.addEventListener('load', ()=>{
       const map = {
         about:   'Support Engineer with 6+ years delivering hands-on, customer-facing\ntechnical support. Strong in WordPress, DNS, hosting, SSH,\nOffice 365, Active Directory, networking, cloud infrastructure.\nEnd-to-end incident ownership. Documentation-first mindset.',
         skills:  'Technical Support · Networking · Sys Admin\nWordPress & Hosting · Cloud & SaaS · OS & Infra\n\nExpert:      WordPress, DNS, SSH, incident mgmt\nAdvanced:    TCP/IP, VPN, Office 365, Active Directory\nProficient:  Intune, Autopilot, ServiceNow, Windows 365',
+        work:    '• Buk.ng: booking & payments, iOS · Android · watchOS · web\n• FixNTread: tailoring marketplace, iOS · Android · web\n• MyAfromania: African fashion store, WooCommerce + Dokan\n• Fair Essential Glow: spa & skincare shop, WooCommerce',
         projects:'• Enterprise Support Operations (ServiceNow, ITIL)\n• Home Lab Environment (Linux, Docker, Pi-hole)\n• WordPress & Hosting Ops (WP-CLI, SSH, VPS)\n• Network Diagnostics Lab (DNS, DHCP, TCP/IP)\n• Endpoint Deployment (Intune, Autopilot, Azure AD)\n• IT Documentation System (ServiceNow, SOPs)',
       };
       const key = arg.toLowerCase().replace(/\/$/,'');
@@ -3023,7 +3112,7 @@ const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ── SPOTLIGHT: cursor-tracking border glow, ring injected lazily on first hover ── */
 (function(){
   if(matchMedia('(pointer:coarse)').matches) return; // no hover on touch
-  const SEL = '.stat-card,.sk-cat,.proj-card,.work-card,.edu-card,.cert-card,.bento-cell';
+  const SEL = '.stat-card,.sk-cat,.proj-card,.case-facts > div,.edu-card,.cert-card,.bento-cell';
   document.addEventListener('pointerover', e=>{
     const card = e.target.closest?.(SEL);
     if(!card || card.querySelector(':scope > .spot-ring')) return;
@@ -3112,62 +3201,73 @@ const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
   });
 })();
 
-/* ── LIVE PHONE: real Buk iOS screens, auto-cycling with "tap" hints ── */
+/* ── WORK: scroll opens each laptop and brings its devices in; the pointer leans the scene;
+      screens scroll and cycle only while their case is on screen ── */
 (function(){
-  const rp = document.getElementById('rp'); if(!rp) return;
-  const fig = rp.closest('figure'), slides = [...rp.querySelectorAll('.slide')], dots = [...fig.querySelectorAll('.rp-dots button')],
-        tap = rp.querySelector('.tap'), area = rp.querySelector('.slides'), cap = document.getElementById('rp-cap'),
-        pb = document.getElementById('rp-pause'), ctl = fig.querySelector('.rp-dots'), tilt = fig.querySelector('.tilt');
-  const P = 3800, N = slides.length, RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let cur = 0, paused = RM, seen = false, tA, tB;
-  const playing = () => !paused && seen && !document.hidden;
-
-  function mark(){
-    slides.forEach((s,k) => { s.classList.toggle('on', k === cur); s.setAttribute('aria-hidden', k !== cur); });
-    dots.forEach((d,k) => { d.classList.toggle('on', k === cur); d.setAttribute('aria-current', k === cur ? 'true' : 'false'); });
-    cap.textContent = 'iOS · ' + slides[cur].dataset.label;
-  }
-  function hint(){ // ripple on the control that would lead to the next screen
-    const [x,y] = slides[cur].dataset.tap.split(',').map(Number);
-    tap.style.left = x + '%'; tap.style.top = (area.offsetTop + y / 100 * area.offsetHeight) + 'px';
-    tap.classList.remove('go'); void tap.offsetWidth; tap.classList.add('go');
-  }
-  function arm(){
-    clearTimeout(tA); clearTimeout(tB);
-    ctl.classList.toggle('still', !playing());
-    dots[cur].classList.remove('on'); void dots[cur].offsetWidth; dots[cur].classList.add('on'); // restart progress fill
-    if(!playing()) return;
-    tA = setTimeout(hint, P - 700);
-    tB = setTimeout(() => go((cur + 1) % N), P);
-  }
-  function go(n){
-    const prev = slides[cur]; prev.classList.add('out'); setTimeout(() => prev.classList.remove('out'), 800);
-    cur = n; mark(); arm();
-  }
-  dots.forEach((d,k) => d.addEventListener('click', () => go(k)));
-  pb.setAttribute('aria-pressed', paused); pb.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
-  pb.addEventListener('click', () => {
-    paused = !paused; pb.setAttribute('aria-pressed', paused); pb.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation'); arm();
-  });
-  new IntersectionObserver(([e]) => { seen = e.isIntersecting; arm(); }, { threshold: .35 }).observe(rp); // idle when off-screen or panel hidden
-  document.addEventListener('visibilitychange', arm);
-  if(!RM && !matchMedia('(pointer:coarse)').matches){ // cursor-driven 3D tilt
-    fig.addEventListener('pointermove', e => {
-      const r = fig.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-      tilt.style.setProperty('--ry', (x * 12).toFixed(2) + 'deg'); tilt.style.setProperty('--rx', (-y * 9).toFixed(2) + 'deg');
+  const cases = [...document.querySelectorAll('.case')];
+  if(!cases.length) return;
+  const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('live', e.isIntersecting && !REDUCED_MOTION)), { rootMargin:'0px 0px -8% 0px' });
+  cases.forEach(c => io.observe(c));
+  if(REDUCED_MOTION) return; // the scenes rest open: --p defaults to 1 in CSS
+  const stages = cases.map(c => c.querySelector('.case-stage'));
+  let raf = 0;
+  const frame = () => {
+    raf = 0;
+    const vh = innerHeight;
+    stages.forEach(s => {
+      const r = s.getBoundingClientRect();
+      // 0 while the stage's top is at the bottom of the screen, 1 once its middle reaches 55% of the screen
+      const p = Math.min(1, Math.max(0, (vh - r.top) / (vh * .45 + r.height * .5)));
+      s.style.setProperty('--p', p.toFixed(3));
     });
-    fig.addEventListener('pointerleave', () => { tilt.style.removeProperty('--ry'); tilt.style.removeProperty('--rx'); });
-  }
-  mark();
+  };
+  const schedule = () => { if(!raf) raf = requestAnimationFrame(frame); };
+  addEventListener('scroll', schedule, { passive:true });
+  addEventListener('resize', schedule);
+  frame();
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  stages.forEach(s => {
+    s.addEventListener('pointermove', e => {
+      const r = s.getBoundingClientRect();
+      s.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 2 - 1).toFixed(3));
+      s.style.setProperty('--my', ((e.clientY - r.top) / r.height * 2 - 1).toFixed(3));
+    });
+    s.addEventListener('pointerleave', () => { s.style.setProperty('--mx', 0); s.style.setProperty('--my', 0); });
+  });
 })();
 
-/* ── APPS: product switch (Buk.ng / FixNTread) ── */
+/* ── HERO 3D: the name, pill and buttons lean with the pointer above the grid floor ── */
 (function(){
-  const btns = document.querySelectorAll('.app-switch button'), panels = document.querySelectorAll('.app-panel');
-  btns.forEach(b => b.addEventListener('click', () => {
-    btns.forEach(x => x.setAttribute('aria-pressed', x === b));
-    panels.forEach(p => { p.hidden = p.id !== 'app-' + b.dataset.app; });
-  }));
+  if(REDUCED_MOTION || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  const hero = document.getElementById('hero'); if(!hero) return;
+  let raf = 0, x = 0, y = 0;
+  hero.addEventListener('pointermove', e => {
+    x = e.clientX / innerWidth * 2 - 1; y = e.clientY / innerHeight * 2 - 1;
+    if(!raf) raf = requestAnimationFrame(() => { raf = 0; hero.style.setProperty('--hx', x.toFixed(3)); hero.style.setProperty('--hy', y.toFixed(3)); });
+  });
+  hero.addEventListener('pointerleave', () => { hero.style.setProperty('--hx', 0); hero.style.setProperty('--hy', 0); });
+})();
+
+/* ── CARD TILT: cards turn in 3D toward the pointer, with a glare that follows it ── */
+(function(){
+  if(REDUCED_MOTION || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  document.querySelectorAll('.im-cell,.bento-cell,.proj-card,.sk-cat').forEach(el => {
+    let raf = 0;
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        el.style.transition = 'transform .12s ease-out,border-color .3s';
+        el.style.transform = `perspective(900px) rotateX(${((.5 - y) * 9).toFixed(2)}deg) rotateY(${((x - .5) * 11).toFixed(2)}deg) translateY(-4px)`;
+        el.style.setProperty('--gx', (x * 100).toFixed(1) + '%'); el.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+      });
+    });
+    el.addEventListener('pointerleave', () => {
+      cancelAnimationFrame(raf);
+      el.style.transition = 'transform .6s cubic-bezier(.2,.7,.2,1),border-color .3s';
+      el.style.transform = '';
+    });
+  });
 })();
 
 /* ── MARQUEE: duplicate track once for a seamless -50% loop ── */
@@ -3182,11 +3282,11 @@ const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const L = {
     en:{ ph:'Type a command or search…', nav:'Navigate', act:'Actions', pref:'Preferences', links:'Links', none:'No results',
-         about:'About', skills:'Skills', projects:'Projects & Labs', work:'Work', apps:'Mobile apps', education:'Education', contact:'Contact',
+         about:'About', skills:'Skills', projects:'Labs & Operations', work:'Projects', education:'Education', contact:'Contact',
          book:'Book a 15-min call', send:'Send a message', term:'Open terminal',
          lang:'Switch to Português', snd:'Toggle sound effects', email:'Copy email address', li:'Open LinkedIn', copied:'Copied hello@chike.ng' },
     pt:{ ph:'Escreve um comando ou pesquisa…', nav:'Navegar', act:'Ações', pref:'Preferências', links:'Ligações', none:'Sem resultados',
-         about:'Sobre', skills:'Competências', projects:'Projetos e Laboratórios', work:'Trabalho', apps:'Apps móveis', education:'Formação', contact:'Contacto',
+         about:'Sobre', skills:'Competências', projects:'Laboratórios e Operações', work:'Projetos', education:'Formação', contact:'Contacto',
          book:'Agendar chamada de 15 min', send:'Enviar mensagem', term:'Abrir terminal',
          lang:'Switch to English', snd:'Alternar efeitos sonoros', email:'Copiar email', li:'Abrir LinkedIn', copied:'Copiado hello@chike.ng' },
   };
@@ -3195,12 +3295,11 @@ const REDUCED_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const items = () => { const t = L[lang()]; return [
     { g:t.nav,  ic:'01', lb:t.about,     kw:'about profile sobre perfil',            run:()=>go('about') },
-    { g:t.nav,  ic:'02', lb:t.skills,    kw:'skills competencias stack',             run:()=>go('skills') },
-    { g:t.nav,  ic:'03', lb:t.projects,  kw:'projects labs projetos',                run:()=>go('projects') },
-    { g:t.nav,  ic:'04', lb:t.work,      kw:'work sites tools trabalho portfolio',   run:()=>go('work') },
-    { g:t.nav,  ic:'05', lb:t.apps,      kw:'apps mobile ios android iphone buk fixntread design', run:()=>go('apps') },
-    { g:t.nav,  ic:'06', lb:t.education, kw:'education certs formacao ccna msc',     run:()=>go('education') },
-    { g:t.nav,  ic:'07', lb:t.contact,   kw:'contact contacto email form',           run:()=>go('contact') },
+    { g:t.nav,  ic:'02', lb:t.work,      kw:'projects work apps ios android buk fixntread myafromania fair essential glow projetos portfolio', run:()=>go('work') },
+    { g:t.nav,  ic:'03', lb:t.skills,    kw:'skills competencias stack',             run:()=>go('skills') },
+    { g:t.nav,  ic:'04', lb:t.projects,  kw:'labs operations laboratorios ops',      run:()=>go('projects') },
+    { g:t.nav,  ic:'05', lb:t.education, kw:'education certs formacao ccna msc',     run:()=>go('education') },
+    { g:t.nav,  ic:'06', lb:t.contact,   kw:'contact contacto email form',           run:()=>go('contact') },
     { g:t.act,  ic:'⏱',  lb:t.book,      kw:'book call cal meeting agendar chamada', k:'B', run:()=>{ ckClose(); document.querySelector('[data-cal-link]')?.click(); } },
     { g:t.act,  ic:'✉',  lb:t.send,      kw:'send message form mensagem',            k:'M', run:()=>{ ckClose(); window.openContactModal?.(); } },
     { g:t.act,  ic:'>_', lb:t.term,      kw:'terminal shell console',                k:'~', run:()=>{ ckClose(); window.ttOpen?.(); } },

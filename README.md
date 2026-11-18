@@ -8,7 +8,7 @@ Vanilla HTML/CSS/JS for the site, Pages Functions for the API, Resend for email,
 ```
 public/                  static site (Pages publish directory)
   index.html             the whole portfolio
-  robots.txt, sitemap.xml, favicon.svg, og-image.png, apps/, work.json, status.json
+  robots.txt, sitemap.xml, favicon.svg, og-image.png, apps/, projects/ (real screenshots and icons for the Projects section), status.json
 functions/
   api/contact.js         POST /api/contact  — contact form: anti-spam, Resend emails, Discord report
   api/track.js           POST /api/track    — visit beacon → Discord visit report
